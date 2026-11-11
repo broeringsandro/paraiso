@@ -1,26 +1,120 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --noite: #14243a;
+  --azul: #1c3a57;
+  --mar: #4c7396;
+  --ceu: #a9bfd1;
+  --nevoa: #eef2f4;
+  --dourado: #d6bf98;
+  --bege: #e8e2d8;
+  --grafite: #2b2a27;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-noite: var(--noite);
+  --color-azul: var(--azul);
+  --color-mar: var(--mar);
+  --color-ceu: var(--ceu);
+  --color-nevoa: var(--nevoa);
+  --color-dourado: var(--dourado);
+  --color-bege: var(--bege);
+  --color-grafite: var(--grafite);
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--nevoa);
+  color: var(--grafite);
+  font-family: var(--font-hanken), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Títulos: frase Light, destaque Medium */
+.titulo {
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  text-wrap: balance;
+}
+.titulo strong {
+  font-weight: 500;
+}
+
+.rotulo {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 12px;
+}
+
+.traco-dourado {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--dourado);
+  margin-bottom: 1.5rem;
+}
+
+.texto {
+  text-wrap: pretty;
+}
+
+/* Mapa nas cores da marca */
+.mapa .leaflet-tile-pane {
+  filter: grayscale(1) sepia(0.2) hue-rotate(170deg) saturate(1.6) brightness(1.02)
+    contrast(0.95);
+}
+.mapa .leaflet-container {
+  background: var(--nevoa);
+  font-family: inherit;
+}
+
+.pino {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background: var(--azul);
+  border: 2px solid var(--dourado);
+  color: var(--dourado);
+  box-shadow: 0 4px 14px rgb(20 36 58 / 0.35);
+}
+.pino-sec {
+  background: var(--nevoa);
+  border-color: var(--mar);
+  color: var(--azul);
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.revela {
+  animation: subir 0.9s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .revela {
+    animation: none;
+  }
 }
