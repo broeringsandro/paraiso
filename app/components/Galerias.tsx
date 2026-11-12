@@ -72,9 +72,6 @@ function CardGaleria({
           <span className="text-dourado">{item.icone}</span>
           {item.nome}
         </span>
-        <span className="text-sm tabular-nums text-white/60">
-          {String(i + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
-        </span>
       </figcaption>
     </figure>
   );
@@ -120,7 +117,7 @@ function CardPilha({ card, i }: { card: CardEmpilhado; i: number }) {
         <div className="flex flex-col justify-center gap-5 p-7 md:p-14">
           <p className="rotulo flex items-center gap-3 text-mar">
             <span className="text-dourado">{card.icone}</span>
-            {String(i + 1).padStart(2, "0")} · {card.rotulo}
+            {card.rotulo}
           </p>
           <h3 className="text-3xl font-light leading-tight tracking-tight text-azul md:text-5xl">{card.titulo}</h3>
           <p className="texto max-w-md text-grafite/85">{card.texto}</p>

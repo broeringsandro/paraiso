@@ -120,14 +120,8 @@ const destaquesLocal: { t: string; d: string; icone: LucideIcon }[] = [
   { t: "Perto da nova prefeitura", d: "No São Francisco de Assis, bairro que cresce ao redor da nova prefeitura.", icone: Landmark },
 ];
 
-function Rotulo({ n, children, claro = false }: { n: string; children: React.ReactNode; claro?: boolean }) {
-  return (
-    <p className={`rotulo mb-5 flex items-center gap-3 ${claro ? "text-dourado" : "text-mar"}`}>
-      <span className="tabular-nums opacity-70">{n}</span>
-      <span className="h-px w-8 bg-current opacity-50" />
-      {children}
-    </p>
-  );
+function Rotulo({ children, claro = false }: { children: React.ReactNode; claro?: boolean }) {
+  return <p className={`rotulo mb-5 ${claro ? "text-dourado" : "text-mar"}`}>{children}</p>;
 }
 
 export default function Home() {
@@ -145,7 +139,7 @@ export default function Home() {
           <WaveLine className="pointer-events-none absolute -right-40 top-10 w-[1200px] max-w-none" />
           <div className="relative mx-auto max-w-6xl px-5 md:px-10">
             <Reveal>
-              <Rotulo n="01">O empreendimento</Rotulo>
+              <Rotulo>O empreendimento</Rotulo>
             </Reveal>
             <ScrollText
               className="titulo text-azul md:!text-[3.4rem]"
@@ -187,7 +181,7 @@ export default function Home() {
         <section id="home-club" className="bg-noite text-white">
           <div className="mx-auto max-w-7xl px-5 pb-10 pt-28 md:px-10 md:pt-44">
             <Reveal>
-              <Rotulo n="02" claro>
+              <Rotulo claro>
                 Home club
               </Rotulo>
             </Reveal>
@@ -221,7 +215,7 @@ export default function Home() {
               <div className="max-w-md">
                 <Reveal>
                   <span className="traco-dourado" />
-                  <Rotulo n="03">Coworking + academia</Rotulo>
+                  <Rotulo>Coworking + academia</Rotulo>
                   <h2 className="titulo text-azul">
                     Trabalhe e cuide <strong>da sua saúde</strong>.
                   </h2>
@@ -244,7 +238,7 @@ export default function Home() {
               <div className="max-w-md">
                 <Reveal>
                   <span className="traco-dourado" />
-                  <Rotulo n="04">Para as crianças</Rotulo>
+                  <Rotulo>Para as crianças</Rotulo>
                   <h2 className="titulo text-azul">
                     O primeiro condomínio da região com <strong>salão de festas temático infantil</strong>.
                   </h2>
@@ -264,7 +258,7 @@ export default function Home() {
         <section id="apartamentos" className="bg-nevoa pt-28 md:pt-44">
           <div className="mx-auto max-w-7xl px-5 md:px-10">
             <Reveal>
-              <Rotulo n="05">Apartamentos</Rotulo>
+              <Rotulo>Apartamentos</Rotulo>
             </Reveal>
             <h2 className="titulo max-w-3xl text-azul">
               <RevealWords text="Ambientes feitos para" /> <strong><RevealWords text="viver bem." delay={0.2} /></strong>
@@ -283,7 +277,7 @@ export default function Home() {
         <section className="bg-ceu/30 py-24 md:py-36">
           <div className="mx-auto max-w-7xl px-5 md:px-10">
             <Reveal>
-              <Rotulo n="06">Diferenciais</Rotulo>
+              <Rotulo>Diferenciais</Rotulo>
             </Reveal>
             <h2 className="titulo max-w-3xl text-azul">
               <RevealWords text="Pensado em" /> <strong><RevealWords text="cada detalhe." delay={0.2} /></strong>
@@ -306,7 +300,7 @@ export default function Home() {
         <section id="plantas" className="bg-bege py-28 md:py-44">
           <div className="mx-auto max-w-7xl px-5 md:px-10">
             <Reveal>
-              <Rotulo n="07">Plantas</Rotulo>
+              <Rotulo>Plantas</Rotulo>
             </Reveal>
             <h2 className="titulo max-w-3xl text-azul">
               <RevealWords text="Três tipologias," /> <strong><RevealWords text="112 apartamentos." delay={0.2} /></strong>
@@ -348,7 +342,7 @@ export default function Home() {
             <div className="mt-5 grid items-center gap-10 rounded-2xl bg-azul p-8 text-white md:grid-cols-2 md:p-14">
               <div>
                 <Reveal>
-                  <Rotulo n="08" claro>
+                  <Rotulo claro>
                     Posição solar
                   </Rotulo>
                   <h3 className="text-2xl font-light leading-snug md:text-4xl">
@@ -369,7 +363,7 @@ export default function Home() {
         <section className="overflow-hidden bg-nevoa py-24 md:py-36">
           <div className="mx-auto max-w-7xl px-5 md:px-10">
             <Reveal>
-              <Rotulo n="09">Fachada</Rotulo>
+              <Rotulo>Fachada</Rotulo>
             </Reveal>
             <h2 className="titulo mb-12 max-w-3xl text-azul">
               <RevealWords text="Duas torres para" /> <strong><RevealWords text="viver bem." delay={0.2} /></strong>
@@ -390,7 +384,7 @@ export default function Home() {
         <section id="localizacao" className="bg-nevoa py-28 md:py-44">
           <div className="mx-auto max-w-7xl px-5 md:px-10">
             <Reveal>
-              <Rotulo n="10">Localização</Rotulo>
+              <Rotulo>Localização</Rotulo>
             </Reveal>
             <h2 className="titulo max-w-3xl text-azul">
               <RevealWords text="Tudo o que você precisa," /> <strong><RevealWords text="perto de casa." delay={0.25} /></strong>
@@ -453,7 +447,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl gap-16 px-5 md:px-10 lg:grid-cols-2 lg:gap-24">
             <div>
               <Reveal>
-                <Rotulo n="11" claro>
+                <Rotulo claro>
                   Contato
                 </Rotulo>
               </Reveal>
