@@ -127,7 +127,7 @@ export default function Home() {
       <header className="fixed inset-x-0 top-0 z-40 bg-gradient-to-b from-noite/80 to-transparent text-white">
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:px-10">
           <a href="#topo" aria-label="Início">
-            <Logo compacto />
+            <Logo compacto className="w-32 md:w-40" />
           </a>
           <nav className="hidden gap-8 text-[13px] lg:flex" aria-label="Principal">
             {nav.map(([t, h]) => (
@@ -154,6 +154,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-noite via-noite/45 to-noite/10" aria-hidden />
           <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 md:px-10 md:pb-24">
             <div className="revela max-w-3xl">
+              <Logo className="mb-12 w-52 md:w-72" />
               <span className="traco-dourado" />
               <p className="rotulo mb-5 text-dourado">Pré-lançamento · Santo Amaro da Imperatriz/SC</p>
               <h1 className="titulo">
@@ -508,7 +509,7 @@ export default function Home() {
       <footer className="bg-noite px-5 pb-12 text-ceu md:px-10">
         <div className="mx-auto max-w-7xl border-t border-white/10 pt-12">
           <div className="flex flex-col gap-8 text-white md:flex-row md:items-center md:justify-between">
-            <Logo />
+            <Logo className="w-56" />
             <div className="flex items-center gap-5 text-xs uppercase tracking-[0.2em] text-ceu">
               <span>Realização</span>
               <span className="h-8 w-px bg-white/20" />
