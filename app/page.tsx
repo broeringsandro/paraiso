@@ -39,7 +39,7 @@ import WhatsappIcon from "./components/WhatsappIcon";
 import { Reveal, RevealWords } from "./components/Reveal";
 import ScrollText from "./components/ScrollText";
 import { ClipImage, Counter, ParallaxImage, SolarArc, WaveLine } from "./components/Visuals";
-import { Carrossel, CardsEmpilhados, LazerLista } from "./components/Galerias";
+import { Carrossel, CardsEmpilhados, GaleriaHorizontal } from "./components/Galerias";
 import Letreiro from "./components/Letreiro";
 
 const WA_LINK = `https://wa.me/${WHATSAPP}`;
@@ -185,24 +185,21 @@ export default function Home() {
 
         {/* 02 · Home club */}
         <section id="home-club" className="bg-noite text-white">
-          <LazerLista
-            itens={galeria}
-            cabecalho={
-              <>
-                <Reveal>
-                  <Rotulo n="02" claro>
-                    Home club
-                  </Rotulo>
-                </Reveal>
-                <h2 className="titulo md:!text-[2.6rem]">
-                  <RevealWords text="Um clube completo" /> <strong><RevealWords text="dentro do seu condomínio." delay={0.2} /></strong>
-                </h2>
-                <Reveal delay={0.2}>
-                  <p className="texto mt-4 max-w-sm text-ceu">Trabalhe, treine, celebre e relaxe sem sair de casa.</p>
-                </Reveal>
-              </>
-            }
-          />
+          <div className="mx-auto max-w-7xl px-5 pb-10 pt-28 md:px-10 md:pt-44">
+            <Reveal>
+              <Rotulo n="02" claro>
+                Home club
+              </Rotulo>
+            </Reveal>
+            <h2 className="titulo max-w-3xl">
+              <RevealWords text="Um clube completo" /> <strong><RevealWords text="dentro do seu condomínio." delay={0.2} /></strong>
+            </h2>
+            <Reveal delay={0.2}>
+              <p className="texto mt-6 max-w-xl text-ceu">Trabalhe, treine, celebre e relaxe sem sair de casa.</p>
+            </Reveal>
+          </div>
+
+          <GaleriaHorizontal itens={galeria} />
 
           <div className="mx-auto max-w-7xl px-5 pb-28 pt-6 md:px-10 md:pb-40">
             <ul className="grid grid-cols-2 gap-6 border-t border-white/10 pt-10 md:grid-cols-4">
