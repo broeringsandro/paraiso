@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { motion, useMotionValueEvent, useScroll, useTransform, type MotionValue } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export type ItemGaleria = { nome: string; icone: ReactNode; img: string; alt: string };
 
@@ -126,6 +127,104 @@ function CardPilha({ card, i }: { card: CardEmpilhado; i: number }) {
         </div>
         <motion.div className="pointer-events-none absolute inset-0 bg-noite" style={{ opacity: dim }} aria-hidden />
       </motion.article>
+    </div>
+  );
+}
+
+// Lista numerada + painel de imagem. O scroll troca o item ativo; clicar no item rola até ele.
+export function LazerLista({ itens, cabecalho }: { itens: ItemGaleria[]; cabecalho?: ReactNode }) {
+  const outer = useRef<HTMLDivElement>(null);
+  const [ativo, setAtivo] = useState(0);
+  const { scrollYProgress } = useScroll({ target: outer, offset: ["start start", "end end"] });
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setAtivo(Math.max(0, Math.min(itens.length - 1, Math.floor(v * itens.length))));
+  });
+
+  function ir(i: number) {
+    const el = outer.current;
+    if (!el) return;
+    const topo = el.getBoundingClientRect().top + window.scrollY;
+    const alcance = el.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: topo + ((i + 0.5) / itens.length) * alcance, behavior: "smooth" });
+  }
+
+  return (
+    <div ref={outer} style={{ height: `calc(100svh + ${itens.length * 42}svh)` }} className="relative">
+      <div className="sticky top-0 mx-auto grid h-[100svh] max-w-7xl grid-rows-[auto_1fr] gap-5 px-5 pb-6 pt-24 md:px-10 lg:grid-cols-[1fr_1.3fr] lg:grid-rows-1 lg:gap-14 lg:pb-10">
+        <div className="order-2 flex min-h-0 flex-col justify-center lg:order-1">
+        {cabecalho && <div className="mb-6 hidden lg:block">{cabecalho}</div>}
+        <ol className="flex flex-col">
+          {itens.map((it, i) => (
+            <li key={it.nome}>
+              <button
+                type="button"
+                onClick={() => ir(i)}
+                aria-current={i === ativo}
+                className={`group flex w-full items-center gap-4 border-t border-white/15 py-2.5 text-left transition-all duration-500 md:gap-6 md:py-3 ${
+                  i === ativo ? "text-white" : "text-ceu/55 hover:text-ceu"
+                }`}
+              >
+                <span className={`w-6 text-xs tabular-nums transition-colors ${i === ativo ? "text-dourado" : ""}`}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className={`text-lg font-light transition-all duration-500 md:text-2xl ${i === ativo ? "translate-x-1" : ""}`}>
+                  {it.nome}
+                </span>
+                <span className={`ml-auto transition-opacity duration-500 ${i === ativo ? "text-dourado opacity-100" : "opacity-0"}`}>
+                  {it.icone}
+                </span>
+              </button>
+            </li>
+          ))}
+          <li className="border-t border-white/15" aria-hidden />
+        </ol>
+        </div>
+
+        <div className="relative order-1 min-h-0 overflow-hidden rounded-3xl bg-azul lg:order-2">
+          {itens.map((it, i) => (
+            <motion.div
+              key={it.img}
+              className="absolute inset-0"
+              initial={false}
+              animate={{ opacity: i === ativo ? 1 : 0, scale: i === ativo ? 1 : 1.08 }}
+              transition={{ duration: 0.9, ease: [0.44, 0, 0.56, 1] }}
+            >
+              <Image src={`/img/${it.img}.jpg`} alt={it.alt} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" priority={i === 0} />
+            </motion.div>
+          ))}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-noite/70 via-transparent to-transparent" aria-hidden />
+          <p className="absolute bottom-5 left-6 text-sm tabular-nums text-white/80">
+            {String(ativo + 1).padStart(2, "0")} / {String(itens.length).padStart(2, "0")}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Carrossel com setas (scroll-snap), como no site de referência.
+export function Carrossel({ itens }: { itens: { img: string; alt: string }[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const mover = (dir: 1 | -1) => ref.current?.scrollBy({ left: dir * Math.min(520, window.innerWidth * 0.8), behavior: "smooth" });
+  const seta =
+    "flex h-12 w-12 items-center justify-center rounded-full bg-noite text-white transition hover:bg-mar";
+  return (
+    <div>
+      <div className="mb-6 flex justify-end gap-2 px-5 md:px-10">
+        <button type="button" aria-label="Anterior" onClick={() => mover(-1)} className={seta}>
+          <ChevronLeft size={22} strokeWidth={1.5} />
+        </button>
+        <button type="button" aria-label="Próxima" onClick={() => mover(1)} className={seta}>
+          <ChevronRight size={22} strokeWidth={1.5} />
+        </button>
+      </div>
+      <div ref={ref} data-lenis-prevent className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 md:gap-5 md:px-10">
+        {itens.map((it) => (
+          <figure key={it.img} className="relative aspect-[4/5] w-[78vw] shrink-0 snap-start overflow-hidden rounded-3xl bg-azul sm:w-[48vw] md:w-[420px]">
+            <Image src={`/img/${it.img}.jpg`} alt={it.alt} fill sizes="(min-width: 768px) 420px, 80vw" className="object-cover" />
+          </figure>
+        ))}
+      </div>
     </div>
   );
 }

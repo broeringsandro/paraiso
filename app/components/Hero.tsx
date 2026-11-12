@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import WhatsappIcon from "./WhatsappIcon";
 
@@ -43,7 +43,8 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
         style={{ opacity: fade, y: lift }}
         className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-6 px-5 pb-32 text-left md:px-10 md:pb-36 [&_h1]:max-w-3xl [&_h1]:[text-shadow:0_2px_30px_rgb(20_36_58/0.6)]"
       >
-        <p className="hero-in rotulo text-dourado" style={{ animationDelay: "2.3s" }}>
+        <p className="hero-in rotulo flex items-center gap-3 text-dourado" style={{ animationDelay: "2.3s" }}>
+          <span className="h-2 w-2 rounded-full bg-dourado" />
           Pré-lançamento · Santo Amaro da Imperatriz/SC
         </p>
         <h1 className="hero-in titulo" style={{ animationDelay: "2.5s" }}>
@@ -59,13 +60,13 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
             rel="noopener"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-dourado px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-noite transition hover:bg-white"
           >
-            <WhatsappIcon size={18} /> Agende sua visita
+            <WhatsappIcon size={18} /> Agende sua visita <ArrowRight size={16} strokeWidth={1.8} />
           </a>
           <a
-            href="#empreendimento"
-            className="inline-flex items-center justify-center rounded-full bg-white/15 px-8 py-4 text-sm uppercase tracking-[0.15em] text-white backdrop-blur-md transition hover:bg-white/25"
+            href="#home-club"
+            className="inline-flex items-center justify-center rounded-full border border-white/40 px-8 py-4 text-sm uppercase tracking-[0.15em] text-white backdrop-blur-sm transition hover:border-dourado hover:text-dourado"
           >
-            Conheça o projeto
+            Ver o lazer
           </a>
         </div>
       </motion.div>

@@ -39,7 +39,8 @@ import WhatsappIcon from "./components/WhatsappIcon";
 import { Reveal, RevealWords } from "./components/Reveal";
 import ScrollText from "./components/ScrollText";
 import { ClipImage, Counter, ParallaxImage, SolarArc, WaveLine } from "./components/Visuals";
-import { CardsEmpilhados, GaleriaHorizontal } from "./components/Galerias";
+import { Carrossel, CardsEmpilhados, LazerLista } from "./components/Galerias";
+import Letreiro from "./components/Letreiro";
 
 const WA_LINK = `https://wa.me/${WHATSAPP}`;
 
@@ -137,6 +138,7 @@ export default function Home() {
 
       <main id="topo">
         <Hero whatsapp={WA_LINK} />
+        <Letreiro />
 
         {/* 01 · O empreendimento */}
         <section id="empreendimento" className="relative overflow-hidden bg-nevoa py-28 md:py-44">
@@ -183,21 +185,24 @@ export default function Home() {
 
         {/* 02 · Home club */}
         <section id="home-club" className="bg-noite text-white">
-          <div className="mx-auto max-w-7xl px-5 pb-10 pt-28 md:px-10 md:pt-44">
-            <Reveal>
-              <Rotulo n="02" claro>
-                Home club
-              </Rotulo>
-            </Reveal>
-            <h2 className="titulo max-w-3xl">
-              <RevealWords text="Um clube completo" /> <strong><RevealWords text="dentro do seu condomínio." delay={0.2} /></strong>
-            </h2>
-            <Reveal delay={0.2}>
-              <p className="texto mt-6 max-w-xl text-ceu">Trabalhe, treine, celebre e relaxe sem sair de casa.</p>
-            </Reveal>
-          </div>
-
-          <GaleriaHorizontal itens={galeria} />
+          <LazerLista
+            itens={galeria}
+            cabecalho={
+              <>
+                <Reveal>
+                  <Rotulo n="02" claro>
+                    Home club
+                  </Rotulo>
+                </Reveal>
+                <h2 className="titulo md:!text-[2.6rem]">
+                  <RevealWords text="Um clube completo" /> <strong><RevealWords text="dentro do seu condomínio." delay={0.2} /></strong>
+                </h2>
+                <Reveal delay={0.2}>
+                  <p className="texto mt-4 max-w-sm text-ceu">Trabalhe, treine, celebre e relaxe sem sair de casa.</p>
+                </Reveal>
+              </>
+            }
+          />
 
           <div className="mx-auto max-w-7xl px-5 pb-28 pt-6 md:px-10 md:pb-40">
             <ul className="grid grid-cols-2 gap-6 border-t border-white/10 pt-10 md:grid-cols-4">
@@ -273,11 +278,26 @@ export default function Home() {
             <CardsEmpilhados cards={cardsApto} />
           </div>
 
-          <div className="mx-auto max-w-7xl px-5 pb-28 pt-10 md:px-10 md:pb-44">
-            <ul className="grid gap-x-10 gap-y-9 border-t border-azul/15 pt-14 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="pb-24 md:pb-36" />
+        </section>
+
+
+        {/* Diferenciais */}
+        <section className="bg-ceu/30 py-24 md:py-36">
+          <div className="mx-auto max-w-7xl px-5 md:px-10">
+            <Reveal>
+              <Rotulo n="06">Diferenciais</Rotulo>
+            </Reveal>
+            <h2 className="titulo max-w-3xl text-azul">
+              <RevealWords text="Pensado em" /> <strong><RevealWords text="cada detalhe." delay={0.2} /></strong>
+            </h2>
+            <ul className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {diferenciais.map(({ t, icone: I }, i) => (
-                <Reveal as="li" key={t} delay={(i % 3) * 0.1} className="flex gap-4">
-                  <I size={24} strokeWidth={1.5} className="mt-0.5 shrink-0 text-mar" />
+                <Reveal as="li" key={t} delay={(i % 3) * 0.1} className="flex flex-col gap-5 rounded-2xl bg-white/70 p-7 transition duration-500 hover:-translate-y-1 hover:bg-white">
+                  <span className="flex items-center gap-4">
+                    <span className="h-0.5 w-8 bg-dourado" />
+                    <I size={22} strokeWidth={1.5} className="text-mar" />
+                  </span>
                   <span className="texto text-azul">{t}</span>
                 </Reveal>
               ))}
@@ -289,7 +309,7 @@ export default function Home() {
         <section id="plantas" className="bg-bege py-28 md:py-44">
           <div className="mx-auto max-w-7xl px-5 md:px-10">
             <Reveal>
-              <Rotulo n="06">Plantas</Rotulo>
+              <Rotulo n="07">Plantas</Rotulo>
             </Reveal>
             <h2 className="titulo max-w-3xl text-azul">
               <RevealWords text="Três tipologias," /> <strong><RevealWords text="112 apartamentos." delay={0.2} /></strong>
@@ -304,7 +324,7 @@ export default function Home() {
             {/* TODO: inserir as imagens das plantas novas (sem piso laminado) em /public/img e exibir em cada card. */}
             <div className="mt-16 grid gap-5 md:grid-cols-3">
               {tipos.map((t, i) => (
-                <Reveal as="article" key={t.nome} delay={i * 0.15} className="flex flex-col rounded-sm bg-nevoa p-8 transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_-28px_rgb(20_36_58/0.4)]">
+                <Reveal as="article" key={t.nome} delay={i * 0.15} className="flex flex-col rounded-2xl bg-nevoa p-8 transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_-28px_rgb(20_36_58/0.4)]">
                   <p className="rotulo text-mar">{t.nome}</p>
                   <p className="mt-6 text-5xl font-light text-azul">
                     {t.area}
@@ -328,10 +348,10 @@ export default function Home() {
 
             {/* Posição solar */}
             {/* TODO: confirmar a orientação do norte (aprox. 25° à direita do topo da planta térrea). */}
-            <div className="mt-5 grid items-center gap-10 rounded-sm bg-azul p-8 text-white md:grid-cols-2 md:p-14">
+            <div className="mt-5 grid items-center gap-10 rounded-2xl bg-azul p-8 text-white md:grid-cols-2 md:p-14">
               <div>
                 <Reveal>
-                  <Rotulo n="07" claro>
+                  <Rotulo n="08" claro>
                     Posição solar
                   </Rotulo>
                   <h3 className="text-2xl font-light leading-snug md:text-4xl">
@@ -347,11 +367,33 @@ export default function Home() {
           </div>
         </section>
 
+
+        {/* 09 · Fachada */}
+        <section className="overflow-hidden bg-nevoa py-24 md:py-36">
+          <div className="mx-auto max-w-7xl px-5 md:px-10">
+            <Reveal>
+              <Rotulo n="09">Fachada</Rotulo>
+            </Reveal>
+            <h2 className="titulo mb-12 max-w-3xl text-azul">
+              <RevealWords text="Duas torres para" /> <strong><RevealWords text="viver bem." delay={0.2} /></strong>
+            </h2>
+          </div>
+          <Carrossel
+            itens={[
+              { img: "fachada-05", alt: "Entrada do Paraíso das Águas" },
+              { img: "fachada-06", alt: "Fachada do Paraíso das Águas" },
+              { img: "fachada-07", alt: "Fachada do Paraíso das Águas" },
+              { img: "fachada-09", alt: "Fachada do Paraíso das Águas" },
+              { img: "fachada-08", alt: "Vista aérea das duas torres" },
+            ]}
+          />
+        </section>
+
         {/* 08 · Localização */}
         <section id="localizacao" className="bg-nevoa py-28 md:py-44">
           <div className="mx-auto max-w-7xl px-5 md:px-10">
             <Reveal>
-              <Rotulo n="08">Localização</Rotulo>
+              <Rotulo n="10">Localização</Rotulo>
             </Reveal>
             <h2 className="titulo max-w-3xl text-azul">
               <RevealWords text="Tudo o que você precisa," /> <strong><RevealWords text="perto de casa." delay={0.25} /></strong>
@@ -414,7 +456,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl gap-16 px-5 md:px-10 lg:grid-cols-2 lg:gap-24">
             <div>
               <Reveal>
-                <Rotulo n="09" claro>
+                <Rotulo n="11" claro>
                   Contato
                 </Rotulo>
               </Reveal>
@@ -435,7 +477,7 @@ export default function Home() {
                 </a>
               </Reveal>
             </div>
-            <Reveal delay={0.2} className="rounded-sm bg-noite/60 p-6 backdrop-blur-md md:p-10">
+            <Reveal delay={0.2} className="rounded-2xl bg-noite/60 p-6 backdrop-blur-md md:p-10">
               <Contato />
             </Reveal>
           </div>
@@ -444,21 +486,52 @@ export default function Home() {
 
       {/* Rodapé */}
       <footer className="bg-noite px-5 pb-12 text-ceu md:px-10">
-        <div className="mx-auto max-w-7xl border-t border-white/10 pt-12">
-          <div className="flex flex-col gap-8 text-white md:flex-row md:items-center md:justify-between">
-            <Logo className="w-56" />
-            <div className="flex items-center gap-5 text-xs uppercase tracking-[0.2em] text-ceu">
-              <span>Realização</span>
-              <span className="h-10 w-px bg-white/20" />
-              <Image src="/logo/ale-dourado.svg" alt="ALE Empreendimentos" width={119} height={52} className="h-auto w-28" />
+        <div className="mx-auto max-w-7xl border-t border-white/10 pt-14">
+          <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+            <div>
+              <Logo className="w-56" />
+              <p className="mt-6 max-w-xs text-sm text-ceu/80">Um refúgio onde a água desacelera o tempo.</p>
+            </div>
+            <div>
+              <p className="rotulo mb-5 text-dourado">Navegue</p>
+              <ul className="grid gap-3 text-sm">
+                {[
+                  ["O empreendimento", "#empreendimento"],
+                  ["Home club", "#home-club"],
+                  ["Apartamentos", "#apartamentos"],
+                  ["Plantas", "#plantas"],
+                  ["Localização", "#localizacao"],
+                ].map(([t, h]) => (
+                  <li key={h}>
+                    <a href={h} className="transition hover:text-white">
+                      {t}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="rotulo mb-5 text-dourado">Atendimento</p>
+              <ul className="grid gap-3 text-sm">
+                <li>
+                  <a href={WA_LINK} target="_blank" rel="noopener" className="inline-flex items-center gap-2 transition hover:text-white">
+                    <WhatsappIcon size={16} /> (48) 9821-3130
+                  </a>
+                </li>
+                <li>Rua Major Soares do Nascimento, 400/520, São Francisco de Assis, Santo Amaro da Imperatriz/SC</li>
+              </ul>
+            </div>
+            <div>
+              <p className="rotulo mb-5 text-dourado">Realização</p>
+              <Image src="/logo/ale-dourado.svg" alt="ALE Empreendimentos" width={119} height={52} className="h-auto w-32" />
+              <p className="mt-4 text-xs text-ceu/60">ALE Distribuição, Comércio e Serviços Ltda.</p>
             </div>
           </div>
-          <p className="texto mt-12 max-w-4xl text-xs leading-relaxed text-ceu/80">
+          <p className="texto mt-14 max-w-4xl border-t border-white/10 pt-8 text-xs leading-relaxed text-ceu/70">
             Imagens meramente ilustrativas. Móveis, objetos e decoração não fazem parte do contrato. Alvará de
             construção nº 182/2026. Incorporação registrada sob o R-7 da matrícula nº 30.569 do Registro de Imóveis
             de Santo Amaro da Imperatriz/SC.
           </p>
-          <p className="mt-4 text-xs text-ceu/60">ALE Distribuição, Comércio e Serviços Ltda.</p>
         </div>
       </footer>
 

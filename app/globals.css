@@ -186,3 +186,32 @@ body {
     display: none;
   }
 }
+
+/* Letreiro (faixa em movimento sob o hero) */
+@keyframes letreiro {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.letreiro-trilha {
+  display: flex;
+  width: max-content;
+  animation: letreiro 38s linear infinite;
+}
+.letreiro:hover .letreiro-trilha {
+  animation-play-state: paused;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .letreiro-trilha {
+    animation: none;
+  }
+}

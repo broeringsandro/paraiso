@@ -57,7 +57,7 @@ export default function Mapa() {
   }, []);
 
   return (
-    <div className="mapa h-[380px] w-full overflow-hidden rounded-sm md:h-[520px]">
+    <div className="mapa h-[380px] w-full overflow-hidden rounded-3xl md:h-[520px]">
       <div ref={ref} className="h-full w-full" />
     </div>
   );

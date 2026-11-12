@@ -53,7 +53,7 @@ export function ClipImage({
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.95", "start 0.25"] });
   const inset = useTransform(scrollYProgress, [0, 1], [18, 0]);
-  const clip = useMotionTemplate`inset(${inset}% ${inset}% ${inset}% ${inset}% round 4px)`;
+  const clip = useMotionTemplate`inset(${inset}% ${inset}% ${inset}% ${inset}% round 28px)`;
   const scale = useTransform(scrollYProgress, [0, 1], [1.3, 1.02]);
   return (
     <motion.div ref={ref} className={`relative overflow-hidden ${className}`} style={{ clipPath: clip }}>
