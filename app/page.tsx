@@ -259,9 +259,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="mx-auto mt-16 max-w-7xl px-4 md:px-10">
-            <CardsEmpilhados cards={cardsApto} />
-          </div>
+          <CardsEmpilhados cards={cardsApto} />
 
           <div className="pb-24 md:pb-36" />
         </section>

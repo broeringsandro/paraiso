@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { motion, useMotionTemplate, useScroll, useTransform, type MotionValue } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export type ItemGaleria = { nome: string; icone: ReactNode; img: string; alt: string };
@@ -86,45 +86,66 @@ export type CardEmpilhado = {
   icone: ReactNode;
 };
 
-// Cards que empilham (sticky) e encolhem quando o próximo chega por cima.
+// Sequência fixa: a cada trecho de scroll, a próxima foto se revela de baixo para cima e o texto troca com fade.
 export function CardsEmpilhados({ cards }: { cards: CardEmpilhado[] }) {
+  const n = cards.length;
+  const outer = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: outer, offset: ["start start", "end end"] });
+  const t = useTransform(scrollYProgress, (v) => v * (n - 1));
+  const barra = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <div className="relative">
-      {cards.map((c, i) => (
-        <CardPilha key={c.titulo} card={c} i={i} />
-      ))}
+    <div ref={outer} style={{ height: `${(n - 1) * 90 + 100}svh` }} className="relative">
+      <div className="sticky top-0 mx-auto grid h-[100svh] max-w-7xl grid-rows-[1.1fr_1fr] gap-6 px-5 pb-8 pt-24 md:px-10 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-1 lg:gap-14 lg:pb-12">
+        <div className="relative overflow-hidden rounded-3xl bg-azul">
+          {cards.map((c, i) => (
+            <FotoCamada key={c.img} card={c} i={i} t={t} />
+          ))}
+        </div>
+
+        <div className="relative flex flex-col justify-center">
+          <div className="grid">
+            {cards.map((c, i) => (
+              <TextoCamada key={c.titulo} card={c} i={i} t={t} />
+            ))}
+          </div>
+          <div className="mt-10 h-px w-full max-w-md bg-azul/15" aria-hidden>
+            <motion.div className="h-px bg-dourado" style={{ width: barra }} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-function CardPilha({ card, i }: { card: CardEmpilhado; i: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
-  const dim = useTransform(scrollYProgress, [0, 1], [0, 0.45]);
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+function FotoCamada({ card, i, t }: { card: CardEmpilhado; i: number; t: MotionValue<number> }) {
+  // A primeira foto já está visível; as seguintes sobem cobrindo a anterior.
+  const topo = useTransform(t, [i - 0.9, i - 0.1], [100, 0], { clamp: true });
+  const clip = useMotionTemplate`inset(${topo}% 0% 0% 0%)`;
+  const zoom = useTransform(t, [i - 0.9, i], [1.22, 1], { clamp: true });
   return (
-    <div ref={ref} className="h-[100svh]">
-      <motion.article
-        style={{ scale, top: `${88 + i * 14}px` }}
-        className="sticky grid h-[calc(100svh-120px)] origin-top overflow-hidden rounded-2xl bg-white shadow-[0_30px_80px_-30px_rgb(20_36_58/0.35)] md:grid-cols-2"
-      >
-        <div className="relative min-h-[38svh] overflow-hidden md:min-h-0">
-          <motion.div className="absolute inset-0" style={{ scale: imgScale }}>
-            <Image src={`/img/${card.img}.jpg`} alt={card.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
-          </motion.div>
-        </div>
-        <div className="flex flex-col justify-center gap-5 p-7 md:p-14">
-          <p className="rotulo flex items-center gap-3 text-mar">
-            <span className="text-dourado">{card.icone}</span>
-            {card.rotulo}
-          </p>
-          <h3 className="text-3xl font-light leading-tight tracking-tight text-azul md:text-5xl">{card.titulo}</h3>
-          <p className="texto max-w-md text-grafite/85">{card.texto}</p>
-        </div>
-        <motion.div className="pointer-events-none absolute inset-0 bg-noite" style={{ opacity: dim }} aria-hidden />
-      </motion.article>
-    </div>
+    <motion.div className="absolute inset-0" style={i === 0 ? undefined : { clipPath: clip }}>
+      <motion.div className="absolute inset-0" style={{ scale: i === 0 ? 1 : zoom }}>
+        <Image src={`/img/${card.img}.jpg`} alt={card.alt} fill sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover" priority={i === 0} />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function TextoCamada({ card, i, t }: { card: CardEmpilhado; i: number; t: MotionValue<number> }) {
+  const opacity = useTransform(t, [i - 0.55, i - 0.2, i + 0.2, i + 0.55], [0, 1, 1, 0], { clamp: true });
+  const y = useTransform(t, [i - 0.55, i, i + 0.55], [36, 0, -36], { clamp: true });
+  const blur = useTransform(t, [i - 0.55, i - 0.2, i + 0.2, i + 0.55], [8, 0, 0, 8], { clamp: true });
+  const filter = useMotionTemplate`blur(${blur}px)`;
+  return (
+    <motion.div className="col-start-1 row-start-1 flex flex-col justify-center gap-5" style={{ opacity, y, filter }}>
+      <p className="rotulo flex items-center gap-3 text-mar">
+        <span className="text-dourado">{card.icone}</span>
+        {card.rotulo}
+      </p>
+      <h3 className="text-3xl font-light leading-tight tracking-tight text-azul md:text-5xl">{card.titulo}</h3>
+      <p className="texto max-w-md text-grafite/85">{card.texto}</p>
+    </motion.div>
   );
 }
 
