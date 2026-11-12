@@ -70,12 +70,7 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
       </motion.div>
 
       <motion.div style={{ opacity: fade }} className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-8 md:px-10">
-        <div className="hero-in hidden gap-10 text-xs uppercase tracking-[0.2em] text-white/70 md:flex" style={{ animationDelay: "3.2s" }}>
-          <span>2 torres</span>
-          <span>112 apartamentos</span>
-          <span>Home club completo</span>
-        </div>
-        <div className="hero-in mx-auto flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-white/70 md:mx-0" style={{ animationDelay: "3.3s" }}>
+        <div className="hero-in mx-auto flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-white/70" style={{ animationDelay: "3.3s" }}>
           Role
           <ChevronDown size={18} strokeWidth={1.5} className="animate-bounce" />
         </div>
