@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
+import WhatsappIcon from "./WhatsappIcon";
 
-// TODO: confirmar com o Heitor se o número tem 9 dígitos (98821-3130).
-export const WHATSAPP = "554898213130";
+import { WHATSAPP } from "../lib/contato";
 
 export default function Contato() {
   const [nome, setNome] = useState("");
@@ -43,7 +42,7 @@ export default function Contato() {
         type="submit"
         className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-dourado px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-noite transition hover:bg-white"
       >
-        Enviar pelo WhatsApp <Send size={16} strokeWidth={1.5} />
+        <WhatsappIcon size={18} /> Enviar pelo WhatsApp
       </button>
     </form>
   );
