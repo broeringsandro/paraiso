@@ -67,9 +67,9 @@ const outrasAreas: { nome: string; icone: LucideIcon }[] = [
 const cardsApto = [
   {
     rotulo: "Living",
-    titulo: "Ambientes feitos para viver bem.",
+    titulo: "Salas integradas e com muita luz natural.",
     texto:
-      "Apartamentos de 2 e 3 dormitórios com salas integradas, muita luz natural, sacada com churrasqueira e acabamentos em porcelanato e gesso.",
+      "Apartamentos de 2 e 3 dormitórios com sacada com churrasqueira e acabamentos em porcelanato e gesso.",
     img: "sala-cozinha",
     alt: "Sala integrada à cozinha",
     icone: ic(Sofa, 18),
