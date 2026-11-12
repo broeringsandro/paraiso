@@ -2,8 +2,9 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import { PRECO_A_PARTIR } from "../lib/empreendimento";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Logo from "./Logo";
 import WhatsappIcon from "./WhatsappIcon";
 
@@ -18,42 +19,66 @@ function Intro() {
   );
 }
 
+const stats = [
+  { n: "2 e 3", l: "dormitórios, sendo 1 suíte" },
+  { n: "68 a 91m²", l: "área privativa" },
+  { n: "112", l: "apartamentos em 2 torres" },
+  { n: PRECO_A_PARTIR, l: "unidades a partir de" },
+];
+
 export default function Hero({ whatsapp }: { whatsapp: string }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
   const fade = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
-  const lift = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+  const lift = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
 
   return (
-    <section ref={ref} className="relative isolate flex min-h-[100svh] items-end justify-center overflow-hidden bg-noite text-white">
+    <section ref={ref} className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-noite text-white">
       <Intro />
 
       <motion.div className="absolute inset-0 -z-10" style={{ y: bgY, scale: bgScale }}>
         <div className="hero-bg absolute inset-0">
-          <Image src="/img/fachada-08.jpg" alt="Fachada das duas torres do Paraíso das Águas" fill priority sizes="100vw" className="object-cover object-[50%_30%] brightness-[0.72] saturate-[0.9]" />
+          <Image
+            src="/img/fachada-08.jpg"
+            alt="Fachada das duas torres do Paraíso das Águas"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[50%_30%] brightness-[0.85]"
+          />
         </div>
       </motion.div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-noite/70 via-transparent to-transparent" aria-hidden />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-noite via-noite/85 via-35% to-transparent to-75%" aria-hidden />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/75 via-noite/20 to-transparent" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-noite/65 via-transparent to-transparent" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-noite via-noite/85 via-30% to-transparent to-70%" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/70 via-noite/15 to-transparent" aria-hidden />
 
       <motion.div
         style={{ opacity: fade, y: lift }}
-        className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-6 px-5 pb-32 text-left md:px-10 md:pb-36 [&_h1]:max-w-3xl [&_h1]:[text-shadow:0_2px_30px_rgb(20_36_58/0.6)]"
+        className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-5 px-5 pb-10 pt-32 md:px-10 md:pb-14"
       >
-        <p className="hero-in rotulo flex items-center gap-3 text-dourado" style={{ animationDelay: "2.3s" }}>
+        <p className="hero-in rotulo flex flex-wrap items-center gap-x-4 gap-y-1 text-white/70" style={{ animationDelay: "2.2s" }}>
+          Santo Amaro da Imperatriz / SC
+        </p>
+        <p className="hero-in rotulo flex items-center gap-3 text-dourado" style={{ animationDelay: "2.35s" }}>
           <span className="h-2 w-2 rounded-full bg-dourado" />
-          Pré-lançamento · Santo Amaro da Imperatriz/SC
+          Pré-lançamento · Realização ALE Empreendimentos
         </p>
-        <h1 className="hero-in titulo" style={{ animationDelay: "2.5s" }}>
-          O primeiro e maior <strong>home club</strong> de Santo Amaro da Imperatriz.
+
+        <h1 className="hero-in" style={{ animationDelay: "2.5s" }}>
+          <Logo className="w-[min(78vw,560px)]" />
+          <span className="sr-only">Paraíso das Águas</span>
         </h1>
-        <p className="hero-in max-w-xl text-base text-white/85 md:text-lg" style={{ animationDelay: "2.75s" }}>
-          Um refúgio onde a água desacelera o tempo.
+
+        <p
+          className="hero-in max-w-2xl text-xl font-light leading-snug text-white/90 md:text-3xl [&_strong]:font-medium"
+          style={{ animationDelay: "2.7s" }}
+        >
+          O primeiro e maior <strong>home club</strong> de Santo Amaro da Imperatriz.
         </p>
-        <div className="hero-in mt-2 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center" style={{ animationDelay: "3s" }}>
+
+        <div className="hero-in mt-1 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center" style={{ animationDelay: "2.9s" }}>
           <a
             href={whatsapp}
             target="_blank"
@@ -69,13 +94,15 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
             Ver o lazer
           </a>
         </div>
-      </motion.div>
 
-      <motion.div style={{ opacity: fade }} className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-8 md:px-10">
-        <div className="hero-in mx-auto flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-white/70" style={{ animationDelay: "3.3s" }}>
-          Role
-          <ChevronDown size={18} strokeWidth={1.5} className="animate-bounce" />
-        </div>
+        <dl className="mt-8 grid w-full grid-cols-2 gap-x-6 gap-y-7 md:mt-10 md:grid-cols-4">
+          {stats.map((st, i) => (
+            <div key={st.l} className="hero-in border-l border-white/30 pl-5" style={{ animationDelay: `${3.1 + i * 0.12}s` }}>
+              <dd className="text-2xl font-light tracking-tight md:text-5xl">{st.n}</dd>
+              <dt className="mt-1 text-xs text-white/75 md:text-base">{st.l}</dt>
+            </div>
+          ))}
+        </dl>
       </motion.div>
     </section>
   );

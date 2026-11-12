@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
-import Logo from "./Logo";
+import Image from "next/image";
 import WhatsappIcon from "./WhatsappIcon";
 
 const nav = [
@@ -39,8 +39,8 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
         }`}
       >
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:px-10">
-          <a href="#topo" aria-label="Início">
-            <Logo compacto className="w-32 md:w-40" />
+          <a href="#topo" aria-label="ALE Empreendimentos, início">
+            <Image src="/logo/ale-dourado.svg" alt="ALE Empreendimentos" width={119} height={52} priority className="h-auto w-24 md:w-28" />
           </a>
           <nav className="hidden gap-8 text-[13px] lg:flex" aria-label="Principal">
             {nav.map(([t, h]) => (
