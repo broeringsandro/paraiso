@@ -32,15 +32,16 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
 
       <motion.div className="absolute inset-0 -z-10" style={{ y: bgY, scale: bgScale }}>
         <div className="hero-bg absolute inset-0">
-          <Image src="/img/fachada-08.jpg" alt="Fachada das duas torres do Paraíso das Águas" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/img/fachada-08.jpg" alt="Fachada das duas torres do Paraíso das Águas" fill priority sizes="100vw" className="object-cover object-[50%_30%] brightness-[0.72] saturate-[0.9]" />
         </div>
       </motion.div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-noite/60 via-noite/30 to-noite/95" aria-hidden />
-      <div className="absolute inset-0 -z-10 [background:radial-gradient(ellipse_at_50%_70%,rgb(20_36_58/0.55)_0%,transparent_65%)]" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-noite/70 via-transparent to-transparent" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-noite via-noite/85 via-35% to-transparent to-75%" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/75 via-noite/20 to-transparent" aria-hidden />
 
       <motion.div
         style={{ opacity: fade, y: lift }}
-        className="relative flex w-full max-w-4xl flex-col items-center gap-6 px-6 pb-36 text-center md:pb-40"
+        className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-6 px-5 pb-32 text-left md:px-10 md:pb-36 [&_h1]:max-w-3xl [&_h1]:[text-shadow:0_2px_30px_rgb(20_36_58/0.6)]"
       >
         <p className="hero-in rotulo text-dourado" style={{ animationDelay: "2.3s" }}>
           Pré-lançamento · Santo Amaro da Imperatriz/SC
