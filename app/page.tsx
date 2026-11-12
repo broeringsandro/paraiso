@@ -37,8 +37,8 @@ import Hero from "./components/Hero";
 import Smooth from "./components/Smooth";
 import WhatsappIcon from "./components/WhatsappIcon";
 import { Reveal, RevealWords } from "./components/Reveal";
-import ScrollText from "./components/ScrollText";
-import { ClipImage, Counter, ParallaxImage, SolarArc, WaveLine } from "./components/Visuals";
+import Manifesto from "./components/Manifesto";
+import { ClipImage, Counter, ParallaxImage, SolarArc } from "./components/Visuals";
 import { Carrossel, CardsEmpilhados, GaleriaHorizontal } from "./components/Galerias";
 import Letreiro from "./components/Letreiro";
 
@@ -135,19 +135,13 @@ export default function Home() {
         <Letreiro />
 
         {/* 01 · O empreendimento */}
-        <section id="empreendimento" className="relative overflow-hidden bg-nevoa py-28 md:py-44">
-          <WaveLine className="pointer-events-none absolute -right-40 top-10 w-[1200px] max-w-none" />
-          <div className="relative mx-auto max-w-6xl px-5 md:px-10">
-            <Reveal>
-              <Rotulo>O empreendimento</Rotulo>
-            </Reveal>
-            <ScrollText
-              className="titulo text-azul md:!text-[3.4rem]"
-              text="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
-            />
-          </div>
+        <section id="empreendimento" className="bg-nevoa">
+          <Manifesto
+            rotulo="O empreendimento"
+            text="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
+          />
 
-          <div className="relative mx-auto mt-24 grid max-w-6xl gap-14 px-5 md:px-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20">
+          <div className="relative mx-auto grid max-w-6xl py-24 md:py-40 gap-14 px-5 md:px-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20">
             <ClipImage nome="fachada-05" alt="Entrada do Paraíso das Águas" className="aspect-[4/5]" sizes="(min-width: 1024px) 55vw, 100vw" />
             <div>
               <Reveal>
@@ -419,7 +413,6 @@ export default function Home() {
 
         {/* ALE */}
         <section className="relative overflow-hidden bg-azul py-28 text-white md:py-40">
-          <WaveLine cor="#d6bf98" className="pointer-events-none absolute -left-40 bottom-0 w-[1200px] max-w-none opacity-60" />
           <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-2">
             <div>
               <Reveal>

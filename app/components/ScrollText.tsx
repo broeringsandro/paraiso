@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 
-function Word({ word, range, progress }: { word: string; range: [number, number]; progress: MotionValue<number> }) {
+export function Word({ word, range, progress }: { word: string; range: [number, number]; progress: MotionValue<number> }) {
   const opacity = useTransform(progress, range, [0.14, 1]);
   return (
     <motion.span style={{ opacity }} className="inline-block">

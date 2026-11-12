@@ -87,29 +87,6 @@ export function Counter({ to, className = "" }: { to: number; className?: string
   );
 }
 
-// Linha de onda (grafismo da água) que se desenha com o scroll.
-export function WaveLine({ className = "", cor = "#4c7396" }: { className?: string; cor?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const pathLength = useTransform(scrollYProgress, [0.1, 0.7], [0, 1]);
-  return (
-    <div ref={ref} className={className} aria-hidden>
-    <svg viewBox="0 0 1200 300" fill="none" className="h-auto w-full">
-      {[0, 22, 44].map((o, i) => (
-        <motion.path
-          key={o}
-          d={`M-20 ${200 + o} C 150 ${40 + o}, 250 ${40 + o}, 400 ${150 + o} S 700 ${290 + o}, 850 ${150 + o} S 1100 ${20 + o}, 1220 ${110 + o}`}
-          stroke={cor}
-          strokeWidth={1.4 - i * 0.3}
-          strokeOpacity={0.5 - i * 0.14}
-          style={{ pathLength }}
-        />
-      ))}
-    </svg>
-    </div>
-  );
-}
-
 // Sol que percorre o arco leste-oeste e bússola com o norte a 25°.
 export function SolarArc() {
   const ref = useRef<HTMLDivElement>(null);
