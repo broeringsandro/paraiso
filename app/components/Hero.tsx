@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { PRECO_A_PARTIR } from "../lib/empreendimento";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import Logo from "./Logo";
 import WhatsappIcon from "./WhatsappIcon";
 
@@ -46,28 +46,34 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[50%_30%] brightness-[0.85]"
+            className="object-cover object-[50%_30%] brightness-[0.78]"
           />
         </div>
       </motion.div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-noite/65 via-transparent to-transparent" aria-hidden />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-noite via-noite/85 via-30% to-transparent to-70%" aria-hidden />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/70 via-noite/15 to-transparent" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/80 via-noite/35 to-transparent" aria-hidden />
 
       <motion.div
         style={{ opacity: fade, y: lift }}
         className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-5 px-5 pb-10 pt-32 md:px-10 md:pb-14"
       >
-        <p className="hero-in rotulo flex flex-wrap items-center gap-x-4 gap-y-1 text-white/70" style={{ animationDelay: "2.2s" }}>
-          Santo Amaro da Imperatriz / SC
-        </p>
-        <p className="hero-in rotulo flex items-center gap-3 text-dourado" style={{ animationDelay: "2.35s" }}>
-          <span className="h-2 w-2 rounded-full bg-dourado" />
-          Pré-lançamento · Realização ALE Empreendimentos
-        </p>
+        <div className="hero-in flex flex-wrap items-center gap-3" style={{ animationDelay: "2.2s" }}>
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-dourado px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-noite">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-noite/60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-noite" />
+            </span>
+            Pré-lançamento
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white backdrop-blur-md">
+            <MapPin size={14} strokeWidth={1.6} />
+            Santo Amaro da Imperatriz / SC
+          </span>
+        </div>
 
         <h1 className="hero-in" style={{ animationDelay: "2.5s" }}>
-          <Logo className="w-[min(78vw,560px)]" />
+          <Logo className="w-[min(78vw,560px)] brightness-0 invert drop-shadow-[0_6px_30px_rgb(20_36_58/0.65)]" />
           <span className="sr-only">Paraíso das Águas</span>
         </h1>
 
