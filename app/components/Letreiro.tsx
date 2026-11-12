@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import Image from "next/image";
 import {
   motion,
   useAnimationFrame,
@@ -62,7 +61,6 @@ const itens: { t: string; icone: ReactNode }[] = [
 export default function Letreiro() {
   return (
     <div role="presentation" className="relative">
-      {/* Faixa 1: dourada, com ícones */}
       <div className="bg-dourado py-5 text-noite">
         <Faixa base={-4.2}>
           {itens.map((it) => (
@@ -72,24 +70,6 @@ export default function Letreiro() {
                 <span className="text-sm font-medium uppercase tracking-[0.2em]">{it.t}</span>
               </span>
               <Droplets size={16} strokeWidth={1.6} className="mx-4 opacity-50" />
-            </span>
-          ))}
-        </Faixa>
-      </div>
-
-      {/* Faixa 2: letreiro grande, texto vazado e dourado, símbolo do S como separador */}
-      <div className="bg-noite py-6 md:py-8">
-        <Faixa base={3.2}>
-          {[0, 1].map((k) => (
-            <span key={k} className="flex items-center whitespace-nowrap">
-              <span className="px-8 text-5xl font-light uppercase tracking-tight text-transparent [-webkit-text-stroke:1px_var(--dourado)] md:px-12 md:text-8xl">
-                Um refúgio onde a água desacelera o tempo
-              </span>
-              <Image src="/logo/paraiso-simbolo.svg" alt="" width={240} height={240} unoptimized className="h-12 w-12 md:h-20 md:w-20" />
-              <span className="px-8 text-5xl font-light uppercase tracking-tight text-dourado md:px-12 md:text-8xl">
-                Paraíso das Águas
-              </span>
-              <Image src="/logo/paraiso-simbolo.svg" alt="" width={240} height={240} unoptimized className="h-12 w-12 md:h-20 md:w-20" />
             </span>
           ))}
         </Faixa>
