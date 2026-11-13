@@ -84,7 +84,7 @@ export function Rotulo({
     <p className="mb-7">
       <span
         className={`inline-flex items-center gap-2.5 rounded-xl border px-4 py-2.5 text-sm ${
-          claro ? "border-white/20 bg-white/10 text-white" : "border-azul/15 bg-white/70 text-azul"
+          claro ? "border-white/20 bg-white/10 text-white" : "border-azul/15 bg-cartao/70 text-azul"
         }`}
       >
         <span className={`flex shrink-0 items-center ${claro ? "text-dourado" : "text-mar"}`}>
@@ -169,7 +169,7 @@ export function PageHero({
         return (
           <Reveal key={f.l} delay={0.25 + i * 0.1} className="flex items-start gap-3.5 md:gap-4">
             {I && (
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-azul/15 bg-white/70 text-mar md:h-12 md:w-12">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-azul/15 bg-cartao/70 text-mar md:h-12 md:w-12">
                 <I size={20} strokeWidth={1.4} />
               </span>
             )}
@@ -185,7 +185,7 @@ export function PageHero({
 
   if (variante === "lado") {
     return (
-      <section className="bg-nevoa pb-16 pt-32 md:pb-24 md:pt-40">
+      <section className="fundo-nevoa pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           <div>
             {migalhas}
@@ -204,7 +204,7 @@ export function PageHero({
   }
 
   return (
-    <section className="bg-nevoa pb-16 pt-32 md:pb-24 md:pt-44">
+    <section className="fundo-nevoa pb-16 pt-32 md:pb-24 md:pt-44">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {migalhas}
         <div className={`grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16 ${apoio ? "lg:items-center" : "lg:items-end"}`}>
@@ -267,10 +267,10 @@ export function TituloSecao({
 }
 
 // Card azul de chamada para contato, usado no fim das páginas.
-export function CtaContato({ solto = false }: { solto?: boolean }) {
+export function CtaContato({ solto = false, fundo = "nevoa" }: { solto?: boolean; fundo?: "nevoa" | "branco" }) {
   if (solto) return <CartaoContato />;
   return (
-    <section className="bg-nevoa px-5 pb-14 pt-16 md:px-10 md:pb-36 md:pt-28">
+    <section className={`${fundo === "branco" ? "fundo-branco" : "fundo-nevoa"} px-5 pb-14 pt-16 md:px-10 md:pb-36 md:pt-28`}>
       <div className="mx-auto max-w-7xl">
         <CartaoContato />
       </div>

@@ -30,7 +30,7 @@ export default function Pagina() {
           { n: "112", l: "apartamentos", icone: KeyRound },
         ]}
       />
-      <PlantasSecao cabecalho={false} />
+      <PlantasSecao cabecalho={false} fundo="branco" />
     </>
   );
 }

@@ -32,6 +32,7 @@ export default function Pagina() {
       />
 
       <CategoriaLazer
+        fundo="branco"
         c={{
           rotulo: "Bem-estar",
           linhaUm: "Cuide da saúde",
@@ -49,8 +50,8 @@ export default function Pagina() {
       />
 
       <CategoriaLazer
+        fundo="nevoa"
         invertido
-        fundo="branco"
         c={{
           rotulo: "Trabalho",
           linhaUm: "Trabalhe",
@@ -68,6 +69,7 @@ export default function Pagina() {
       />
 
       <CategoriaLazer
+        fundo="branco"
         c={{
           rotulo: "Diversão",
           linhaUm: "Cinema, games",
@@ -87,8 +89,8 @@ export default function Pagina() {
       />
 
       <CategoriaLazer
+        fundo="nevoa"
         invertido
-        fundo="branco"
         c={{
           rotulo: "Família",
           linhaUm: "Espaço para",
@@ -107,6 +109,7 @@ export default function Pagina() {
       />
 
       <CategoriaLazer
+        fundo="branco"
         c={{
           rotulo: "Celebração",
           linhaUm: "Celebre",
@@ -126,7 +129,7 @@ export default function Pagina() {
       />
 
       <PlantasDoLazer />
-      <CtaContato />
+      <CtaContato fundo="branco" />
     </>
   );
 }

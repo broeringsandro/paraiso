@@ -37,7 +37,7 @@ export default function Pagina() {
       <ApartamentosSecao cabecalho={false} />
       <GaleriaApto />
       <Especificacoes />
-      <CtaContato />
+      <CtaContato fundo="branco" />
     </>
   );
 }

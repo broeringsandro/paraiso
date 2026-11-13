@@ -158,7 +158,7 @@ export default function Plantas() {
               type="button"
               onClick={() => setAtiva(i)}
               className={`relative inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-[13px] transition-colors duration-300 md:px-5 md:py-3 md:text-sm ${
-                i === ativa ? "border-azul text-white" : "border-azul/15 bg-nevoa text-azul hover:border-azul/50"
+                i === ativa ? "border-azul text-white" : "border-azul/15 bg-cartao text-azul hover:border-azul/50"
               }`}
             >
               {i === ativa && (
@@ -187,7 +187,7 @@ export default function Plantas() {
                 const Icone = it.icone;
                 return (
                   <li key={it.texto} className="flex items-center gap-3.5 text-azul">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-nevoa text-mar">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cartao text-mar">
                       <Icone size={20} strokeWidth={1.5} />
                     </span>
                     <span>{it.texto}</span>
@@ -209,7 +209,7 @@ export default function Plantas() {
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 1.02, filter: "blur(6px)" }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="flex flex-col gap-4 rounded-3xl bg-nevoa p-5 md:p-10"
+            className="flex flex-col gap-4 rounded-3xl bg-cartao p-5 md:p-10"
           >
             {p.imagens.map((im) => (
               <figure key={im.src}>

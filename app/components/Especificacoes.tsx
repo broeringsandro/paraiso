@@ -42,7 +42,7 @@ export default function Especificacoes() {
   const [aberto, setAberto] = useState<number | null>(0);
 
   return (
-    <section className="bg-nevoa py-14 md:py-32">
+    <section className="fundo-nevoa py-14 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
         <TituloSecao rotulo="Especificações" linhaUm="O que vem" destaque="em cada apartamento." texto="Acabamentos e instalações pensados para o dia a dia." />
         <ul className="border-t border-azul/15">

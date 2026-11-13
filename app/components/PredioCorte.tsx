@@ -51,7 +51,7 @@ function ItemNivel({ n, i, aoVer }: { n: Nivel; i: number; aoVer: (i: number) =>
   return (
     <div ref={ref} className="flex items-center py-8 lg:min-h-[62svh] lg:py-0">
       <Reveal>
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-mar shadow-sm">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-cartao text-mar shadow-sm">
           <I size={26} strokeWidth={1.3} />
         </span>
         <p className="rotulo mb-4 mt-6 text-mar">{n.nome}</p>
@@ -71,7 +71,7 @@ export default function PredioCorte() {
     `absolute -right-3 top-1/2 hidden -translate-y-1/2 translate-x-full whitespace-nowrap text-xs uppercase tracking-[0.18em] transition-colors duration-700 md:block ${ativo === i ? "text-azul" : "text-azul/30"}`;
 
   return (
-    <section className="bg-nevoa py-16 md:py-36">
+    <section className="fundo-nevoa py-16 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Anatomia do projeto" linhaUm="Do subsolo" destaque="ao ático." texto="Role para percorrer cada nível das torres." />
 
@@ -90,7 +90,7 @@ export default function PredioCorte() {
                     {Array.from({ length: 7 }).map((_, k) => (
                       <motion.span
                         key={k}
-                        className="rounded-sm bg-nevoa/70"
+                        className="rounded-sm bg-secao/70"
                         animate={{ opacity: ativo === 1 ? 1 : 0.55 }}
                         transition={{ duration: 0.5, delay: ativo === 1 ? k * 0.05 : 0 }}
                       />

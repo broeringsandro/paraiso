@@ -31,10 +31,10 @@ export default function Pagina() {
           { n: "Caldas", l: "da Imperatriz, águas termais", icone: Droplets },
         ]}
       />
-      <LocalizacaoSecao cabecalho={false} />
+      <LocalizacaoSecao cabecalho={false} fundo="branco" />
       <DestaquePrefeitura />
       <ComoChegar />
-      <CtaContato />
+      <CtaContato fundo="branco" />
     </>
   );
 }

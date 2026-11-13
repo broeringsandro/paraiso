@@ -28,7 +28,7 @@ export default function Pagina() {
       <ObraSecao cabecalho={false} />
       <Cronograma />
       <FotosObra />
-      <CtaContato />
+      <CtaContato fundo="nevoa" />
     </>
   );
 }

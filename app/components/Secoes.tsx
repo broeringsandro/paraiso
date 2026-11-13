@@ -127,13 +127,13 @@ const destaquesLocal: { t: string; d: string; icone: LucideIcon }[] = [
 
 export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) {
   return (
-    <section id="empreendimento" className="bg-nevoa">
+    <section id="empreendimento" className="fundo-nevoa">
       <Manifesto
         rotulo="O empreendimento"
         text="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
       />
 
-      <div className="bg-nevoa py-14 md:py-32">
+      <div className="fundo-nevoa py-14 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
             <div>
@@ -159,7 +159,7 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
                   </a>
                   <Link
                     href={verMais ? "/empreendimento" : "/plantas"}
-                    className="inline-flex items-center rounded-full border border-azul/20 bg-white/60 px-8 py-4 text-sm text-azul transition hover:border-azul hover:bg-white"
+                    className="inline-flex items-center rounded-full border border-azul/20 bg-cartao/60 px-8 py-4 text-sm text-azul transition hover:border-azul hover:bg-cartao"
                   >
                     {verMais ? "Conheça o projeto" : "Ver as plantas"}
                   </Link>
@@ -188,9 +188,9 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
               <Reveal
                 key={l}
                 delay={i * 0.08}
-                className="group rounded-2xl border border-azul/10 bg-white/60 p-5 transition duration-500 hover:-translate-y-1 hover:bg-white md:p-7"
+                className="group rounded-2xl border border-azul/10 bg-cartao/60 p-5 transition duration-500 hover:-translate-y-1 hover:bg-cartao md:p-7"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-nevoa text-mar transition duration-500 group-hover:bg-dourado/30 group-hover:text-azul">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-secao text-mar transition duration-500 group-hover:bg-dourado/30 group-hover:text-azul">
                   <I size={20} strokeWidth={1.4} />
                 </span>
                 <div className="mt-6 flex items-end justify-between gap-3 md:mt-8">
@@ -210,7 +210,7 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
 
 export function DestaquesSecao() {
   return (
-    <section className="bg-nevoa">
+    <section className="fundo-branco">
       <div className="grid lg:grid-cols-2">
         <ParallaxImage nome="coworking-01" alt="Coworking do Paraíso das Águas" className="min-h-[460px] lg:min-h-[720px]" />
         <div className="flex items-center px-5 py-14 md:px-16 lg:py-28">
@@ -296,7 +296,7 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
 
 export function SemSairSecao() {
   return (
-    <section className="bg-nevoa">
+    <section className="fundo-branco">
       <SemSairDeCasa
         momentos={[
           { verbo: "Trabalhe", texto: "Coworking e biblioteca no ático, a um andar de casa.", img: "coworking-01", alt: "Coworking" },
@@ -311,7 +311,7 @@ export function SemSairSecao() {
 
 export function ApartamentosSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
   return (
-    <section id="apartamentos" className={`bg-nevoa ${cabecalho ? "pt-16 md:pt-44" : "pt-6"}`}>
+    <section id="apartamentos" className={`fundo-nevoa ${cabecalho ? "pt-16 md:pt-44" : "pt-6"}`}>
       {cabecalho && (
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <Reveal>
@@ -336,7 +336,7 @@ export function ApartamentosSecao({ cabecalho = true, verMais = false }: { cabec
 
 export function DiferenciaisSecao() {
   return (
-    <section className="bg-nevoa">
+    <section className="fundo-branco">
       <div className="mx-auto max-w-7xl px-5 pb-6 pt-14 md:px-10 md:pt-32">
         <Reveal>
           <Rotulo>Diferenciais</Rotulo>
@@ -350,9 +350,9 @@ export function DiferenciaisSecao() {
   );
 }
 
-export function PlantasSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
+export function PlantasSecao({ cabecalho = true, verMais = false, fundo = "nevoa" }: { cabecalho?: boolean; verMais?: boolean; fundo?: "nevoa" | "branco" }) {
   return (
-    <section id="plantas" className={`bg-white ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
+    <section id="plantas" className={`${fundo === "branco" ? "fundo-branco" : "fundo-nevoa"} ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {cabecalho && (
           <>
@@ -389,9 +389,9 @@ export function PlantasSecao({ cabecalho = true, verMais = false }: { cabecalho?
   );
 }
 
-export function LocalizacaoSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
+export function LocalizacaoSecao({ cabecalho = true, verMais = false, fundo = "nevoa" }: { cabecalho?: boolean; verMais?: boolean; fundo?: "nevoa" | "branco" }) {
   return (
-    <section id="localizacao" className={`bg-nevoa ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
+    <section id="localizacao" className={`${fundo === "branco" ? "fundo-branco" : "fundo-nevoa"} ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {cabecalho && (
           <>
@@ -451,7 +451,7 @@ export function LocalizacaoSecao({ cabecalho = true, verMais = false }: { cabeca
 
 export function ObraSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
   return (
-    <section id="andamento-da-obra" className={`bg-bege ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
+    <section id="andamento-da-obra" className={`fundo-branco ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {cabecalho && (
           <div className="mb-14">
@@ -483,7 +483,7 @@ export function ObraSecao({ cabecalho = true, verMais = false }: { cabecalho?: b
 
 export function AleSecao() {
   return (
-    <section className="relative overflow-hidden bg-azul py-16 text-white md:py-40">
+    <section className="relative overflow-hidden bg-noite py-16 text-white md:py-40">
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-2">
         <div>
           <Reveal>
@@ -528,7 +528,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
 
   if (pagina) {
     return (
-      <section id="contato" className="bg-nevoa pb-14 md:pb-36">
+      <section id="contato" className="fundo-branco pb-14 md:pb-36">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
             <Reveal>
@@ -546,9 +546,9 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
   }
 
   return (
-    <section id="contato" className="relative isolate overflow-hidden bg-noite py-16 text-white md:py-44">
+    <section id="contato" className="relative isolate overflow-hidden bg-azul py-16 text-white md:py-44">
       <ParallaxImage nome="fachada-09" alt="" className="absolute inset-0 -z-10 opacity-40" sizes="100vw" intensidade={8} />
-      <div className="absolute inset-0 -z-10 bg-noite/70" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-azul/70" aria-hidden />
       <div className="mx-auto grid max-w-7xl gap-16 px-5 md:px-10 lg:grid-cols-2 lg:gap-24">
         <div>
           <Reveal>

@@ -61,7 +61,7 @@ export default function Contato() {
   }
 
   return (
-    <div className="rounded-3xl bg-white p-6 text-azul shadow-[0_30px_80px_-40px_rgb(20_36_58/0.45)] md:p-10">
+    <div className="rounded-3xl bg-cartao p-6 text-azul shadow-[0_30px_80px_-40px_rgb(20_36_58/0.45)] md:p-10">
       <AnimatePresence mode="wait" initial={false}>
         {estado === "ok" ? (
           <motion.div

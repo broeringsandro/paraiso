@@ -167,7 +167,7 @@ export function DiferenciaisImersivo({ itens }: { itens: ItemDiferencial[] }) {
 
   return (
     <div ref={outer} style={{ height: `${(n - 1) * 40 + 100}svh` }} className="relative">
-      <div className="sticky top-0 h-[100svh] overflow-hidden bg-nevoa">
+      <div className="sticky top-0 h-[100svh] overflow-hidden fundo-branco">
         <div className="mx-auto grid h-full max-w-7xl grid-cols-[minmax(0,1fr)] grid-rows-[auto_1fr] items-center gap-8 px-5 pb-10 pt-24 md:px-10 lg:grid-cols-[1.25fr_1fr] lg:grid-rows-1 lg:gap-24 lg:pb-12">
           <div className="order-2 flex min-w-0 flex-col justify-center lg:order-1">
             <div className="grid">
@@ -260,7 +260,7 @@ export function SemSairDeCasa({ momentos }: { momentos: Momento[] }) {
 
   return (
     <div ref={outer} style={{ height: `${(n - 1) * 45 + 100}svh` }} className="relative">
-      <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden bg-nevoa px-5 pb-6 pt-24 md:px-10">
+      <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden fundo-branco px-5 pb-6 pt-24 md:px-10">
         <div className="mx-auto flex h-[52svh] w-full max-w-7xl gap-2 md:h-[58svh] md:gap-3">
           {momentos.map((m, i) => (
             <PainelMomento key={m.verbo} m={m} i={i} t={t} onSelect={() => ir(i)} />

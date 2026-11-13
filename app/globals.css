@@ -10,6 +10,9 @@
   --dourado: #d6bf98;
   --bege: #e8e2d8;
   --grafite: #2b2a27;
+  /* Superfície da seção atual: cartão = tom oposto ao fundo da seção */
+  --cartao: #ffffff;
+  --secao: var(--nevoa);
 }
 
 @theme inline {
@@ -21,9 +24,23 @@
   --color-dourado: var(--dourado);
   --color-bege: var(--bege);
   --color-grafite: var(--grafite);
+  --color-cartao: var(--cartao);
+  --color-secao: var(--secao);
   --color-whats: #1fa855;
   --color-whats-escuro: #178f47;
   --font-sans: var(--font-hanken), system-ui, sans-serif;
+}
+
+/* Fundos de seção: alternam entre névoa e branco; cartões internos usam o tom oposto. */
+.fundo-nevoa {
+  background-color: var(--nevoa);
+  --cartao: #ffffff;
+  --secao: var(--nevoa);
+}
+.fundo-branco {
+  background-color: #ffffff;
+  --cartao: var(--nevoa);
+  --secao: #ffffff;
 }
 
 html {

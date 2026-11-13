@@ -13,7 +13,7 @@ export default function Faq() {
   const [aberto, setAberto] = useState<number | null>(null);
 
   return (
-    <section className="bg-white py-14 md:py-32">
+    <section className="fundo-nevoa py-14 md:py-32">
       <JsonLd
         data={{
           "@context": "https://schema.org",
