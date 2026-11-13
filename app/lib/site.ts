@@ -20,3 +20,18 @@ export const paginas = [
   { label: "Obra", href: "/andamento-da-obra" },
   { label: "Contato", href: "/contato" },
 ] as const;
+
+// Domínio publicado. Trocar o domínio é só mudar NEXT_PUBLIC_SITE_URL na Vercel.
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://paraiso-gamma.vercel.app").replace(/\/$/, "");
+
+// Só libera indexação quando NEXT_PUBLIC_ALLOW_INDEX for "true" (definir apenas com o domínio final no ar).
+export const ALLOW_INDEX = process.env.NEXT_PUBLIC_ALLOW_INDEX === "true";
+
+export const NOME_SITE = "Paraíso das Águas";
+export const RESUMO =
+  "Duas torres, 112 apartamentos de 2 e 3 dormitórios com suíte e home club completo em Santo Amaro da Imperatriz/SC.";
+
+// TODO: preencher com os perfis reais da ALE (Instagram, Google Business). Alimenta o sameAs do schema e o rodapé.
+export const REDES: string[] = [];
+// TODO: URL do site institucional da ALE.
+export const SITE_ALE = "";

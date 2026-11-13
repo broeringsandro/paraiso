@@ -100,7 +100,7 @@ export default function Contato() {
             className="grid gap-6"
           >
             {/* Campo-armadilha contra robôs */}
-            <input type="text" name="site" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0 opacity-0" />
+            <input type="text" name="site" tabIndex={-1} autoComplete="off" aria-hidden aria-label="Não preencha este campo" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
 
             <label className="grid gap-1">
               <span className={rotulo}>Nome</span>

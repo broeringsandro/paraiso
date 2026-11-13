@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
+import { paginaMeta } from "../lib/seo";
+import Migalhas from "../components/Migalhas";
 import { PageHero, CtaContato } from "../components/Pecas";
 import { ObraSecao } from "../components/Secoes";
 import { Cronograma, FotosObra } from "../components/Blocos";
 
-export const metadata: Metadata = {
-  title: "Obra",
-  description: "Acompanhe a evolução da construção do Paraíso das Águas, etapa por etapa.",
-};
+export const metadata: Metadata = paginaMeta({
+  rota: "/andamento-da-obra",
+  titulo: "Andamento da Obra | Paraíso das Águas",
+  tituloSocial: "Paraíso das Águas | Andamento da obra",
+  descricao: "Acompanhe a evolução da construção do Paraíso das Águas, etapa por etapa.",
+});
 
 export default function Pagina() {
   return (
     <>
+      <Migalhas nome="Obra" rota="/andamento-da-obra" />
       <PageHero
         variante="lado"
         rotulo="Obra"

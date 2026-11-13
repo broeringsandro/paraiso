@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
+import { paginaMeta } from "../lib/seo";
+import Migalhas from "../components/Migalhas";
 import { BookOpen, Blocks, Building2, Clapperboard, Dices, Dumbbell, Gamepad2, Laptop, PartyPopper, Sofa, Sunset, Waves } from "lucide-react";
 import { PageHero, CtaContato } from "../components/Pecas";
 import { CategoriaLazer, PlantasDoLazer } from "../components/Blocos";
 
-export const metadata: Metadata = {
-  title: "Lazer",
-  description:
-    "Piscina com deck, academia, coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas: o primeiro e maior home club de Santo Amaro da Imperatriz.",
-};
+export const metadata: Metadata = paginaMeta({
+  rota: "/home-club",
+  titulo: "Home Club e Lazer | Paraíso das Águas",
+  tituloSocial: "Paraíso das Águas | Home club completo em Santo Amaro da Imperatriz",
+  descricao: "Piscina com deck, academia, coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas: o primeiro e maior home club de Santo Amaro da Imperatriz.",
+});
 
 export default function Pagina() {
   return (
     <>
+      <Migalhas nome="Lazer" rota="/home-club" />
       <PageHero
         rotulo="Lazer"
         linhaUm="Um clube completo"

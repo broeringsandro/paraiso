@@ -48,6 +48,11 @@ export default function Mapa() {
       L.marker(PREFEITURA, { icon: icone(predio, "pino-sec") })
         .addTo(map)
         .bindTooltip("Nova sede da Prefeitura", { direction: "top", offset: [0, -16] });
+      // Os botões de zoom do Leaflet saem com href="#"; viram botões de verdade (sem link vazio).
+      ref.current?.querySelectorAll<HTMLAnchorElement>('.leaflet-control-zoom a[href="#"]').forEach((a) => {
+        a.removeAttribute("href");
+        a.tabIndex = 0;
+      });
     })();
 
     return () => {

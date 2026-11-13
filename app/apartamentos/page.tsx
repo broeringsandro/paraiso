@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
+import { paginaMeta } from "../lib/seo";
+import Migalhas from "../components/Migalhas";
 import { BedDouble, Layers, Ruler, SquareParking } from "lucide-react";
 import { PageHero, CtaContato } from "../components/Pecas";
 import { ApartamentosSecao } from "../components/Secoes";
 import { GaleriaApto, TipologiasResumo } from "../components/Blocos";
 import Especificacoes from "../components/Especificacoes";
 
-export const metadata: Metadata = {
-  title: "Apartamentos",
-  description:
-    "Apartamentos de 2 e 3 dormitórios com suíte, sacada com churrasqueira, persianas automatizadas, fechadura eletrônica e todas as garagens cobertas.",
-};
+export const metadata: Metadata = paginaMeta({
+  rota: "/apartamentos",
+  titulo: "Apartamentos de 2 e 3 dormitórios | Paraíso das Águas",
+  tituloSocial: "Paraíso das Águas | Apartamentos de 2 e 3 dormitórios com suíte",
+  descricao: "Apartamentos de 2 e 3 dormitórios com suíte, sacada com churrasqueira, persianas automatizadas, fechadura eletrônica e todas as garagens cobertas.",
+});
 
 export default function Pagina() {
   return (
     <>
+      <Migalhas nome="Apartamentos" rota="/apartamentos" />
       <PageHero
         rotulo="Apartamentos"
         linhaUm="Ambientes feitos para"

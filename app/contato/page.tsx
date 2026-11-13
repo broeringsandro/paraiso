@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { paginaMeta } from "../lib/seo";
+import Migalhas from "../components/Migalhas";
 import { MapPin } from "lucide-react";
 import { PageHero } from "../components/Pecas";
 import { ContatoSecao } from "../components/Secoes";
@@ -8,14 +10,17 @@ import Mapa from "../components/Mapa";
 import { Reveal } from "../components/Reveal";
 import { ENDERECO } from "../lib/site";
 
-export const metadata: Metadata = {
-  title: "Contato",
-  description: "Agende sua visita ao Paraíso das Águas pelo WhatsApp (48) 9821-3130 ou envie uma mensagem pelo formulário.",
-};
+export const metadata: Metadata = paginaMeta({
+  rota: "/contato",
+  titulo: "Agende sua Visita | Paraíso das Águas",
+  tituloSocial: "Paraíso das Águas | Agende sua visita",
+  descricao: "Agende sua visita ao Paraíso das Águas pelo WhatsApp (48) 9821-3130 ou envie uma mensagem pelo formulário.",
+});
 
 export default function Pagina() {
   return (
     <>
+      <Migalhas nome="Contato" rota="/contato" />
       <PageHero
         variante="lado"
         rotulo="Contato"

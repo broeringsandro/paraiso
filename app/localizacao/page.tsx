@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
+import { paginaMeta } from "../lib/seo";
+import Migalhas from "../components/Migalhas";
 import { Clock, Droplets, Route } from "lucide-react";
 import { PageHero, CtaContato } from "../components/Pecas";
 import { LocalizacaoSecao } from "../components/Secoes";
 import { ComoChegar, DestaquePrefeitura } from "../components/Blocos";
 
-export const metadata: Metadata = {
-  title: "Localização",
-  description:
-    "No bairro São Francisco de Assis, em Santo Amaro da Imperatriz, a cerca de 500 m da nova sede da Prefeitura e com acesso fácil pela BR-282.",
-};
+export const metadata: Metadata = paginaMeta({
+  rota: "/localizacao",
+  titulo: "Localização em Santo Amaro da Imperatriz | Paraíso das Águas",
+  tituloSocial: "Paraíso das Águas | Localização em Santo Amaro da Imperatriz",
+  descricao: "No bairro São Francisco de Assis, em Santo Amaro da Imperatriz, a cerca de 500 m da nova sede da Prefeitura e com acesso fácil pela BR-282.",
+});
 
 export default function Pagina() {
   return (
     <>
+      <Migalhas nome="Localização" rota="/localizacao" />
       <PageHero
         rotulo="Localização"
         linhaUm="Tudo o que você precisa,"
