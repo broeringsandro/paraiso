@@ -21,6 +21,7 @@ export default function Pagina() {
         texto="Apartamentos de 2 e 3 dormitórios com suíte, salas integradas, muita luz natural e sacada com churrasqueira."
         img="sala"
         alt="Sala de estar de um apartamento com vista para a serra"
+        apoio={{ img: "quarto-02", alt: "Dormitório de um apartamento" }}
         fatos={[
           { n: "2 e 3", l: "dormitórios, com suíte", icone: BedDouble },
           { n: "68 a 91 m²", l: "de área privativa", icone: Ruler },

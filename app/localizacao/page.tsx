@@ -20,6 +20,7 @@ export default function Pagina() {
         texto="Em Santo Amaro da Imperatriz, cidade conhecida pelas águas termais e pela natureza da Grande Florianópolis, perto da nova prefeitura."
         img="fachada-10"
         alt="Vista das duas torres do Paraíso das Águas"
+        apoio={{ img: "fachada-11", alt: "Entrada do Paraíso das Águas" }}
         fatos={[
           { n: "2 min", l: "da nova Prefeitura", icone: Clock },
           { n: "BR-282", l: "acesso à Grande Florianópolis", icone: Route },

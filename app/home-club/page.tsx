@@ -19,6 +19,7 @@ export default function Pagina() {
         texto="Trabalhe, treine, celebre e relaxe sem sair de casa."
         img="piscina"
         alt="Piscina com deck do Paraíso das Águas"
+        apoio={{ img: "cinema", alt: "Cinema do Paraíso das Águas" }}
         fatos={[
           { n: "4", l: "salões de festas", icone: PartyPopper },
           { n: "3", l: "espaços no ático", icone: Building2 },

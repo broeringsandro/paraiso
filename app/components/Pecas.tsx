@@ -126,6 +126,7 @@ export function PageHero({
   img,
   alt,
   fatos,
+  apoio,
   variante = "abaixo",
 }: {
   rotulo: string;
@@ -135,6 +136,8 @@ export function PageHero({
   img: string;
   alt: string;
   fatos?: Fato[];
+  /** foto pequena que preenche a coluna do texto, na variante "abaixo" */
+  apoio?: { img: string; alt: string };
   variante?: "abaixo" | "lado";
 }) {
   const migalhas = (
@@ -204,11 +207,24 @@ export function PageHero({
     <section className="bg-nevoa pb-16 pt-32 md:pb-24 md:pt-44">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {migalhas}
-        <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
+        <div className={`grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16 ${apoio ? "lg:items-center" : "lg:items-end"}`}>
           {titulo}
-          <Reveal delay={0.2}>
-            <p className="texto max-w-md text-grafite/85">{texto}</p>
-          </Reveal>
+          <div className="flex flex-col gap-6">
+            {apoio && (
+              <Reveal delay={0.15} y={30} blur={4}>
+                <ParallaxImage
+                  nome={apoio.img}
+                  alt={apoio.alt}
+                  className="aspect-[16/9] w-full max-w-md rounded-2xl"
+                  sizes="(min-width: 1024px) 28vw, 90vw"
+                  intensidade={6}
+                />
+              </Reveal>
+            )}
+            <Reveal delay={0.2}>
+              <p className="texto max-w-md text-grafite/85">{texto}</p>
+            </Reveal>
+          </div>
         </div>
         {faixa}
         <Reveal y={40} blur={4} className="mt-12 md:mt-16">
