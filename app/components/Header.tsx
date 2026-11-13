@@ -31,7 +31,7 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
       >
         <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 md:px-10 xl:grid xl:grid-cols-[1fr_auto_1fr]">
           <Link href="/" aria-label="Paraíso das Águas, página inicial" onClick={() => setAberto(false)}>
-            <Image src="/logo/ale-dourado.svg" alt="ALE Empreendimentos" width={119} height={52} priority className="h-auto w-24 md:w-28" />
+            <Image src="/logo/ale-branco.svg" alt="ALE Empreendimentos" width={830} height={364} priority className="h-auto w-24 md:w-28" />
           </Link>
           <nav className="hidden items-center gap-10 text-[11px] font-medium uppercase tracking-[0.22em] xl:flex" aria-label="Principal">
             {paginas.map((p) => {

@@ -464,7 +464,7 @@ export function AleSecao() {
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-2">
         <div>
           <Reveal>
-            <Image src="/logo/ale-dourado.svg" alt="ALE Empreendimentos" width={119} height={52} className="mb-10 h-auto w-32" />
+            <Image src="/logo/ale-branco.svg" alt="ALE Empreendimentos" width={830} height={364} className="mb-10 h-auto w-32" />
           </Reveal>
           <h2 className="titulo">
             <RevealWords text="Construindo lugares" /> <strong><RevealWords text="para viver bem." delay={0.2} /></strong>

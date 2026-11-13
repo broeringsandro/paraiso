@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
           <div>
             <p className="rotulo mb-5 text-dourado">Realização</p>
-            <Image src="/logo/ale-dourado.svg" alt="ALE Empreendimentos" width={119} height={52} className="h-auto w-32" />
+            <Image src="/logo/ale-branco.svg" alt="ALE Empreendimentos" width={830} height={364} className="h-auto w-32" />
             <p className="mt-4 text-xs text-ceu/60">ALE Distribuição, Comércio e Serviços Ltda.</p>
           </div>
         </div>
