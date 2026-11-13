@@ -153,7 +153,7 @@ export function TituloSecao({
 export function CtaContato({ solto = false }: { solto?: boolean }) {
   if (solto) return <CartaoContato />;
   return (
-    <section className="bg-nevoa px-5 pb-24 md:px-10 md:pb-36">
+    <section className="bg-nevoa px-5 pb-24 pt-16 md:px-10 md:pb-36 md:pt-28">
       <div className="mx-auto max-w-7xl">
         <CartaoContato />
       </div>

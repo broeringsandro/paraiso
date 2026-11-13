@@ -352,7 +352,7 @@ export function PlantasSecao({ cabecalho = true, verMais = false }: { cabecalho?
           <Plantas />
         </div>
 
-        <div className="mt-5">
+        <div className="mt-12 md:mt-20">
           <CtaContato solto />
         </div>
 
