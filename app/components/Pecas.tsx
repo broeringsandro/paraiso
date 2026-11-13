@@ -1,12 +1,99 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Blocks,
+  Building2,
+  CalendarDays,
+  Camera,
+  CircleHelp,
+  ClipboardList,
+  Clock,
+  Dumbbell,
+  Gamepad2,
+  Grid3x3,
+  HardHat,
+  KeyRound,
+  Landmark,
+  Laptop,
+  Layers,
+  LayoutGrid,
+  ListChecks,
+  Map,
+  MapPin,
+  Navigation,
+  PartyPopper,
+  Phone,
+  Ruler,
+  ShieldCheck,
+  Sofa,
+  Sparkles,
+  Waves,
+  type LucideIcon,
+} from "lucide-react";
 import { Reveal, RevealWords } from "./Reveal";
 import { ParallaxImage } from "./Visuals";
 import WhatsappIcon from "./WhatsappIcon";
 import { TELEFONE, WA_LINK } from "../lib/site";
 
-export function Rotulo({ children, claro = false }: { children: React.ReactNode; claro?: boolean }) {
-  return <p className={`rotulo mb-5 ${claro ? "text-dourado" : "text-mar"}`}>{children}</p>;
+// Ícone de cada etiqueta de seção. Etiquetas sem ícone próprio usam o Sparkles.
+const ICONES_ROTULO: Record<string, LucideIcon> = {
+  "O empreendimento": Building2,
+  "Home club": Waves,
+  Apartamentos: KeyRound,
+  Plantas: LayoutGrid,
+  Localização: MapPin,
+  "Andamento da obra": HardHat,
+  Contato: Phone,
+  "Fale com a gente": Phone,
+  Diferenciais: Sparkles,
+  "Coworking + academia": Laptop,
+  "Para as crianças": Blocks,
+  Transparência: ShieldCheck,
+  "Ficha técnica": ClipboardList,
+  "Anatomia do projeto": Layers,
+  "Bem-estar": Dumbbell,
+  Trabalho: Laptop,
+  Diversão: Gamepad2,
+  Família: Blocks,
+  Celebração: PartyPopper,
+  "Onde fica cada espaço": Map,
+  Tipologias: Ruler,
+  Ambientes: Sofa,
+  Especificações: ListChecks,
+  Finais: Grid3x3,
+  Cronograma: CalendarDays,
+  "Fotos da obra": Camera,
+  "Perguntas frequentes": CircleHelp,
+  "Como chegar": Navigation,
+  "A poucos minutos de": Clock,
+  "Nova sede da Prefeitura": Landmark,
+};
+
+// Etiqueta de seção: um único estilo (chip com ícone) em todo o site.
+export function Rotulo({
+  children,
+  claro = false,
+  icone,
+}: {
+  children: React.ReactNode;
+  claro?: boolean;
+  icone?: React.ReactNode;
+}) {
+  const Padrao = (typeof children === "string" && ICONES_ROTULO[children]) || Sparkles;
+  return (
+    <p className="mb-7">
+      <span
+        className={`inline-flex items-center gap-2.5 rounded-xl border px-4 py-2.5 text-sm ${
+          claro ? "border-white/20 bg-white/10 text-white" : "border-azul/15 bg-white/70 text-azul"
+        }`}
+      >
+        <span className={`flex shrink-0 items-center ${claro ? "text-dourado" : "text-mar"}`}>
+          {icone ?? <Padrao size={18} strokeWidth={1.5} />}
+        </span>
+        {children}
+      </span>
+    </p>
+  );
 }
 
 // Link para a subpágina da seção (usado na home).

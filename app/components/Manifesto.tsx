@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { Word } from "./ScrollText";
+import { Rotulo } from "./Pecas";
 
 type Foto = {
   img: string;
@@ -51,7 +52,7 @@ export default function Manifesto({ text, rotulo }: { text: string; rotulo: stri
         ))}
 
         <div className="relative z-10 mx-auto flex h-full max-w-3xl flex-col items-center justify-center px-6 text-center md:px-0">
-          <p className="rotulo mb-7 text-mar">{rotulo}</p>
+          <Rotulo>{rotulo}</Rotulo>
           <p className="titulo text-azul md:!text-[3rem]" aria-label={text}>
             {palavras.map((w, i) => {
               const ini = 0.1 + (i / n) * 0.72;

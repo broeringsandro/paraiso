@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useMotionTemplate, useScroll, useTransform, type MotionValue } from "motion/react";
+import { Rotulo } from "./Pecas";
 
 export type ItemGaleria = { nome: string; icone: ReactNode; img: string; alt: string };
 
@@ -138,10 +139,7 @@ function TextoCamada({ card, i, t }: { card: CardEmpilhado; i: number; t: Motion
   const filter = useMotionTemplate`blur(${blur}px)`;
   return (
     <motion.div className="col-start-1 row-start-1 flex flex-col justify-center gap-5" style={{ opacity, y, filter }}>
-      <p className="rotulo flex items-center gap-3 text-mar">
-        <span className="text-dourado">{card.icone}</span>
-        {card.rotulo}
-      </p>
+      <Rotulo icone={card.icone}>{card.rotulo}</Rotulo>
       <h3 className="text-3xl font-light leading-tight tracking-tight text-azul md:text-5xl">{card.titulo}</h3>
       <p className="texto max-w-md text-grafite/85">{card.texto}</p>
     </motion.div>

@@ -6,7 +6,6 @@ import {
   Camera,
   Check,
   FileCheck2,
-  Landmark,
   Layers,
   Navigation,
   ScrollText as IconeDoc,
@@ -306,8 +305,7 @@ export function DestaquePrefeitura() {
         </Reveal>
         <div>
           <Reveal delay={0.1}>
-            <Landmark size={30} strokeWidth={1.3} className="text-dourado" />
-            <p className="rotulo mb-5 mt-6 text-dourado">Nova sede da Prefeitura</p>
+            <Rotulo claro>Nova sede da Prefeitura</Rotulo>
             <h2 className="titulo text-white md:!text-[2.8rem]">
               Perto de tudo o que o <strong>dia a dia pede</strong>.
             </h2>

@@ -138,12 +138,9 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
           <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
             <div>
               <Reveal>
-                <span className="inline-flex items-center gap-2.5 rounded-xl border border-azul/15 bg-white/70 px-4 py-2.5 text-sm text-azul">
-                  <Building2 size={18} strokeWidth={1.5} className="text-mar" />
-                  O empreendimento
-                </span>
+                <Rotulo>O empreendimento</Rotulo>
               </Reveal>
-              <h2 className="titulo mt-7 text-azul md:!text-[3.4rem]">
+              <h2 className="titulo text-azul md:!text-[3.4rem]">
                 <RevealWords text="Apartamentos com um clube" /> <strong><RevealWords text="completo dentro de casa." delay={0.2} /></strong>
               </h2>
               <Reveal delay={0.15}>
@@ -267,10 +264,7 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
       {cabecalho ? (
         <div className="mx-auto max-w-7xl px-5 pb-12 pt-28 md:px-10 md:pb-16 md:pt-44">
           <Reveal>
-            <div className="mb-10 flex items-center gap-6">
-              <p className="rotulo text-dourado">Home club</p>
-              <span className="h-px flex-1 bg-gradient-to-r from-dourado/60 to-transparent" aria-hidden />
-            </div>
+            <Rotulo claro>Home club</Rotulo>
           </Reveal>
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-end lg:gap-20">
             <h2 className="titulo md:!text-[4.4rem]">
@@ -418,7 +412,7 @@ export function LocalizacaoSecao({ cabecalho = true, verMais = false }: { cabeca
         <div className={`${cabecalho ? "mt-14" : ""} grid gap-10 lg:grid-cols-[0.9fr_1.3fr] lg:gap-16`}>
           <div className="self-center">
             <Reveal>
-              <p className="rotulo mb-6 text-mar">A poucos minutos de</p>
+              <Rotulo>A poucos minutos de</Rotulo>
             </Reveal>
             <TemposLocal />
             <Reveal delay={0.2}>
