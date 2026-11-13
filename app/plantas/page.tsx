@@ -4,7 +4,6 @@ import Migalhas from "../components/Migalhas";
 import { KeyRound, Layers, LayoutGrid } from "lucide-react";
 import { PageHero } from "../components/Pecas";
 import { PlantasSecao } from "../components/Secoes";
-import MapaFinais from "../components/MapaFinais";
 
 export const metadata: Metadata = paginaMeta({
   rota: "/plantas",
@@ -31,7 +30,6 @@ export default function Pagina() {
           { n: "112", l: "apartamentos", icone: KeyRound },
         ]}
       />
-      <MapaFinais />
       <PlantasSecao cabecalho={false} />
     </>
   );
