@@ -186,6 +186,15 @@ export function DiferenciaisImersivo({ itens }: { itens: ItemDiferencial[] }) {
   const t = useTransform(scrollYProgress, (v) => v * (n - 1));
   const barra = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  // Clicar num ícone rola direto até aquele diferencial.
+  function ir(i: number) {
+    const el = outer.current;
+    if (!el) return;
+    const topo = el.getBoundingClientRect().top + window.scrollY;
+    const alcance = el.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: topo + (i / (n - 1)) * alcance, behavior: "smooth" });
+  }
+
   return (
     <div ref={outer} style={{ height: `${(n - 1) * 40 + 100}svh` }} className="relative">
       <div className="sticky top-0 h-[100svh] overflow-hidden bg-nevoa">
@@ -199,7 +208,7 @@ export function DiferenciaisImersivo({ itens }: { itens: ItemDiferencial[] }) {
 
             <div className="mt-10 flex items-center gap-1 md:mt-14">
               {itens.map((it, i) => (
-                <DockIcone key={it.t} it={it} i={i} t={t} />
+                <DockIcone key={it.t} it={it} i={i} t={t} onSelect={() => ir(i)} />
               ))}
             </div>
             <div className="mt-6 h-px w-full max-w-md bg-azul/15" aria-hidden>
@@ -243,15 +252,21 @@ function TextoDif({ it, i, t }: { it: ItemDiferencial; i: number; t: MotionValue
   );
 }
 
-function DockIcone({ it, i, t }: { it: ItemDiferencial; i: number; t: MotionValue<number> }) {
+function DockIcone({ it, i, t, onSelect }: { it: ItemDiferencial; i: number; t: MotionValue<number>; onSelect: () => void }) {
   const ativo = useTransform(t, [i - 0.5, i - 0.2, i + 0.2, i + 0.5], [0, 1, 1, 0], { clamp: true });
   return (
-    <span className="relative flex h-10 w-10 items-center justify-center text-azul/30" aria-hidden>
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-label={it.t}
+      title={it.t}
+      className="relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-azul/30 transition duration-300 hover:scale-110 hover:text-azul/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mar"
+    >
       {it.icone}
-      <motion.span className="absolute inset-0 flex items-center justify-center text-azul" style={{ opacity: ativo }}>
+      <motion.span className="pointer-events-none absolute inset-0 flex items-center justify-center text-azul" style={{ opacity: ativo }}>
         {it.icone}
       </motion.span>
-      <motion.span className="absolute bottom-0 h-1 w-1 rounded-full bg-dourado" style={{ opacity: ativo }} />
-    </span>
+      <motion.span className="pointer-events-none absolute bottom-0.5 h-1 w-1 rounded-full bg-dourado" style={{ opacity: ativo }} />
+    </button>
   );
 }
