@@ -294,7 +294,7 @@ function CartaoContato() {
                 href={WA_LINK}
                 target="_blank"
                 rel="noopener"
-                className="group inline-flex items-center gap-3 rounded-full bg-whats px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro"
+                className="group inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-whats px-6 py-4 text-[13px] font-medium uppercase tracking-[0.1em] md:gap-3 md:px-8 md:text-sm md:tracking-[0.15em] text-white transition hover:bg-whats-escuro"
               >
                 <WhatsappIcon size={20} /> Chamar no WhatsApp
                 <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />

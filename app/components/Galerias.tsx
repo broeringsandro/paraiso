@@ -96,7 +96,7 @@ export function CardsEmpilhados({ cards }: { cards: CardEmpilhado[] }) {
 
   return (
     <div ref={outer} style={{ height: `${(n - 1) * 90 + 100}svh` }} className="relative">
-      <div className="sticky top-0 mx-auto grid h-[100svh] max-w-7xl grid-rows-[1.1fr_1fr] gap-6 px-5 pb-8 pt-24 md:px-10 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-1 lg:gap-14 lg:pb-12">
+      <div className="sticky top-0 mx-auto grid h-[100svh] max-w-7xl grid-cols-[minmax(0,1fr)] grid-rows-[1.1fr_1fr] gap-6 px-5 pb-8 pt-24 md:px-10 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-1 lg:gap-14 lg:pb-12">
         <div className="relative overflow-hidden rounded-3xl bg-azul">
           {cards.map((c, i) => (
             <FotoCamada key={c.img} card={c} i={i} t={t} />
@@ -168,15 +168,15 @@ export function DiferenciaisImersivo({ itens }: { itens: ItemDiferencial[] }) {
   return (
     <div ref={outer} style={{ height: `${(n - 1) * 40 + 100}svh` }} className="relative">
       <div className="sticky top-0 h-[100svh] overflow-hidden bg-nevoa">
-        <div className="mx-auto grid h-full max-w-7xl grid-rows-[auto_1fr] items-center gap-8 px-5 pb-10 pt-24 md:px-10 lg:grid-cols-[1.25fr_1fr] lg:grid-rows-1 lg:gap-24 lg:pb-12">
-          <div className="order-2 flex flex-col justify-center lg:order-1">
+        <div className="mx-auto grid h-full max-w-7xl grid-cols-[minmax(0,1fr)] grid-rows-[auto_1fr] items-center gap-8 px-5 pb-10 pt-24 md:px-10 lg:grid-cols-[1.25fr_1fr] lg:grid-rows-1 lg:gap-24 lg:pb-12">
+          <div className="order-2 flex min-w-0 flex-col justify-center lg:order-1">
             <div className="grid">
               {itens.map((it, i) => (
                 <TextoDif key={it.t} it={it} i={i} t={t} />
               ))}
             </div>
 
-            <div className="mt-10 flex items-center gap-1 md:mt-14">
+            <div className="mt-8 flex w-full items-center justify-between md:mt-14 md:justify-start md:gap-1">
               {itens.map((it, i) => (
                 <DockIcone key={it.t} it={it} i={i} t={t} onSelect={() => ir(i)} />
               ))}
@@ -230,7 +230,7 @@ function DockIcone({ it, i, t, onSelect }: { it: ItemDiferencial; i: number; t: 
       onClick={onSelect}
       aria-label={it.t}
       title={it.t}
-      className="relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-azul/30 transition duration-300 hover:scale-110 hover:text-azul/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mar"
+      className="relative flex h-10 w-10 cursor-pointer md:h-11 md:w-11 items-center justify-center rounded-full text-azul/30 transition duration-300 hover:scale-110 hover:text-azul/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mar"
     >
       {it.icone}
       <motion.span className="pointer-events-none absolute inset-0 flex items-center justify-center text-azul" style={{ opacity: ativo }}>
@@ -273,7 +273,7 @@ export function SemSairDeCasa({ momentos }: { momentos: Momento[] }) {
               <LegendaMomento key={m.verbo} m={m} i={i} t={t} />
             ))}
           </div>
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 md:mt-0 md:justify-end">
+          <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 md:gap-x-6 md:mt-0 md:justify-end">
             {momentos.map((m, i) => (
               <AbaMomento key={m.verbo} m={m} i={i} t={t} onSelect={() => ir(i)} />
             ))}
@@ -325,7 +325,7 @@ function AbaMomento({ m, i, t, onSelect }: { m: Momento; i: number; t: MotionVal
   const a = useAtivacao(t, i);
   const largura = useTransform(a, [0, 1], ["0%", "100%"]);
   return (
-    <button type="button" onClick={onSelect} className="group cursor-pointer text-left text-sm uppercase tracking-[0.18em] text-azul/55 transition hover:text-azul">
+    <button type="button" onClick={onSelect} className="group cursor-pointer text-left text-[12px] uppercase tracking-[0.12em] md:text-sm md:tracking-[0.18em] text-azul/55 transition hover:text-azul">
       {m.verbo}
       <span className="mt-1 block h-px w-full bg-azul/15">
         <motion.span className="block h-px bg-dourado" style={{ width: largura }} />

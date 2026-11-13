@@ -297,10 +297,10 @@ export function DestaquePrefeitura() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
         <Reveal>
           <div className="flex items-end gap-4">
-            <p className="text-[6.5rem] font-light leading-none tracking-tighter md:text-[11rem]">
+            <p className="text-[4.8rem] font-light leading-none tracking-tighter md:text-[11rem]">
               <Counter to={500} />
             </p>
-            <p className="pb-3 text-3xl font-light text-dourado md:pb-6 md:text-5xl">m</p>
+            <p className="pb-2 text-2xl font-light text-dourado md:pb-6 md:text-5xl">m</p>
           </div>
         </Reveal>
         <div>
@@ -346,7 +346,7 @@ export function Cronograma() {
                   {feita ? <Check size={13} strokeWidth={2.4} /> : ativo ? <span className="h-2 w-2 animate-pulse rounded-full bg-dourado" /> : null}
                 </span>
                 <div className="flex-1 border-b border-azul/10 pb-7">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-col items-start gap-2 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-3">
                     <p className={`text-xl ${ativo || feita ? "text-azul" : "text-azul/55"}`}>{e.nome}</p>
                     <span
                       className={`rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.16em] ${
@@ -408,7 +408,7 @@ export function Corretores() {
               </p>
             </div>
             <div className="md:justify-self-end">
-              <a href={`${WA_LINK}?text=${encodeURIComponent("Olá! Sou corretor e quero me cadastrar para o Paraíso das Águas.")}`} target="_blank" rel="noopener" className="group inline-flex items-center gap-3 rounded-full bg-whats px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro">
+              <a href={`${WA_LINK}?text=${encodeURIComponent("Olá! Sou corretor e quero me cadastrar para o Paraíso das Águas.")}`} target="_blank" rel="noopener" className="group inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-whats px-6 py-4 text-[13px] font-medium uppercase tracking-[0.1em] md:gap-3 md:px-8 md:text-sm md:tracking-[0.15em] text-white transition hover:bg-whats-escuro">
                 <WhatsappIcon size={19} /> Falar com a ALE
                 <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
               </a>

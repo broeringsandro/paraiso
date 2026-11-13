@@ -49,7 +49,7 @@ function ItemNivel({ n, i, aoVer }: { n: Nivel; i: number; aoVer: (i: number) =>
   }, [noMeio, i, aoVer]);
   const I = n.icone;
   return (
-    <div ref={ref} className="flex items-center py-10 lg:min-h-[62svh] lg:py-0">
+    <div ref={ref} className="flex items-center py-8 lg:min-h-[62svh] lg:py-0">
       <Reveal>
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-mar shadow-sm">
           <I size={26} strokeWidth={1.3} />
@@ -75,7 +75,7 @@ export default function PredioCorte() {
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Anatomia do projeto" linhaUm="Do subsolo" destaque="ao ático." texto="Role para percorrer cada nível das torres." />
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+        <div className="mt-6 grid gap-0 md:mt-14 md:gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
           <div className="hidden lg:block">
             <div className="sticky top-32 flex h-[68svh] items-center justify-center">
               <div className="relative w-full max-w-[22rem]">
