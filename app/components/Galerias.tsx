@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useMotionTemplate, useScroll, useTransform, type MotionValue } from "motion/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export type ItemGaleria = { nome: string; icone: ReactNode; img: string; alt: string };
 
@@ -149,33 +148,6 @@ function TextoCamada({ card, i, t }: { card: CardEmpilhado; i: number; t: Motion
   );
 }
 
-// Carrossel com setas (scroll-snap), como no site de referência.
-export function Carrossel({ itens }: { itens: { img: string; alt: string }[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const mover = (dir: 1 | -1) => ref.current?.scrollBy({ left: dir * Math.min(520, window.innerWidth * 0.8), behavior: "smooth" });
-  const seta =
-    "flex h-12 w-12 items-center justify-center rounded-full bg-noite text-white transition hover:bg-mar";
-  return (
-    <div>
-      <div className="mb-6 flex justify-end gap-2 px-5 md:px-10">
-        <button type="button" aria-label="Anterior" onClick={() => mover(-1)} className={seta}>
-          <ChevronLeft size={22} strokeWidth={1.5} />
-        </button>
-        <button type="button" aria-label="Próxima" onClick={() => mover(1)} className={seta}>
-          <ChevronRight size={22} strokeWidth={1.5} />
-        </button>
-      </div>
-      <div ref={ref} data-lenis-prevent className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 md:gap-5 md:px-10">
-        {itens.map((it) => (
-          <figure key={it.img} className="relative aspect-[4/5] w-[78vw] shrink-0 snap-start overflow-hidden rounded-3xl bg-azul sm:w-[48vw] md:w-[420px]">
-            <Image src={`/img/${it.img}.jpg`} alt={it.alt} fill sizes="(min-width: 768px) 420px, 80vw" className="object-cover" />
-          </figure>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export type ItemDiferencial = { t: string; icone: ReactNode; iconeGrande: ReactNode; img: string; alt: string };
 
 // Sequência minimalista: fundo claro, uma foto limpa (sem degradês) e tipografia grande que troca com o scroll.
@@ -267,6 +239,99 @@ function DockIcone({ it, i, t, onSelect }: { it: ItemDiferencial; i: number; t: 
         {it.icone}
       </motion.span>
       <motion.span className="pointer-events-none absolute bottom-0.5 h-1 w-1 rounded-full bg-dourado" style={{ opacity: ativo }} />
+    </button>
+  );
+}
+
+export type Momento = { verbo: string; texto: string; img: string; alt: string };
+
+// Painéis lado a lado: o scroll expande um de cada vez, os demais viram tiras estreitas.
+export function SemSairDeCasa({ momentos }: { momentos: Momento[] }) {
+  const n = momentos.length;
+  const outer = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: outer, offset: ["start start", "end end"] });
+  const t = useTransform(scrollYProgress, (v) => v * (n - 1));
+
+  function ir(i: number) {
+    const el = outer.current;
+    if (!el) return;
+    const topo = el.getBoundingClientRect().top + window.scrollY;
+    const alcance = el.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: topo + (i / (n - 1)) * alcance, behavior: "smooth" });
+  }
+
+  return (
+    <div ref={outer} style={{ height: `${(n - 1) * 45 + 100}svh` }} className="relative">
+      <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden bg-nevoa px-5 pb-6 pt-24 md:px-10">
+        <div className="mx-auto flex h-[52svh] w-full max-w-7xl gap-2 md:h-[58svh] md:gap-3">
+          {momentos.map((m, i) => (
+            <PainelMomento key={m.verbo} m={m} i={i} t={t} onSelect={() => ir(i)} />
+          ))}
+        </div>
+
+        <div className="mx-auto mt-8 grid w-full max-w-7xl md:mt-10 md:grid-cols-[1.2fr_1fr] md:items-end md:gap-10">
+          <div className="grid">
+            {momentos.map((m, i) => (
+              <LegendaMomento key={m.verbo} m={m} i={i} t={t} />
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 md:mt-0 md:justify-end">
+            {momentos.map((m, i) => (
+              <AbaMomento key={m.verbo} m={m} i={i} t={t} onSelect={() => ir(i)} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function useAtivacao(t: MotionValue<number>, i: number) {
+  return useTransform(t, [i - 1, i, i + 1], [0, 1, 0], { clamp: true });
+}
+
+function PainelMomento({ m, i, t, onSelect }: { m: Momento; i: number; t: MotionValue<number>; onSelect: () => void }) {
+  const a = useAtivacao(t, i);
+  const grow = useTransform(a, [0, 1], [1, 5.5]);
+  const zoom = useTransform(a, [0, 1], [1.25, 1.02]);
+  return (
+    <motion.button
+      type="button"
+      onClick={onSelect}
+      aria-label={m.verbo}
+      style={{ flexGrow: grow }}
+      className="relative min-w-0 basis-0 cursor-pointer overflow-hidden rounded-2xl bg-ceu/40 md:rounded-3xl"
+    >
+      <motion.div className="absolute inset-0" style={{ scale: zoom }}>
+        <Image src={`/img/${m.img}.jpg`} alt={m.alt} fill sizes="(min-width: 768px) 60vw, 80vw" className="object-cover" />
+      </motion.div>
+    </motion.button>
+  );
+}
+
+function LegendaMomento({ m, i, t }: { m: Momento; i: number; t: MotionValue<number> }) {
+  const a = useAtivacao(t, i);
+  const opacity = useTransform(a, [0, 0.3, 0.7], [0, 0, 1]);
+  const y = useTransform(a, [0, 1], [24, 0]);
+  const blurPx = useTransform(a, [0, 0.3, 0.7], [8, 8, 0]);
+  const filter = useMotionTemplate`blur(${blurPx}px)`;
+  return (
+    <motion.div className="col-start-1 row-start-1" style={{ opacity, y, filter }}>
+      <p className="text-5xl font-light tracking-tight text-azul md:text-7xl">{m.verbo}.</p>
+      <p className="mt-3 max-w-md text-grafite/80">{m.texto}</p>
+    </motion.div>
+  );
+}
+
+function AbaMomento({ m, i, t, onSelect }: { m: Momento; i: number; t: MotionValue<number>; onSelect: () => void }) {
+  const a = useAtivacao(t, i);
+  const largura = useTransform(a, [0, 1], ["0%", "100%"]);
+  return (
+    <button type="button" onClick={onSelect} className="group cursor-pointer text-left text-sm uppercase tracking-[0.18em] text-azul/55 transition hover:text-azul">
+      {m.verbo}
+      <span className="mt-1 block h-px w-full bg-azul/15">
+        <motion.span className="block h-px bg-dourado" style={{ width: largura }} />
+      </span>
     </button>
   );
 }

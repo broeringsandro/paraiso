@@ -39,7 +39,7 @@ import WhatsappIcon from "./components/WhatsappIcon";
 import { Reveal, RevealWords } from "./components/Reveal";
 import Manifesto from "./components/Manifesto";
 import { ClipImage, Counter, ParallaxImage, SolarArc } from "./components/Visuals";
-import { Carrossel, CardsEmpilhados, DiferenciaisImersivo, GaleriaHorizontal } from "./components/Galerias";
+import { CardsEmpilhados, DiferenciaisImersivo, GaleriaHorizontal, SemSairDeCasa } from "./components/Galerias";
 import Letreiro from "./components/Letreiro";
 import Plantas from "./components/Plantas";
 
@@ -333,23 +333,14 @@ export default function Home() {
         </section>
 
 
-        {/* 09 · Fachada */}
-        <section className="overflow-hidden bg-nevoa py-24 md:py-36">
-          <div className="mx-auto max-w-7xl px-5 md:px-10">
-            <Reveal>
-              <Rotulo>Fachada</Rotulo>
-            </Reveal>
-            <h2 className="titulo mb-12 max-w-3xl text-azul">
-              <RevealWords text="Duas torres para" /> <strong><RevealWords text="viver bem." delay={0.2} /></strong>
-            </h2>
-          </div>
-          <Carrossel
-            itens={[
-              { img: "fachada-05", alt: "Entrada do Paraíso das Águas" },
-              { img: "fachada-06", alt: "Fachada do Paraíso das Águas" },
-              { img: "fachada-07", alt: "Fachada do Paraíso das Águas" },
-              { img: "fachada-09", alt: "Fachada do Paraíso das Águas" },
-              { img: "fachada-08", alt: "Vista aérea das duas torres" },
+        {/* Sem sair de casa */}
+        <section className="bg-nevoa">
+          <SemSairDeCasa
+            momentos={[
+              { verbo: "Trabalhe", texto: "Coworking e biblioteca no ático, a um andar de casa.", img: "coworking-01", alt: "Coworking" },
+              { verbo: "Treine", texto: "Academia completa dentro do condomínio.", img: "academia", alt: "Academia" },
+              { verbo: "Celebre", texto: "4 salões de festas, um deles temático infantil.", img: "salao-03", alt: "Salão de festas" },
+              { verbo: "Relaxe", texto: "Piscina com deck e lounges para o fim de tarde.", img: "piscina", alt: "Piscina com deck" },
             ]}
           />
         </section>
