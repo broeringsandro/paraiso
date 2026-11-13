@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {
+  ArrowRight,
   Waves,
   Dumbbell,
   BookOpen,
@@ -38,7 +39,7 @@ import Smooth from "./components/Smooth";
 import WhatsappIcon from "./components/WhatsappIcon";
 import { Reveal, RevealWords } from "./components/Reveal";
 import Manifesto from "./components/Manifesto";
-import { Counter, ParallaxImage, SolarArc } from "./components/Visuals";
+import { Counter, ParallaxImage } from "./components/Visuals";
 import { CardsEmpilhados, DiferenciaisImersivo, GaleriaHorizontal, SemSairDeCasa } from "./components/Galerias";
 import Letreiro from "./components/Letreiro";
 import Plantas from "./components/Plantas";
@@ -315,24 +316,30 @@ export default function Home() {
               <Plantas />
             </div>
 
-            {/* Posição solar */}
-            {/* TODO: confirmar a orientação do norte (aprox. 25° à direita do topo da planta térrea). */}
-            <div className="mt-5 grid items-center gap-10 rounded-2xl bg-azul p-8 text-white md:grid-cols-2 md:p-14">
-              <div>
-                <Reveal>
-                  <Rotulo claro>
-                    Posição solar
-                  </Rotulo>
-                  <h3 className="text-2xl font-light leading-snug md:text-4xl">
-                    Sol da manhã a leste, sol da tarde a oeste.
+            {/* Card de contato */}
+            <Reveal y={40} blur={4} className="mt-5">
+              <div className="grid items-center gap-10 rounded-3xl bg-azul p-8 text-white md:grid-cols-[1.2fr_1fr] md:p-14">
+                <div>
+                  <Rotulo claro>Contato</Rotulo>
+                  <h3 className="titulo text-white md:!text-[2.8rem]">
+                    Agende <strong>sua visita</strong>.
                   </h3>
-                  <p className="texto mt-6 max-w-md text-sm text-ceu">
-                    Consulte a implantação com seu corretor ou pelo WhatsApp para saber a orientação de cada final.
-                  </p>
-                </Reveal>
+                  <p className="texto mt-5 max-w-md text-ceu">Ou fale com o seu corretor de confiança.</p>
+                </div>
+                <div className="flex flex-col items-start gap-5 md:items-end">
+                  <a
+                    href={WA_LINK}
+                    target="_blank"
+                    rel="noopener"
+                    className="group inline-flex items-center gap-3 rounded-full bg-dourado px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-noite transition hover:bg-white"
+                  >
+                    <WhatsappIcon size={20} /> Chamar no WhatsApp
+                    <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
+                  </a>
+                  <p className="text-2xl font-light tracking-tight text-white/90 md:text-3xl">(48) 9821-3130</p>
+                </div>
               </div>
-              <SolarArc />
-            </div>
+            </Reveal>
           </div>
         </section>
 
