@@ -57,7 +57,7 @@ export default function Home() {
       <JsonLd data={complexo} />
       <Hero whatsapp={WA_LINK} />
       <Letreiro />
-      <p className="mx-auto max-w-3xl bg-white px-5 py-8 text-center text-sm leading-relaxed text-grafite/70 md:py-10">
+      <p className="sr-only">
         O Residencial Paraíso das Águas é um condomínio da construtora ALE na Rua Major Soares do Nascimento, 400/520, bairro São Francisco de Assis, em Santo Amaro da Imperatriz/SC, com 2 torres e 112 apartamentos de 2 e 3 dormitórios com suíte.
       </p>
       <EmpreendimentoSecao verMais />
