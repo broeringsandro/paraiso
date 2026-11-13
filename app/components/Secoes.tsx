@@ -274,8 +274,9 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
               </strong>
             </h2>
             <Reveal delay={0.25}>
-              <p className="max-w-sm text-lg font-light leading-relaxed text-white/80 lg:pb-3">
-                <span className="text-dourado">Trabalhe, treine, celebre e relaxe</span> sem sair de casa.
+              <p className="text-lg font-light leading-relaxed text-white/80 lg:pb-3">
+                <span className="block text-dourado sm:whitespace-nowrap">Trabalhe, treine, celebre e relaxe</span>
+                <span className="block">sem sair de casa.</span>
               </p>
             </Reveal>
           </div>
