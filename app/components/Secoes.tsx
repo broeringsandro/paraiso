@@ -19,8 +19,6 @@ import {
   PlugZap,
   PaintRoller,
   SquareParking,
-  Building2,
-  KeyRound,
   Droplets,
   Route,
   Landmark,
@@ -140,52 +138,49 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
         text="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
       />
 
-      <div className="bg-nevoa pb-24 pt-12 md:pb-36 md:pt-20">
-        <div className="mx-auto max-w-3xl px-5 text-center md:px-10">
-          <Reveal>
-            <span className="traco-dourado mx-auto" />
-            <p className="texto mx-auto max-w-xl text-lg font-light leading-relaxed text-grafite/85">
-              Apartamentos de 2 e 3 dormitórios com suíte e um clube completo dentro de casa: piscina, academia,
-              coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado da ALE
-              Empreendimentos em cada detalhe.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <dl className="mx-auto mt-12 grid max-w-xl grid-cols-3 divide-x divide-azul/15 rounded-2xl bg-white py-6 shadow-[0_20px_50px_-35px_rgb(20_36_58/0.35)]">
-              {[
-                { I: Building2, n: 2, l: "torres" },
-                { I: Layers, n: 7, l: "pavimentos tipo" },
-                { I: KeyRound, n: 112, l: "apartamentos" },
-              ].map(({ I, n, l }) => (
-                <div key={l} className="px-3">
-                  <I size={18} strokeWidth={1.4} className="mx-auto text-mar" />
-                  <dd className="mt-2 text-3xl font-light tracking-tight text-azul md:text-4xl">
-                    <Counter to={n} />
-                  </dd>
-                  <dt className="mt-1 text-xs text-grafite/65">{l}</dt>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-
-          {verMais && (
-            <div className="mt-10 flex justify-center">
-              <VerMais href="/empreendimento" label="Conheça o projeto" />
-            </div>
-          )}
-        </div>
-
-        <div className="mx-auto mt-16 max-w-6xl px-5 md:mt-24 md:px-10">
+      <div className="bg-nevoa py-20 md:py-32">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:px-10 lg:grid-cols-2 lg:gap-20">
           <Reveal y={40} blur={4}>
             <ParallaxImage
-              nome="fachada-11"
+              nome="fachada-05"
               alt="Entrada do Paraíso das Águas"
-              className="h-[42svh] rounded-3xl md:h-[54svh]"
-              sizes="(min-width: 1024px) 72vw, 100vw"
+              className="aspect-square rounded-3xl lg:aspect-[6/7]"
+              sizes="(min-width: 1024px) 48vw, 100vw"
               intensidade={8}
             />
           </Reveal>
+
+          <div>
+            <Reveal>
+              <span className="traco-dourado" />
+              <p className="texto max-w-md text-grafite/85">
+                Apartamentos de 2 e 3 dormitórios com suíte e um clube completo dentro de casa: piscina, academia,
+                coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado da
+                ALE Empreendimentos em cada detalhe.
+              </p>
+            </Reveal>
+
+            <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-azul/15 pt-8">
+              {[
+                { n: 2, l: "torres" },
+                { n: 7, l: "pavimentos tipo" },
+                { n: 112, l: "apartamentos" },
+              ].map(({ n, l }, i) => (
+                <Reveal key={l} delay={i * 0.1}>
+                  <dd className="text-4xl font-light tracking-tight text-azul">
+                    <Counter to={n} />
+                  </dd>
+                  <dt className="mt-1 text-sm text-grafite/70">{l}</dt>
+                </Reveal>
+              ))}
+            </dl>
+
+            {verMais && (
+              <div className="mt-10">
+                <VerMais href="/empreendimento" label="Conheça o projeto" />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>
