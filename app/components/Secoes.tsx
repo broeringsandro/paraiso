@@ -1,5 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
+  Building2,
+  KeyRound,
   Waves,
   Dumbbell,
   BookOpen,
@@ -22,7 +25,6 @@ import {
   Droplets,
   Route,
   Landmark,
-  Sunset,
   MapPin,
   type LucideIcon,
 } from "lucide-react";
@@ -52,13 +54,6 @@ const galeria = [
   { nome: "Sala de jogos", icone: ic(Dices, 26), img: "jogos", alt: "Sala de jogos" },
   { nome: "Brinquedoteca e playground", icone: ic(Blocks, 26), img: "kids", alt: "Área Kids" },
   { nome: "4 salões de festas", icone: ic(PartyPopper, 26), img: "salao-02", alt: "Salão de festas" },
-];
-
-const outrasAreas: { nome: string; icone: LucideIcon }[] = [
-  { nome: "Lounge coberto", icone: Sofa },
-  { nome: "Lounge descoberto", icone: Sofa },
-  { nome: "Terraço externo", icone: Sunset },
-  { nome: "Áreas verdes e jardins", icone: Trees },
 ];
 
 const cardsApto = [
@@ -139,48 +134,77 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
       />
 
       <div className="bg-nevoa py-20 md:py-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:px-10 lg:grid-cols-2 lg:gap-20">
-          <Reveal y={40} blur={4}>
-            <ParallaxImage
-              nome="fachada-05"
-              alt="Entrada do Paraíso das Águas"
-              className="aspect-square rounded-3xl lg:aspect-[6/7]"
-              sizes="(min-width: 1024px) 48vw, 100vw"
-              intensidade={8}
-            />
-          </Reveal>
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
+            <div>
+              <Reveal>
+                <span className="inline-flex items-center gap-2.5 rounded-xl border border-azul/15 bg-white/70 px-4 py-2.5 text-sm text-azul">
+                  <Building2 size={18} strokeWidth={1.5} className="text-mar" />
+                  O empreendimento
+                </span>
+              </Reveal>
+              <h2 className="titulo mt-7 text-azul md:!text-[3.4rem]">
+                <RevealWords text="Apartamentos com um clube" /> <strong><RevealWords text="completo dentro de casa." delay={0.2} /></strong>
+              </h2>
+              <Reveal delay={0.15}>
+                <p className="texto mt-7 max-w-md text-lg font-light text-grafite/80">
+                  Piscina, academia, coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas.
+                  Tudo com o cuidado da ALE Empreendimentos em cada detalhe.
+                </p>
+                <div className="mt-9 flex flex-col items-start gap-3">
+                  <a
+                    href={WA_LINK}
+                    target="_blank"
+                    rel="noopener"
+                    className="group inline-flex items-center gap-3 rounded-full bg-whats px-8 py-4 text-sm font-medium text-white transition hover:bg-whats-escuro"
+                  >
+                    <WhatsappIcon size={18} /> Agende sua visita
+                  </a>
+                  <Link
+                    href={verMais ? "/empreendimento" : "/plantas"}
+                    className="inline-flex items-center rounded-full border border-azul/20 bg-white/60 px-8 py-4 text-sm text-azul transition hover:border-azul hover:bg-white"
+                  >
+                    {verMais ? "Conheça o projeto" : "Ver as plantas"}
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
 
-          <div>
-            <Reveal>
-              <span className="traco-dourado" />
-              <p className="texto max-w-md text-grafite/85">
-                Apartamentos de 2 e 3 dormitórios com suíte e um clube completo dentro de casa: piscina, academia,
-                coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado da
-                ALE Empreendimentos em cada detalhe.
-              </p>
+            <Reveal y={40} blur={4}>
+              <ParallaxImage
+                nome="fachada-10"
+                alt="Vista das duas torres do Paraíso das Águas"
+                className="aspect-[5/4] rounded-3xl"
+                sizes="(min-width: 1024px) 52vw, 100vw"
+                intensidade={8}
+              />
             </Reveal>
-
-            <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-azul/15 pt-8">
-              {[
-                { n: 2, l: "torres" },
-                { n: 7, l: "pavimentos tipo" },
-                { n: 112, l: "apartamentos" },
-              ].map(({ n, l }, i) => (
-                <Reveal key={l} delay={i * 0.1}>
-                  <dd className="text-4xl font-light tracking-tight text-azul">
-                    <Counter to={n} />
-                  </dd>
-                  <dt className="mt-1 text-sm text-grafite/70">{l}</dt>
-                </Reveal>
-              ))}
-            </dl>
-
-            {verMais && (
-              <div className="mt-10">
-                <VerMais href="/empreendimento" label="Conheça o projeto" />
-              </div>
-            )}
           </div>
+
+          <dl className="mt-16 grid grid-cols-2 gap-3 md:mt-24 lg:grid-cols-4 lg:gap-4">
+            {[
+              { I: Building2, n: 2, l: "Torres residenciais" },
+              { I: Layers, n: 7, l: "Pavimentos tipo" },
+              { I: KeyRound, n: 112, l: "Apartamentos" },
+              { I: SquareParking, n: "100%", l: "Garagens cobertas" },
+            ].map(({ I, n, l }, i) => (
+              <Reveal
+                key={l}
+                delay={i * 0.08}
+                className="group rounded-2xl border border-azul/10 bg-white/60 p-5 transition duration-500 hover:-translate-y-1 hover:bg-white md:p-7"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-nevoa text-mar transition duration-500 group-hover:bg-dourado/30 group-hover:text-azul">
+                  <I size={20} strokeWidth={1.4} />
+                </span>
+                <div className="mt-6 flex items-end justify-between gap-3 md:mt-8">
+                  <dd className="text-4xl font-light leading-none tracking-tight text-azul md:text-5xl">
+                    {typeof n === "number" ? <Counter to={n} /> : n}
+                  </dd>
+                  <dt className="max-w-[9ch] text-right text-xs leading-snug text-grafite/70 md:text-sm">{l}</dt>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
         </div>
       </div>
     </section>
@@ -268,20 +292,8 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
 
       <GaleriaHorizontal itens={galeria} />
 
-      <div className="mx-auto max-w-7xl px-5 pb-28 pt-6 md:px-10 md:pb-40">
-        <ul className="grid grid-cols-2 gap-6 border-t border-white/10 pt-10 md:grid-cols-4">
-          {outrasAreas.map(({ nome, icone: I }, i) => (
-            <Reveal as="li" key={nome} delay={i * 0.1} className="flex items-center gap-3 text-white/75">
-              <I size={20} strokeWidth={1.5} className="shrink-0 text-dourado" />
-              <span className="text-sm">{nome}</span>
-            </Reveal>
-          ))}
-        </ul>
-        {verMais && (
-          <div className="mt-12">
-            <VerMais href="/home-club" label="Conheça o home club" claro />
-          </div>
-        )}
+      <div className="mx-auto max-w-7xl px-5 pb-24 pt-10 md:px-10 md:pb-36">
+        {verMais && <VerMais href="/home-club" label="Conheça o home club" claro />}
       </div>
     </section>
   );
@@ -295,7 +307,7 @@ export function SemSairSecao() {
           { verbo: "Trabalhe", texto: "Coworking e biblioteca no ático, a um andar de casa.", img: "coworking-01", alt: "Coworking" },
           { verbo: "Treine", texto: "Academia completa dentro do condomínio.", img: "academia", alt: "Academia" },
           { verbo: "Celebre", texto: "4 salões de festas, um deles temático infantil.", img: "salao-03", alt: "Salão de festas" },
-          { verbo: "Relaxe", texto: "Piscina com deck e lounges para o fim de tarde.", img: "piscina", alt: "Piscina com deck" },
+          { verbo: "Relaxe", texto: "Piscina com deck para aproveitar o fim de tarde.", img: "piscina", alt: "Piscina com deck" },
         ]}
       />
     </section>
