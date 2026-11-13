@@ -281,7 +281,7 @@ export function CtaContato({ solto = false }: { solto?: boolean }) {
 function CartaoContato() {
   return (
     <Reveal y={40} blur={4}>
-          <div className="grid items-center gap-10 rounded-3xl bg-azul p-8 text-white md:grid-cols-[1.2fr_1fr] md:p-14">
+          <div className="grid items-center gap-10 rounded-3xl bg-noite p-8 text-white md:grid-cols-[1.2fr_1fr] md:p-14">
             <div>
               <Rotulo claro>Contato</Rotulo>
               <h2 className="titulo text-white md:!text-[2.8rem]">

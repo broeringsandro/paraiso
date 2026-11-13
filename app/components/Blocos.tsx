@@ -397,7 +397,7 @@ export function Corretores() {
     <section className="bg-nevoa pb-20 md:pb-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <Reveal>
-          <div className="grid items-center gap-8 rounded-3xl bg-azul p-8 text-white md:grid-cols-[1.4fr_1fr] md:p-12">
+          <div className="grid items-center gap-8 rounded-3xl bg-noite p-8 text-white md:grid-cols-[1.4fr_1fr] md:p-12">
             <div>
               <Layers size={28} strokeWidth={1.3} className="text-dourado" />
               <h2 className="titulo mt-5 text-white md:!text-[2.4rem]">
