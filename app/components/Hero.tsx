@@ -56,23 +56,25 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
 
         <div className="flex min-h-[inherit] flex-col p-5 md:p-10">
           {/* selos dos cantos */}
-          <div className="hero-in flex items-start justify-between gap-3" style={{ animationDelay: "2.2s" }}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.16em] backdrop-blur-md">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-dourado/70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-dourado" />
-              </span>
-              Pré-lançamento
-            </span>
+          <div className="hero-in flex items-start justify-end gap-3" style={{ animationDelay: "2.2s" }}>
             <span className="hidden rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.16em] backdrop-blur-md sm:inline-flex">
               Santo Amaro da Imperatriz / SC
             </span>
           </div>
 
-          {/* texto principal */}
-          <div className="flex flex-1 items-center py-14 md:py-16">
+          {/* texto principal: etiqueta, logo e título compartilham o mesmo alinhamento à esquerda */}
+          <div className="flex flex-1 items-center py-10 md:py-12">
             <div className="max-w-2xl pl-3 md:pl-12 lg:pl-20">
-              <div className="hero-in" style={{ animationDelay: "2.35s" }}>
+              <div className="hero-in" style={{ animationDelay: "2.25s" }}>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.16em] backdrop-blur-md">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-dourado/70" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-dourado" />
+                  </span>
+                  Pré-lançamento
+                </span>
+              </div>
+              <div className="hero-in mt-8" style={{ animationDelay: "2.35s" }}>
                 <Logo className="mb-2 w-40 brightness-0 invert md:w-52" />
               </div>
               <h1 className="hero-in titulo mt-6 md:mt-8" style={{ animationDelay: "2.5s" }}>
