@@ -41,6 +41,7 @@ import Manifesto from "./components/Manifesto";
 import { ClipImage, Counter, ParallaxImage, SolarArc } from "./components/Visuals";
 import { Carrossel, CardsEmpilhados, DiferenciaisImersivo, GaleriaHorizontal } from "./components/Galerias";
 import Letreiro from "./components/Letreiro";
+import Plantas from "./components/Plantas";
 
 const WA_LINK = `https://wa.me/${WHATSAPP}`;
 
@@ -124,13 +125,6 @@ const diferenciaisImersivos = diferenciais.map(({ t, icone: I }, i) => ({
   iconeGrande: <I size={32} strokeWidth={1.3} />,
   ...fotosDif[i],
 }));
-
-// TODO: confirmar com o cliente a associação Tipo 02 / Tipo 03 às metragens e se os de 2 dormitórios têm suíte.
-const tipos = [
-  { nome: "Tipo 01", dorms: "3 dormitórios, sendo 1 suíte", area: "91,00", a: "02, 03, 06, 07", b: "12, 13, 16, 17" },
-  { nome: "Tipo 02", dorms: "2 dormitórios, sendo 1 suíte", area: "74,29", a: "04, 05", b: "14, 15" },
-  { nome: "Tipo 03", dorms: "2 dormitórios, sendo 1 suíte", area: "68,18", a: "01, 08", b: "11, 18" },
-];
 
 const destaquesLocal: { t: string; d: string; icone: LucideIcon }[] = [
   { t: "Águas termais", d: "Santo Amaro da Imperatriz é conhecida pelas fontes termais de Caldas da Imperatriz.", icone: Droplets },
@@ -308,34 +302,13 @@ export default function Home() {
             </h2>
             <Reveal delay={0.15}>
               <p className="texto mt-6 max-w-xl text-grafite/85">
-                Oito apartamentos por andar em cada torre, com dois elevadores por torre. Torre A de 101 a 708, Torre B
-                de 111 a 718.
+                Oito apartamentos por andar em cada torre, com dois elevadores por torre. Escolha uma planta para ver os
+                detalhes e ampliar.
               </p>
             </Reveal>
 
-            {/* TODO: inserir as imagens das plantas novas (sem piso laminado) em /public/img e exibir em cada card. */}
-            <div className="mt-16 grid gap-5 md:grid-cols-3">
-              {tipos.map((t, i) => (
-                <Reveal as="article" key={t.nome} delay={i * 0.15} className="flex flex-col rounded-2xl bg-nevoa p-8 transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_-28px_rgb(20_36_58/0.4)]">
-                  <p className="rotulo text-mar">{t.nome}</p>
-                  <p className="mt-6 text-5xl font-light text-azul">
-                    {t.area}
-                    <span className="ml-1 text-xl">m²</span>
-                  </p>
-                  <p className="mt-1 text-sm text-grafite/70">área privativa</p>
-                  <p className="mt-6 text-azul">{t.dorms}</p>
-                  <dl className="mt-8 grid gap-3 border-t border-azul/15 pt-6 text-sm">
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-grafite/70">Finais Torre A</dt>
-                      <dd className="text-azul">{t.a}</dd>
-                    </div>
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-grafite/70">Finais Torre B</dt>
-                      <dd className="text-azul">{t.b}</dd>
-                    </div>
-                  </dl>
-                </Reveal>
-              ))}
+            <div className="mt-14">
+              <Plantas />
             </div>
 
             {/* Posição solar */}
