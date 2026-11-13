@@ -394,7 +394,7 @@ export function FotosObra() {
 
 export function Corretores() {
   return (
-    <section className="fundo-nevoa pb-14 md:pb-28">
+    <section className="fundo-nevoa pb-14 pt-14 md:pb-28 md:pt-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <Reveal>
           <div className="grid items-center gap-8 rounded-3xl bg-noite p-8 text-white md:grid-cols-[1.4fr_1fr] md:p-12">

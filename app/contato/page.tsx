@@ -32,7 +32,7 @@ export default function Pagina() {
       />
       <ContatoSecao pagina />
       <Corretores />
-      <section className="fundo-branco pb-14 md:pb-28">
+      <section className="fundo-branco pb-14 pt-14 md:pb-28 md:pt-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <Reveal y={40} blur={4}>
             <Mapa />

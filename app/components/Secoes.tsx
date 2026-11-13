@@ -311,7 +311,7 @@ export function SemSairSecao() {
 
 export function ApartamentosSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
   return (
-    <section id="apartamentos" className={`fundo-nevoa ${cabecalho ? "pt-16 md:pt-44" : "pt-6"}`}>
+    <section id="apartamentos" className={`fundo-nevoa ${cabecalho ? "pt-16 md:pt-44" : "pt-14 md:pt-24"}`}>
       {cabecalho && (
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <Reveal>
@@ -528,7 +528,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
 
   if (pagina) {
     return (
-      <section id="contato" className="fundo-branco pb-14 md:pb-36">
+      <section id="contato" className="fundo-branco pb-14 pt-14 md:pb-36 md:pt-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
             <Reveal>
