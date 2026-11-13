@@ -45,7 +45,7 @@ export default function Manifesto({ text, rotulo }: { text: string; rotulo: stri
 
   return (
     <div ref={ref} className="relative h-[300svh]">
-      <div className="sticky top-0 h-[100svh] overflow-hidden bg-nevoa">
+      <div className="sticky top-0 h-[100svh] overflow-hidden bg-white">
         {fotos.map((f) => (
           <FotoFlutuante key={f.img} f={f} p={p} />
         ))}
