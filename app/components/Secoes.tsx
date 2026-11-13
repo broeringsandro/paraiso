@@ -140,51 +140,51 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
         text="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
       />
 
-      <div className="bg-nevoa pb-24 pt-16 md:pb-40 md:pt-28">
-        {/* Números gigantes */}
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <dl className="grid grid-cols-3 border-t border-azul/15">
-            {[
-              { I: Building2, n: 2, l: "torres" },
-              { I: Layers, n: 7, l: "pavimentos tipo" },
-              { I: KeyRound, n: 112, l: "apartamentos" },
-            ].map(({ I, n, l }, i) => (
-              <Reveal key={l} delay={i * 0.15} className={`py-8 md:py-14 ${i > 0 ? "border-l border-azul/15 pl-4 md:pl-10" : ""}`}>
-                <I size={22} strokeWidth={1.4} className="text-mar" />
-                <dd className="mt-3 text-[16vw] font-extralight leading-[0.9] tracking-tighter text-azul md:text-[10rem] lg:text-[12.5rem]">
-                  <Counter to={n} />
-                </dd>
-                <dt className="mt-3 text-xs text-grafite/70 md:text-base">{l}</dt>
-              </Reveal>
-            ))}
-          </dl>
+      <div className="bg-nevoa pb-24 pt-12 md:pb-36 md:pt-20">
+        <div className="mx-auto max-w-3xl px-5 text-center md:px-10">
+          <Reveal>
+            <span className="traco-dourado mx-auto" />
+            <p className="texto mx-auto max-w-xl text-lg font-light leading-relaxed text-grafite/85">
+              Apartamentos de 2 e 3 dormitórios com suíte e um clube completo dentro de casa: piscina, academia,
+              coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado da ALE
+              Empreendimentos em cada detalhe.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <dl className="mx-auto mt-12 grid max-w-xl grid-cols-3 divide-x divide-azul/15 rounded-2xl bg-white py-6 shadow-[0_20px_50px_-35px_rgb(20_36_58/0.35)]">
+              {[
+                { I: Building2, n: 2, l: "torres" },
+                { I: Layers, n: 7, l: "pavimentos tipo" },
+                { I: KeyRound, n: 112, l: "apartamentos" },
+              ].map(({ I, n, l }) => (
+                <div key={l} className="px-3">
+                  <I size={18} strokeWidth={1.4} className="mx-auto text-mar" />
+                  <dd className="mt-2 text-3xl font-light tracking-tight text-azul md:text-4xl">
+                    <Counter to={n} />
+                  </dd>
+                  <dt className="mt-1 text-xs text-grafite/65">{l}</dt>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+
+          {verMais && (
+            <div className="mt-10 flex justify-center">
+              <VerMais href="/empreendimento" label="Conheça o projeto" />
+            </div>
+          )}
         </div>
 
-        {/* Foto panorâmica com card sobreposto */}
-        <div className="mx-auto mt-6 max-w-7xl px-5 md:mt-10 md:px-10">
+        <div className="mx-auto mt-16 max-w-6xl px-5 md:mt-24 md:px-10">
           <Reveal y={40} blur={4}>
             <ParallaxImage
               nome="fachada-11"
               alt="Entrada do Paraíso das Águas"
-              className="h-[50svh] rounded-3xl md:h-[70svh]"
-              sizes="100vw"
+              className="h-[42svh] rounded-3xl md:h-[54svh]"
+              sizes="(min-width: 1024px) 72vw, 100vw"
               intensidade={8}
             />
-          </Reveal>
-          <Reveal delay={0.1} className="relative z-10 -mt-20 ml-auto mr-2 max-w-md md:-mt-32 md:mr-12">
-            <div className="rounded-3xl bg-white p-7 shadow-[0_30px_70px_-30px_rgb(20_36_58/0.45)] md:p-10">
-              <span className="traco-dourado" />
-              <p className="texto text-grafite/85">
-                Apartamentos de 2 e 3 dormitórios com suíte e um clube completo dentro de casa: piscina, academia,
-                coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado da
-                ALE Empreendimentos em cada detalhe.
-              </p>
-              {verMais && (
-                <div className="mt-8">
-                  <VerMais href="/empreendimento" label="Conheça o projeto" />
-                </div>
-              )}
-            </div>
           </Reveal>
         </div>
       </div>
