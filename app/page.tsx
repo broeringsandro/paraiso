@@ -99,7 +99,7 @@ const diferenciais: { t: string; icone: LucideIcon }[] = [
   { t: "Fechadura eletrônica com senha na porta de entrada", icone: LockKeyhole },
   { t: "Persianas automatizadas nos dormitórios", icone: Blinds },
   { t: "Porcelanato nos ambientes internos e sacadas, e forro de gesso rebaixado com pintura", icone: Layers },
-  { t: "Espera completa para ar-condicionado split nos dormitórios e na sala de estar/jantar", icone: AirVent },
+  { t: "Espera completa para ar‑condicionado split nos dormitórios e na sala de estar/jantar", icone: AirVent },
   { t: "Água com aquecimento a gás nos banheiros e na cozinha", icone: ShowerHead },
   { t: "Estrutura para futura instalação de ponto de carregador elétrico coletivo", icone: PlugZap },
   { t: "Massa corrida nas paredes", icone: PaintRoller },
@@ -121,7 +121,7 @@ const fotosDif = [
 const diferenciaisImersivos = diferenciais.map(({ t, icone: I }, i) => ({
   t,
   icone: <I size={20} strokeWidth={1.5} />,
-  iconeGrande: <I size={34} strokeWidth={1.3} />,
+  iconeGrande: <I size={32} strokeWidth={1.3} />,
   ...fotosDif[i],
 }));
 
@@ -285,12 +285,12 @@ export default function Home() {
 
 
         {/* Diferenciais */}
-        <section className="bg-noite text-white">
-          <div className="mx-auto max-w-7xl px-5 pb-16 pt-28 md:px-10 md:pt-44">
+        <section className="bg-nevoa">
+          <div className="mx-auto max-w-7xl px-5 pb-6 pt-28 md:px-10 md:pt-44">
             <Reveal>
-              <Rotulo claro>Diferenciais</Rotulo>
+              <Rotulo>Diferenciais</Rotulo>
             </Reveal>
-            <h2 className="titulo max-w-3xl">
+            <h2 className="titulo max-w-3xl text-azul">
               <RevealWords text="Pensado em" /> <strong><RevealWords text="cada detalhe." delay={0.2} /></strong>
             </h2>
           </div>
