@@ -15,16 +15,14 @@ const nav = [
   ["Contato", "#contato"],
 ] as const;
 
-// Esconde ao descer, volta ao subir, ganha fundo depois do hero.
+// Barra azul sólida. Esconde ao descer e volta ao subir.
 export default function Header({ whatsapp }: { whatsapp: string }) {
   const { scrollY } = useScroll();
   const [oculto, setOculto] = useState(false);
-  const [solido, setSolido] = useState(false);
   const [aberto, setAberto] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
-    setSolido(y > 60);
     setOculto(y > 400 && y > prev && !aberto);
   });
 
@@ -34,9 +32,7 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
         initial={{ y: -90, opacity: 0 }}
         animate={{ y: oculto ? -90 : 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.44, 0, 0.56, 1], delay: oculto ? 0 : 0.1 }}
-        className={`fixed inset-x-0 top-0 z-50 text-white transition-colors duration-500 ${
-          solido || aberto ? "bg-noite/80 backdrop-blur-md" : "bg-gradient-to-b from-noite/60 to-transparent"
-        }`}
+        className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-noite text-white"
       >
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:px-10">
           <a href="#topo" aria-label="ALE Empreendimentos, início">
