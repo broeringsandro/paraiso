@@ -71,7 +71,7 @@ export default function PredioCorte() {
     `absolute -right-3 top-1/2 hidden -translate-y-1/2 translate-x-full whitespace-nowrap text-xs uppercase tracking-[0.18em] transition-colors duration-700 md:block ${ativo === i ? "text-azul" : "text-azul/30"}`;
 
   return (
-    <section className="bg-nevoa py-24 md:py-36">
+    <section className="bg-nevoa py-16 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Anatomia do projeto" linhaUm="Do subsolo" destaque="ao ático." texto="Role para percorrer cada nível das torres." />
 

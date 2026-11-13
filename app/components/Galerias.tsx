@@ -33,7 +33,7 @@ export function GaleriaHorizontal({ itens }: { itens: ItemGaleria[] }) {
 
   return (
     <div ref={outer} style={{ height: `calc(100svh + ${dist}px)` }} className="relative">
-      <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden">
+      <div className="sticky top-[76px] flex h-[calc(100svh-76px)] flex-col justify-start overflow-hidden pt-3 md:top-0 md:h-[100svh] md:justify-center md:pt-0">
         <motion.div ref={track} style={{ x }} className="flex w-max gap-5 px-5 md:gap-8 md:px-10">
           {itens.map((it, i) => (
             <CardGaleria key={it.nome} item={it} i={i} progress={scrollYProgress} total={itens.length} />
@@ -62,7 +62,7 @@ function CardGaleria({
   const centro = i / (total - 1);
   const imgX = useTransform(progress, [centro - 0.35, centro + 0.35], ["8%", "-8%"]);
   return (
-    <figure className="relative h-[62svh] w-[78vw] shrink-0 overflow-hidden rounded-sm bg-azul sm:w-[52vw] md:h-[68svh] md:w-[34vw]">
+    <figure className="relative h-[56svh] w-[78vw] shrink-0 overflow-hidden rounded-sm bg-azul sm:w-[52vw] md:h-[68svh] md:w-[34vw]">
       <motion.div className="absolute inset-y-0 -inset-x-[12%]" style={{ x: imgX }}>
         <Image src={`/img/${item.img}.jpg`} alt={item.alt} fill sizes="(min-width: 768px) 45vw, 90vw" className="object-cover" />
       </motion.div>

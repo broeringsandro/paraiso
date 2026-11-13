@@ -34,7 +34,7 @@ export default function MapaFinais() {
   const info = filtro ? tipos[filtro] : null;
 
   return (
-    <section className="bg-nevoa py-20 md:py-32">
+    <section className="bg-nevoa py-14 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Finais" linhaUm="Cada final," destaque="uma tipologia." texto="Escolha uma tipologia para ver em quais finais ela aparece, em cada torre." />
 

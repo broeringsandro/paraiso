@@ -133,7 +133,7 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
         text="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
       />
 
-      <div className="bg-nevoa py-20 md:py-32">
+      <div className="bg-nevoa py-14 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
             <div>
@@ -213,7 +213,7 @@ export function DestaquesSecao() {
     <section className="bg-nevoa">
       <div className="grid lg:grid-cols-2">
         <ParallaxImage nome="coworking-01" alt="Coworking do Paraíso das Águas" className="min-h-[460px] lg:min-h-[720px]" />
-        <div className="flex items-center px-5 py-20 md:px-16 lg:py-28">
+        <div className="flex items-center px-5 py-14 md:px-16 lg:py-28">
           <div className="max-w-md">
             <Reveal>
               <span className="traco-dourado" />
@@ -236,7 +236,7 @@ export function DestaquesSecao() {
         </div>
       </div>
       <div className="grid lg:grid-cols-2">
-        <div className="order-2 flex items-center px-5 py-20 md:px-16 lg:order-1 lg:py-28">
+        <div className="order-2 flex items-center px-5 py-14 md:px-16 lg:order-1 lg:py-28">
           <div className="max-w-md">
             <Reveal>
               <span className="traco-dourado" />
@@ -262,7 +262,7 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
   return (
     <section id="home-club" className="bg-noite text-white">
       {cabecalho ? (
-        <div className="mx-auto max-w-7xl px-5 pb-12 pt-28 md:px-10 md:pb-16 md:pt-44">
+        <div className="mx-auto max-w-7xl px-5 pb-12 pt-16 md:px-10 md:pb-16 md:pt-44">
           <Reveal>
             <Rotulo claro>Home club</Rotulo>
           </Reveal>
@@ -287,7 +287,7 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
 
       <GaleriaHorizontal itens={galeria} />
 
-      <div className="mx-auto max-w-7xl px-5 pb-24 pt-10 md:px-10 md:pb-36">
+      <div className="mx-auto max-w-7xl px-5 pb-14 pt-10 md:px-10 md:pb-36">
         {verMais && <VerMais href="/home-club" label="Conheça o home club" claro />}
       </div>
     </section>
@@ -311,7 +311,7 @@ export function SemSairSecao() {
 
 export function ApartamentosSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
   return (
-    <section id="apartamentos" className={`bg-nevoa ${cabecalho ? "pt-28 md:pt-44" : "pt-6"}`}>
+    <section id="apartamentos" className={`bg-nevoa ${cabecalho ? "pt-16 md:pt-44" : "pt-6"}`}>
       {cabecalho && (
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <Reveal>
@@ -323,7 +323,7 @@ export function ApartamentosSecao({ cabecalho = true, verMais = false }: { cabec
         </div>
       )}
       <CardsEmpilhados cards={cardsApto} />
-      <div className="pb-24 md:pb-36">
+      <div className="pb-14 md:pb-36">
         {verMais && (
           <div className="mx-auto max-w-7xl px-5 md:px-10">
             <VerMais href="/apartamentos" label="Conheça os apartamentos" />
@@ -337,7 +337,7 @@ export function ApartamentosSecao({ cabecalho = true, verMais = false }: { cabec
 export function DiferenciaisSecao() {
   return (
     <section className="bg-nevoa">
-      <div className="mx-auto max-w-7xl px-5 pb-6 pt-20 md:px-10 md:pt-32">
+      <div className="mx-auto max-w-7xl px-5 pb-6 pt-14 md:px-10 md:pt-32">
         <Reveal>
           <Rotulo>Diferenciais</Rotulo>
         </Reveal>
@@ -352,7 +352,7 @@ export function DiferenciaisSecao() {
 
 export function PlantasSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
   return (
-    <section id="plantas" className={`bg-bege ${cabecalho ? "py-28 md:py-44" : "py-16 md:py-24"}`}>
+    <section id="plantas" className={`bg-bege ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {cabecalho && (
           <>
@@ -391,7 +391,7 @@ export function PlantasSecao({ cabecalho = true, verMais = false }: { cabecalho?
 
 export function LocalizacaoSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
   return (
-    <section id="localizacao" className={`bg-nevoa ${cabecalho ? "py-28 md:py-44" : "py-16 md:py-24"}`}>
+    <section id="localizacao" className={`bg-nevoa ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {cabecalho && (
           <>
@@ -451,7 +451,7 @@ export function LocalizacaoSecao({ cabecalho = true, verMais = false }: { cabeca
 
 export function ObraSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
   return (
-    <section id="andamento-da-obra" className={`bg-bege ${cabecalho ? "py-28 md:py-44" : "py-16 md:py-24"}`}>
+    <section id="andamento-da-obra" className={`bg-bege ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {cabecalho && (
           <div className="mb-14">
@@ -483,7 +483,7 @@ export function ObraSecao({ cabecalho = true, verMais = false }: { cabecalho?: b
 
 export function AleSecao() {
   return (
-    <section className="relative overflow-hidden bg-azul py-28 text-white md:py-40">
+    <section className="relative overflow-hidden bg-azul py-16 text-white md:py-40">
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-2">
         <div>
           <Reveal>
@@ -528,7 +528,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
 
   if (pagina) {
     return (
-      <section id="contato" className="bg-nevoa pb-24 md:pb-36">
+      <section id="contato" className="bg-nevoa pb-14 md:pb-36">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
             <Reveal>
@@ -546,7 +546,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
   }
 
   return (
-    <section id="contato" className="relative isolate overflow-hidden bg-noite py-28 text-white md:py-44">
+    <section id="contato" className="relative isolate overflow-hidden bg-noite py-16 text-white md:py-44">
       <ParallaxImage nome="fachada-09" alt="" className="absolute inset-0 -z-10 opacity-40" sizes="100vw" intensidade={8} />
       <div className="absolute inset-0 -z-10 bg-noite/70" aria-hidden />
       <div className="mx-auto grid max-w-7xl gap-16 px-5 md:px-10 lg:grid-cols-2 lg:gap-24">

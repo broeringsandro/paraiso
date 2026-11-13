@@ -34,7 +34,7 @@ const ficha: { n: string | number; u?: string; l: string }[] = [
 
 export function FichaTecnica() {
   return (
-    <section className="bg-nevoa py-24 md:py-36">
+    <section className="bg-nevoa py-16 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Ficha técnica" linhaUm="O projeto" destaque="em números." texto="Subsolo, térreo, 7 pavimentos tipo e ático, distribuídos em duas torres residenciais." />
         <dl className="mt-16 grid grid-cols-2 border-l border-t border-azul/15 lg:grid-cols-4">
@@ -82,7 +82,7 @@ const docs: { icone: LucideIcon; t: string; d: string }[] = [
 
 export function Transparencia() {
   return (
-    <section className="bg-bege py-24 md:py-36">
+    <section className="bg-bege py-16 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Transparência" linhaUm="Tudo documentado," destaque="em cada etapa." texto="Respeito ao sonho de quem confia na nossa assinatura começa pela documentação em dia." />
         <ul className="mt-14 grid gap-5 md:grid-cols-3">
@@ -139,7 +139,7 @@ function MosaicoFotos({ imagens }: { imagens: Categoria["imagens"] }) {
 
 export function CategoriaLazer({ c, invertido = false, fundo = "nevoa" }: { c: Categoria; invertido?: boolean; fundo?: "nevoa" | "branco" }) {
   return (
-    <section className={`${fundo === "branco" ? "bg-white" : "bg-nevoa"} py-20 md:py-32`}>
+    <section className={`${fundo === "branco" ? "bg-white" : "bg-nevoa"} py-14 md:py-32`}>
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-2 lg:gap-24">
         <div className={invertido ? "lg:order-2" : ""}>
           <Reveal y={40} blur={4}>
@@ -170,7 +170,7 @@ export function PlantasDoLazer() {
     { img: "/plantas/atico.png", w: 1491, h: 784, t: "Ático", d: "Biblioteca e coworking, cinema e espaço gamer, no topo de cada torre." },
   ];
   return (
-    <section className="bg-bege py-24 md:py-36">
+    <section className="bg-bege py-16 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Onde fica cada espaço" linhaUm="O home club" destaque="visto de cima." />
         <div className="mt-14 grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
@@ -209,7 +209,7 @@ const tipologias = [
 
 export function TipologiasResumo() {
   return (
-    <section className="bg-nevoa py-20 md:py-32">
+    <section className="bg-nevoa py-14 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Tipologias" linhaUm="Três jeitos de" destaque="morar bem." texto="Todos com sacada com churrasqueira, todos com suíte." />
         <div className="mt-14 grid gap-5 md:grid-cols-3">
@@ -244,7 +244,7 @@ export function GaleriaApto() {
     { img: "sacada-02", alt: "Sacada para receber amigos", cls: "col-span-2 md:col-span-4 aspect-[16/9] md:aspect-[21/8]" },
   ];
   return (
-    <section className="bg-white py-20 md:py-32">
+    <section className="bg-white py-14 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Ambientes" linhaUm="Por dentro," destaque="sem pressa." />
         <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
@@ -293,7 +293,7 @@ export function ComoChegar() {
 
 export function DestaquePrefeitura() {
   return (
-    <section className="bg-azul py-24 text-white md:py-36">
+    <section className="bg-azul py-16 text-white md:py-36">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
         <Reveal>
           <div className="flex items-end gap-4">
@@ -328,7 +328,7 @@ export function Cronograma() {
     estado: e.valor >= 100 ? "Concluída" : e.valor > 0 ? "Em andamento" : "Próxima etapa",
   }));
   return (
-    <section className="bg-nevoa py-24 md:py-36">
+    <section className="bg-nevoa py-16 md:py-36">
       <div className="mx-auto grid max-w-7xl gap-14 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
         <TituloSecao rotulo="Cronograma" linhaUm="Etapa por etapa," destaque="até a entrega." texto="A obra avança em seis grandes etapas. Aqui você vê em qual delas estamos." />
         <ol className="relative">
@@ -368,7 +368,7 @@ export function Cronograma() {
 
 export function FotosObra() {
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="bg-white py-16 md:py-32">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-10 lg:grid-cols-[1fr_1fr] lg:gap-20">
         <Reveal>
           <div className="flex aspect-[5/3] flex-col items-center justify-center gap-4 rounded-3xl border border-dashed border-azul/25 bg-nevoa text-center">
@@ -394,7 +394,7 @@ export function FotosObra() {
 
 export function Corretores() {
   return (
-    <section className="bg-nevoa pb-20 md:pb-28">
+    <section className="bg-nevoa pb-14 md:pb-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <Reveal>
           <div className="grid items-center gap-8 rounded-3xl bg-noite p-8 text-white md:grid-cols-[1.4fr_1fr] md:p-12">

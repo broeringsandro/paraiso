@@ -42,7 +42,7 @@ export default function Faq() {
   const [aberto, setAberto] = useState<number | null>(null);
 
   return (
-    <section className="bg-white py-20 md:py-32">
+    <section className="bg-white py-14 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
         <TituloSecao rotulo="Perguntas frequentes" linhaUm="Respostas para" destaque="o que mais importa." />
         <ul className="border-t border-azul/15">

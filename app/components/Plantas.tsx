@@ -101,7 +101,7 @@ export default function Plantas() {
 
   return (
     <div>
-      <div role="tablist" aria-label="Plantas" className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-2 md:mx-0 md:flex-wrap md:px-0">
+      <div role="tablist" aria-label="Plantas" className="flex flex-wrap gap-1.5 md:gap-2">
         {plantas.map((pl, i) => (
           <button
             key={pl.id}
@@ -109,7 +109,7 @@ export default function Plantas() {
             aria-selected={i === ativa}
             type="button"
             onClick={() => setAtiva(i)}
-            className={`relative shrink-0 rounded-full px-5 py-2.5 text-sm transition-colors duration-300 ${
+            className={`relative shrink-0 rounded-full px-3.5 py-2 text-[13px] transition-colors duration-300 md:px-5 md:py-2.5 md:text-sm ${
               i === ativa ? "text-white" : "text-azul/70 hover:text-azul"
             }`}
           >
