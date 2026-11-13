@@ -140,41 +140,52 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
         text="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
       />
 
-      <div className="bg-nevoa">
-        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-24 md:px-10 md:py-40 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20">
+      <div className="bg-nevoa pb-24 pt-16 md:pb-40 md:pt-28">
+        {/* Números gigantes */}
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <dl className="grid grid-cols-3 border-t border-azul/15">
+            {[
+              { I: Building2, n: 2, l: "torres" },
+              { I: Layers, n: 7, l: "pavimentos tipo" },
+              { I: KeyRound, n: 112, l: "apartamentos" },
+            ].map(({ I, n, l }, i) => (
+              <Reveal key={l} delay={i * 0.15} className={`py-8 md:py-14 ${i > 0 ? "border-l border-azul/15 pl-4 md:pl-10" : ""}`}>
+                <I size={22} strokeWidth={1.4} className="text-mar" />
+                <dd className="mt-3 text-[16vw] font-extralight leading-[0.9] tracking-tighter text-azul md:text-[10rem] lg:text-[12.5rem]">
+                  <Counter to={n} />
+                </dd>
+                <dt className="mt-3 text-xs text-grafite/70 md:text-base">{l}</dt>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+
+        {/* Foto panorâmica com card sobreposto */}
+        <div className="mx-auto mt-6 max-w-7xl px-5 md:mt-10 md:px-10">
           <Reveal y={40} blur={4}>
-            <ParallaxImage nome="fachada-05" alt="Entrada do Paraíso das Águas" className="aspect-[4/5] rounded-3xl" sizes="(min-width: 1024px) 55vw, 100vw" intensidade={8} />
+            <ParallaxImage
+              nome="fachada-11"
+              alt="Entrada do Paraíso das Águas"
+              className="h-[50svh] rounded-3xl md:h-[70svh]"
+              sizes="100vw"
+              intensidade={8}
+            />
           </Reveal>
-          <div>
-            <Reveal>
+          <Reveal delay={0.1} className="relative z-10 -mt-20 ml-auto mr-2 max-w-md md:-mt-32 md:mr-12">
+            <div className="rounded-3xl bg-white p-7 shadow-[0_30px_70px_-30px_rgb(20_36_58/0.45)] md:p-10">
               <span className="traco-dourado" />
-              <p className="texto max-w-md text-grafite/85">
+              <p className="texto text-grafite/85">
                 Apartamentos de 2 e 3 dormitórios com suíte e um clube completo dentro de casa: piscina, academia,
                 coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado da
                 ALE Empreendimentos em cada detalhe.
               </p>
-            </Reveal>
-            <dl className="mt-14 grid grid-cols-3 gap-6 border-t border-azul/15 pt-10">
-              {[
-                { I: Building2, n: 2, l: "torres" },
-                { I: Layers, n: 7, l: "pavimentos tipo" },
-                { I: KeyRound, n: 112, l: "apartamentos" },
-              ].map(({ I, n, l }, i) => (
-                <Reveal key={l} delay={i * 0.12}>
-                  <I size={22} strokeWidth={1.5} className="mb-3 text-mar" />
-                  <dd className="text-4xl font-light text-azul md:text-5xl">
-                    <Counter to={n} />
-                  </dd>
-                  <dt className="mt-1 text-sm text-grafite/70">{l}</dt>
-                </Reveal>
-              ))}
-            </dl>
-            {verMais && (
-              <div className="mt-12">
-                <VerMais href="/empreendimento" label="Conheça o empreendimento" />
-              </div>
-            )}
-          </div>
+              {verMais && (
+                <div className="mt-8">
+                  <VerMais href="/empreendimento" label="Conheça o projeto" />
+                </div>
+              )}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -488,10 +499,10 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
   const dados = (
     <ul className="mt-10 grid gap-6 text-sm">
       <li className="flex items-start gap-3">
-        <WhatsappIcon size={20} className="mt-0.5 shrink-0 text-dourado" />
+        <WhatsappIcon size={20} className="mt-0.5 shrink-0 text-whats" />
         <div>
           <p className={pagina ? "text-azul" : "text-white"}>{TELEFONE}</p>
-          <a href={WA_LINK} target="_blank" rel="noopener" className="text-dourado underline-offset-4 hover:underline">
+          <a href={WA_LINK} target="_blank" rel="noopener" className="font-medium text-whats underline-offset-4 hover:underline">
             Chamar no WhatsApp
           </a>
         </div>

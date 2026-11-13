@@ -56,7 +56,7 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
               href={whatsapp}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-2 rounded-full border border-dourado px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-dourado transition hover:bg-dourado hover:text-noite"
+              className="inline-flex items-center gap-2 rounded-full bg-whats px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro"
             >
               <WhatsappIcon size={16} />
               <span className="hidden sm:inline">WhatsApp</span>

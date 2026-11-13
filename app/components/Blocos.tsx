@@ -381,7 +381,7 @@ export function FotosObra() {
         <div>
           <TituloSecao rotulo="Fotos da obra" linhaUm="Receba cada" destaque="atualização." texto="Quer ser avisado quando houver novidades da obra? Fale com a ALE e peça para entrar na lista." />
           <Reveal delay={0.2}>
-            <a href={`${WA_LINK}?text=${encodeURIComponent("Olá! Quero receber as atualizações da obra do Paraíso das Águas.")}`} target="_blank" rel="noopener" className="group mt-9 inline-flex items-center gap-3 rounded-full bg-azul px-8 py-4 text-sm uppercase tracking-[0.15em] text-white transition hover:bg-noite">
+            <a href={`${WA_LINK}?text=${encodeURIComponent("Olá! Quero receber as atualizações da obra do Paraíso das Águas.")}`} target="_blank" rel="noopener" className="group mt-9 inline-flex items-center gap-3 rounded-full bg-whats px-8 py-4 text-sm uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro">
               <WhatsappIcon size={19} /> Receber atualizações
               <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
             </a>
@@ -410,7 +410,7 @@ export function Corretores() {
               </p>
             </div>
             <div className="md:justify-self-end">
-              <a href={`${WA_LINK}?text=${encodeURIComponent("Olá! Sou corretor e quero me cadastrar para o Paraíso das Águas.")}`} target="_blank" rel="noopener" className="group inline-flex items-center gap-3 rounded-full bg-dourado px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-noite transition hover:bg-white">
+              <a href={`${WA_LINK}?text=${encodeURIComponent("Olá! Sou corretor e quero me cadastrar para o Paraíso das Águas.")}`} target="_blank" rel="noopener" className="group inline-flex items-center gap-3 rounded-full bg-whats px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro">
                 <WhatsappIcon size={19} /> Falar com a ALE
                 <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
               </a>

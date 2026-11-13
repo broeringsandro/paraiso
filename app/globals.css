@@ -21,6 +21,8 @@
   --color-dourado: var(--dourado);
   --color-bege: var(--bege);
   --color-grafite: var(--grafite);
+  --color-whats: #1fa855;
+  --color-whats-escuro: #178f47;
   --font-sans: var(--font-hanken), system-ui, sans-serif;
 }
 

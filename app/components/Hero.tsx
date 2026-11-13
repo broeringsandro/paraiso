@@ -38,7 +38,7 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
     <section ref={ref} className="bg-nevoa px-3 pb-3 pt-[88px] md:px-5 md:pb-5 md:pt-[92px]">
       <Intro />
 
-      <div className="relative isolate h-[calc(100svh-104px)] min-h-[640px] overflow-hidden rounded-[1.75rem] bg-noite text-white md:h-[calc(100svh-116px)] md:rounded-[2.25rem]">
+      <div className="relative isolate min-h-[max(760px,calc(100svh-104px))] overflow-hidden rounded-[1.75rem] bg-noite text-white md:min-h-[max(780px,calc(100svh-116px))] md:rounded-[2.25rem]">
         <motion.div className="absolute inset-0 -z-10" style={{ y: bgY, scale: bgScale }}>
           <div className="hero-bg absolute inset-0">
             <Image
@@ -54,7 +54,7 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/80 via-noite/35 to-transparent" aria-hidden />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-noite/55 via-transparent to-noite/30" aria-hidden />
 
-        <div className="flex h-full flex-col p-5 md:p-10">
+        <div className="flex min-h-[inherit] flex-col p-5 md:p-10">
           {/* selos dos cantos */}
           <div className="hero-in flex items-start justify-between gap-3" style={{ animationDelay: "2.2s" }}>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.16em] backdrop-blur-md">
@@ -70,10 +70,10 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
           </div>
 
           {/* texto principal */}
-          <div className="flex flex-1 items-center">
-            <div className="max-w-2xl">
+          <div className="flex flex-1 items-center py-14 md:py-16">
+            <div className="max-w-2xl pl-3 md:pl-12 lg:pl-20">
               <div className="hero-in" style={{ animationDelay: "2.35s" }}>
-                <Logo className="w-40 brightness-0 invert md:w-52" />
+                <Logo className="mb-2 w-40 brightness-0 invert md:w-52" />
               </div>
               <h1 className="hero-in titulo mt-6 md:mt-8" style={{ animationDelay: "2.5s" }}>
                 O primeiro e maior <strong>home club</strong> de Santo Amaro da Imperatriz.
@@ -86,7 +86,7 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
                   href={whatsapp}
                   target="_blank"
                   rel="noopener"
-                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-dourado px-7 py-4 text-sm font-medium uppercase tracking-[0.14em] text-noite transition hover:bg-white"
+                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-whats px-7 py-4 text-sm font-medium uppercase tracking-[0.14em] text-white transition hover:bg-whats-escuro"
                 >
                   <WhatsappIcon size={18} /> Agende sua visita
                   <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />

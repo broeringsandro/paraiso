@@ -83,7 +83,7 @@ export default function Contato() {
               href={msgWhats(nome)}
               target="_blank"
               rel="noopener"
-              className="group mt-2 inline-flex items-center gap-3 rounded-full bg-azul px-7 py-3.5 text-sm uppercase tracking-[0.15em] text-white transition hover:bg-noite"
+              className="group mt-2 inline-flex items-center gap-3 rounded-full bg-whats px-7 py-3.5 text-sm uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro"
             >
               <WhatsappIcon size={18} /> Adiantar pelo WhatsApp
               <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
