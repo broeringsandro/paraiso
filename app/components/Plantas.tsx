@@ -3,17 +3,34 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
-import { Maximize2, X } from "lucide-react";
+import {
+  BedDouble,
+  BookOpen,
+  Building2,
+  Clapperboard,
+  Gamepad2,
+  LayoutGrid,
+  Maximize2,
+  Ruler,
+  ShowerHead,
+  SquareParking,
+  Sunset,
+  Trees,
+  Waves,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 
 type Imagem = { src: string; w: number; h: number; alt: string; legenda?: string };
+
+type Item = { icone: LucideIcon; texto: string };
 
 type Planta = {
   id: string;
   aba: string;
+  icone: LucideIcon;
   titulo: string;
-  area?: string;
-  texto: string;
-  finais?: { a: string; b: string };
+  itens: Item[];
   imagens: Imagem[];
 };
 
@@ -22,35 +39,54 @@ const plantas: Planta[] = [
   {
     id: "tipo-01",
     aba: "Tipo 01",
+    icone: BedDouble,
     titulo: "Tipo 01",
-    area: "91,00",
-    texto: "3 dormitórios, sendo 1 suíte",
-    finais: { a: "02, 03, 06, 07", b: "12, 13, 16, 17" },
+    itens: [
+      { icone: Ruler, texto: "91,00 m² privativos" },
+      { icone: BedDouble, texto: "3 dormitórios" },
+      { icone: ShowerHead, texto: "1 suíte" },
+      { icone: Building2, texto: "Finais 02, 03, 06 e 07 na Torre A" },
+      { icone: Building2, texto: "Finais 12, 13, 16 e 17 na Torre B" },
+    ],
     imagens: [{ src: "/plantas/tipo-01.png", w: 1277, h: 1017, alt: "Planta do apartamento Tipo 01, 3 dormitórios" }],
   },
   {
     id: "tipo-02",
     aba: "Tipo 02",
+    icone: BedDouble,
     titulo: "Tipo 02",
-    area: "74,29",
-    texto: "2 dormitórios, sendo 1 suíte",
-    finais: { a: "04, 05", b: "14, 15" },
+    itens: [
+      { icone: Ruler, texto: "74,29 m² privativos" },
+      { icone: BedDouble, texto: "2 dormitórios" },
+      { icone: ShowerHead, texto: "1 suíte" },
+      { icone: Building2, texto: "Finais 04 e 05 na Torre A" },
+      { icone: Building2, texto: "Finais 14 e 15 na Torre B" },
+    ],
     imagens: [{ src: "/plantas/tipo-02.png", w: 1231, h: 1021, alt: "Planta do apartamento Tipo 02, 2 dormitórios" }],
   },
   {
     id: "tipo-03",
     aba: "Tipo 03",
+    icone: BedDouble,
     titulo: "Tipo 03",
-    area: "68,18",
-    texto: "2 dormitórios, sendo 1 suíte",
-    finais: { a: "01, 08", b: "11, 18" },
+    itens: [
+      { icone: Ruler, texto: "68,18 m² privativos" },
+      { icone: BedDouble, texto: "2 dormitórios" },
+      { icone: ShowerHead, texto: "1 suíte" },
+      { icone: Building2, texto: "Finais 01 e 08 na Torre A" },
+      { icone: Building2, texto: "Finais 11 e 18 na Torre B" },
+    ],
     imagens: [{ src: "/plantas/tipo-03.png", w: 1286, h: 1001, alt: "Planta do apartamento Tipo 03, 2 dormitórios" }],
   },
   {
     id: "pavimento",
     aba: "Pavimento tipo",
+    icone: LayoutGrid,
     titulo: "Pavimento tipo",
-    texto: "Torre A, de 101 a 708. Torre B, de 111 a 718.",
+    itens: [
+      { icone: Building2, texto: "Torre A, de 101 a 708" },
+      { icone: Building2, texto: "Torre B, de 111 a 718" },
+    ],
     imagens: [
       { src: "/plantas/pavimento-a.png", w: 1489, h: 673, alt: "Planta do pavimento tipo, decoração A", legenda: "Decoração A" },
       { src: "/plantas/pavimento-b.png", w: 1496, h: 672, alt: "Planta do pavimento tipo, decoração B", legenda: "Decoração B" },
@@ -59,22 +95,32 @@ const plantas: Planta[] = [
   {
     id: "terreo",
     aba: "Térreo",
+    icone: Trees,
     titulo: "Térreo",
-    texto: "Home club e garagens cobertas.",
+    itens: [
+      { icone: Waves, texto: "Home club" },
+      { icone: SquareParking, texto: "Garagens cobertas" },
+    ],
     imagens: [{ src: "/plantas/terreo.png", w: 1024, h: 1396, alt: "Planta do pavimento térreo com o home club" }],
   },
   {
     id: "subsolo",
     aba: "Subsolo",
+    icone: SquareParking,
     titulo: "Subsolo",
-    texto: "Garagens cobertas.",
+    itens: [{ icone: SquareParking, texto: "Garagens cobertas" }],
     imagens: [{ src: "/plantas/subsolo.png", w: 1230, h: 1227, alt: "Planta do subsolo com as garagens" }],
   },
   {
     id: "atico",
     aba: "Ático",
+    icone: Sunset,
     titulo: "Ático",
-    texto: "Biblioteca e coworking, cinema e espaço gamer.",
+    itens: [
+      { icone: BookOpen, texto: "Biblioteca e coworking" },
+      { icone: Clapperboard, texto: "Cinema" },
+      { icone: Gamepad2, texto: "Espaço gamer" },
+    ],
     imagens: [{ src: "/plantas/atico.png", w: 1491, h: 784, alt: "Planta do ático com coworking, cinema e espaço gamer" }],
   },
 ];
@@ -101,27 +147,31 @@ export default function Plantas() {
 
   return (
     <div>
-      <div role="tablist" aria-label="Plantas" className="flex flex-wrap gap-1.5 md:gap-2">
-        {plantas.map((pl, i) => (
-          <button
-            key={pl.id}
-            role="tab"
-            aria-selected={i === ativa}
-            type="button"
-            onClick={() => setAtiva(i)}
-            className={`relative shrink-0 rounded-full px-3.5 py-2 text-[13px] transition-colors duration-300 md:px-5 md:py-2.5 md:text-sm ${
-              i === ativa ? "text-white" : "text-azul/70 hover:text-azul"
-            }`}
-          >
-            {i === ativa && (
-              <motion.span layoutId="aba-planta" className="absolute inset-0 rounded-full bg-azul" transition={{ duration: 0.45, ease: EASE }} />
-            )}
-            <span className="relative">{pl.aba}</span>
-          </button>
-        ))}
+      <div role="tablist" aria-label="Plantas" className="flex flex-wrap gap-2">
+        {plantas.map((pl, i) => {
+          const Icone = pl.icone;
+          return (
+            <button
+              key={pl.id}
+              role="tab"
+              aria-selected={i === ativa}
+              type="button"
+              onClick={() => setAtiva(i)}
+              className={`relative inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-[13px] transition-colors duration-300 md:px-5 md:py-3 md:text-sm ${
+                i === ativa ? "border-azul text-white" : "border-azul/15 bg-nevoa text-azul hover:border-azul/50"
+              }`}
+            >
+              {i === ativa && (
+                <motion.span layoutId="aba-planta" className="absolute inset-0 rounded-full bg-azul" transition={{ duration: 0.45, ease: EASE }} />
+              )}
+              <Icone size={17} strokeWidth={1.5} className="relative shrink-0" />
+              <span className="relative">{pl.aba}</span>
+            </button>
+          );
+        })}
       </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-[0.75fr_1.6fr] lg:gap-10">
+      <div className="mt-8 grid gap-6 lg:grid-cols-[0.7fr_1.6fr] lg:gap-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={p.id + "-info"}
@@ -129,32 +179,24 @@ export default function Plantas() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.4, ease: EASE }}
-            className="flex flex-col justify-center py-4 lg:py-10"
+            className="flex flex-col justify-center lg:py-6"
           >
-            <p className="rotulo text-mar">{p.titulo}</p>
-            {p.area ? (
-              <p className="mt-5 text-6xl font-light tracking-tight text-azul md:text-7xl">
-                {p.area}
-                <span className="ml-1 text-2xl">m²</span>
-              </p>
-            ) : null}
-            {p.area && <p className="mt-1 text-sm text-grafite/70">área privativa</p>}
-            <p className={`${p.area ? "mt-6 text-lg" : "mt-5 text-2xl font-light leading-snug md:text-3xl"} text-azul`}>{p.texto}</p>
+            <p className="text-3xl font-light tracking-tight text-azul md:text-4xl">{p.titulo}</p>
+            <ul className="mt-7 grid gap-3">
+              {p.itens.map((it) => {
+                const Icone = it.icone;
+                return (
+                  <li key={it.texto} className="flex items-center gap-3.5 text-azul">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-nevoa text-mar">
+                      <Icone size={20} strokeWidth={1.5} />
+                    </span>
+                    <span>{it.texto}</span>
+                  </li>
+                );
+              })}
+            </ul>
 
-            {p.finais && (
-              <dl className="mt-8 grid max-w-xs gap-3 border-t border-azul/15 pt-6 text-sm">
-                <div className="flex justify-between gap-4">
-                  <dt className="text-grafite/70">Finais Torre A</dt>
-                  <dd className="text-azul">{p.finais.a}</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-grafite/70">Finais Torre B</dt>
-                  <dd className="text-azul">{p.finais.b}</dd>
-                </div>
-              </dl>
-            )}
-
-            <p className="mt-10 hidden items-center gap-2 text-xs uppercase tracking-[0.18em] text-grafite/50 lg:flex">
+            <p className="mt-9 hidden items-center gap-2 text-xs text-grafite/55 lg:flex">
               <Maximize2 size={14} strokeWidth={1.5} /> Clique na planta para ampliar
             </p>
           </motion.div>
@@ -167,7 +209,7 @@ export default function Plantas() {
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 1.02, filter: "blur(6px)" }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="flex flex-col gap-4 rounded-3xl bg-white/55 p-5 md:p-10"
+            className="flex flex-col gap-4 rounded-3xl bg-nevoa p-5 md:p-10"
           >
             {p.imagens.map((im) => (
               <figure key={im.src}>

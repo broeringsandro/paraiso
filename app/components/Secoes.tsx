@@ -352,7 +352,7 @@ export function DiferenciaisSecao() {
 
 export function PlantasSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
   return (
-    <section id="plantas" className={`bg-bege ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
+    <section id="plantas" className={`bg-white ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {cabecalho && (
           <>
