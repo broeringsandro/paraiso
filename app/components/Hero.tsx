@@ -2,11 +2,12 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { PRECO_A_PARTIR } from "../lib/empreendimento";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, HardHat, KeyRound, LayoutGrid, MapPin, Waves } from "lucide-react";
 import Logo from "./Logo";
 import WhatsappIcon from "./WhatsappIcon";
+import { PRECO_A_PARTIR } from "../lib/empreendimento";
 
 // Cortina de abertura 100% CSS: nunca bloqueia a página, mesmo sem JS.
 function Intro() {
@@ -19,97 +20,130 @@ function Intro() {
   );
 }
 
-const stats = [
-  { n: "2 e 3", l: "dormitórios, sendo 1 suíte" },
-  { n: "68 a 91m²", l: "área privativa" },
-  { n: "112", l: "apartamentos em 2 torres" },
-  { n: PRECO_A_PARTIR, l: "unidades a partir de" },
+const atalhos = [
+  { t: "Lazer", href: "/home-club", icone: Waves },
+  { t: "Apartamentos", href: "/apartamentos", icone: KeyRound },
+  { t: "Plantas", href: "/plantas", icone: LayoutGrid },
+  { t: "Localização", href: "/localizacao", icone: MapPin },
+  { t: "Obra", href: "/andamento-da-obra", icone: HardHat },
 ];
 
 export default function Hero({ whatsapp }: { whatsapp: string }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
-  const fade = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
-  const lift = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section ref={ref} className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-noite text-white">
+    <section ref={ref} className="bg-nevoa px-3 pb-3 pt-[88px] md:px-5 md:pb-5 md:pt-[92px]">
       <Intro />
 
-      <motion.div className="absolute inset-0 -z-10" style={{ y: bgY, scale: bgScale }}>
-        <div className="hero-bg absolute inset-0">
-          <Image
-            src="/img/fachada-08.jpg"
-            alt="Fachada das duas torres do Paraíso das Águas"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[50%_30%] brightness-[0.78]"
-          />
-        </div>
-      </motion.div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-noite/65 via-transparent to-transparent" aria-hidden />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-noite via-noite/85 via-30% to-transparent to-70%" aria-hidden />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/80 via-noite/35 to-transparent" aria-hidden />
+      <div className="relative isolate h-[calc(100svh-104px)] min-h-[640px] overflow-hidden rounded-[1.75rem] bg-noite text-white md:h-[calc(100svh-116px)] md:rounded-[2.25rem]">
+        <motion.div className="absolute inset-0 -z-10" style={{ y: bgY, scale: bgScale }}>
+          <div className="hero-bg absolute inset-0">
+            <Image
+              src="/img/fachada-13.jpg"
+              alt="Fachada do Paraíso das Águas"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[65%_40%]"
+            />
+          </div>
+        </motion.div>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/80 via-noite/35 to-transparent" aria-hidden />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-noite/55 via-transparent to-noite/30" aria-hidden />
 
-      <motion.div
-        style={{ opacity: fade, y: lift }}
-        className="relative mx-auto flex w-full max-w-7xl flex-col items-start gap-5 px-5 pb-10 pt-32 md:px-10 md:pb-14"
-      >
-        <div className="hero-in flex flex-wrap items-center gap-3" style={{ animationDelay: "2.2s" }}>
-          <span className="inline-flex items-center gap-2.5 rounded-full bg-dourado px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-noite">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-noite/60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-noite" />
+        <div className="flex h-full flex-col p-5 md:p-10">
+          {/* selos dos cantos */}
+          <div className="hero-in flex items-start justify-between gap-3" style={{ animationDelay: "2.2s" }}>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.16em] backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-dourado/70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-dourado" />
+              </span>
+              Pré-lançamento
             </span>
-            Pré-lançamento
-          </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white backdrop-blur-md">
-            <MapPin size={14} strokeWidth={1.6} />
-            Santo Amaro da Imperatriz / SC
-          </span>
-        </div>
+            <span className="hidden rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.16em] backdrop-blur-md sm:inline-flex">
+              Santo Amaro da Imperatriz / SC
+            </span>
+          </div>
 
-        <h1 className="hero-in" style={{ animationDelay: "2.5s" }}>
-          <Logo className="w-[min(78vw,560px)] brightness-0 invert drop-shadow-[0_6px_30px_rgb(20_36_58/0.65)]" />
-          <span className="sr-only">Paraíso das Águas</span>
-        </h1>
-
-        <p
-          className="hero-in max-w-2xl text-xl font-light leading-snug text-white/90 md:text-3xl [&_strong]:font-medium"
-          style={{ animationDelay: "2.7s" }}
-        >
-          O primeiro e maior <strong>home club</strong> de Santo Amaro da Imperatriz.
-        </p>
-
-        <div className="hero-in mt-1 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center" style={{ animationDelay: "2.9s" }}>
-          <a
-            href={whatsapp}
-            target="_blank"
-            rel="noopener"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-dourado px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-noite transition hover:bg-white"
-          >
-            <WhatsappIcon size={18} /> Agende sua visita <ArrowRight size={16} strokeWidth={1.8} />
-          </a>
-          <a
-            href="#home-club"
-            className="inline-flex items-center justify-center rounded-full border border-white/40 px-8 py-4 text-sm uppercase tracking-[0.15em] text-white backdrop-blur-sm transition hover:border-dourado hover:text-dourado"
-          >
-            Ver o lazer
-          </a>
-        </div>
-
-        <dl className="mt-8 grid w-full grid-cols-2 gap-x-6 gap-y-7 md:mt-10 md:grid-cols-4">
-          {stats.map((st, i) => (
-            <div key={st.l} className="hero-in border-l border-white/30 pl-5" style={{ animationDelay: `${3.1 + i * 0.12}s` }}>
-              <dd className="text-2xl font-light tracking-tight md:text-5xl">{st.n}</dd>
-              <dt className="mt-1 text-xs text-white/75 md:text-base">{st.l}</dt>
+          {/* texto principal */}
+          <div className="flex flex-1 items-center">
+            <div className="max-w-2xl">
+              <div className="hero-in" style={{ animationDelay: "2.35s" }}>
+                <Logo className="w-40 brightness-0 invert md:w-52" />
+              </div>
+              <h1 className="hero-in titulo mt-6 md:mt-8" style={{ animationDelay: "2.5s" }}>
+                O primeiro e maior <strong>home club</strong> de Santo Amaro da Imperatriz.
+              </h1>
+              <p className="hero-in mt-5 max-w-md text-base text-white/85 md:text-lg" style={{ animationDelay: "2.7s" }}>
+                Um refúgio onde a água desacelera o tempo.
+              </p>
+              <div className="hero-in mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center" style={{ animationDelay: "2.9s" }}>
+                <a
+                  href={whatsapp}
+                  target="_blank"
+                  rel="noopener"
+                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-dourado px-7 py-4 text-sm font-medium uppercase tracking-[0.14em] text-noite transition hover:bg-white"
+                >
+                  <WhatsappIcon size={18} /> Agende sua visita
+                  <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
+                </a>
+                <Link
+                  href="/home-club"
+                  className="inline-flex items-center justify-center rounded-full border border-white/40 px-7 py-4 text-sm uppercase tracking-[0.14em] backdrop-blur-sm transition hover:border-dourado hover:text-dourado"
+                >
+                  Ver o lazer
+                </Link>
+              </div>
             </div>
-          ))}
-        </dl>
-      </motion.div>
+          </div>
+
+          {/* rodapé do cartão: atalhos e card do empreendimento */}
+          <div className="flex items-end justify-between gap-6">
+            <ul
+              className="hero-in no-scrollbar -mx-5 flex max-w-full gap-2 overflow-x-auto px-5 md:mx-0 md:px-0"
+              style={{ animationDelay: "3.1s" }}
+            >
+              {atalhos.map(({ t, href, icone: I }, i) => (
+                <li key={t} className="shrink-0">
+                  <Link
+                    href={href}
+                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm transition ${
+                      i === 0
+                        ? "bg-white text-azul hover:bg-dourado"
+                        : "border border-white/25 bg-white/10 backdrop-blur-md hover:bg-white/25"
+                    }`}
+                  >
+                    <I size={16} strokeWidth={1.5} />
+                    {t}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href="/apartamentos"
+              className="hero-in group mb-14 hidden w-[370px] shrink-0 items-center gap-4 rounded-2xl bg-white/95 p-3 text-azul shadow-[0_24px_60px_-24px_rgb(20_36_58/0.6)] backdrop-blur transition hover:-translate-y-1 lg:flex"
+              style={{ animationDelay: "3.2s" }}
+            >
+              <span className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-xl">
+                <Image src="/img/sala.jpg" alt="" fill sizes="72px" className="object-cover" />
+              </span>
+              <span className="flex-1">
+                <span className="block text-sm font-medium">Apartamentos de 2 e 3 dormitórios</span>
+                <span className="mt-0.5 block text-xs text-grafite/60">68 a 91 m² · com suíte · 112 unidades</span>
+                <span className="mt-1.5 block text-base font-medium">A partir de {PRECO_A_PARTIR}</span>
+              </span>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-dourado/80 text-noite transition group-hover:bg-dourado">
+                <ArrowUpRight size={18} strokeWidth={1.6} />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
