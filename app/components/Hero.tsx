@@ -104,9 +104,9 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
           </div>
 
           {/* rodapé do cartão: atalhos e card do empreendimento */}
-          <div className="flex items-end justify-between gap-6">
+          <div className="flex items-end justify-between gap-6 pl-3 md:pl-12 lg:pl-20">
             <ul
-              className="hero-in no-scrollbar -mx-5 flex max-w-full gap-2 overflow-x-auto px-5 md:mx-0 md:px-0"
+              className="hero-in no-scrollbar flex max-w-full gap-2 overflow-x-auto"
               style={{ animationDelay: "3.1s" }}
             >
               {atalhos.map(({ t, href, icone: I }, i) => (
@@ -128,7 +128,7 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
 
             <Link
               href="/apartamentos"
-              className="hero-in group mb-14 hidden w-[370px] shrink-0 items-center gap-4 rounded-2xl bg-white/95 p-3 text-azul shadow-[0_24px_60px_-24px_rgb(20_36_58/0.6)] backdrop-blur transition hover:-translate-y-1 lg:flex"
+              className="hero-in group hidden w-[370px] shrink-0 items-center gap-4 rounded-2xl bg-white/95 p-3 text-azul shadow-[0_24px_60px_-24px_rgb(20_36_58/0.6)] backdrop-blur transition hover:-translate-y-1 lg:flex"
               style={{ animationDelay: "3.2s" }}
             >
               <span className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-xl">
