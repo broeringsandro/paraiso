@@ -1,26 +1,36 @@
 import type { Metadata } from "next";
 import { PageHero, CtaContato } from "../components/Pecas";
-import { AleSecao, DestaquesSecao, EmpreendimentoSecao } from "../components/Secoes";
+import { AleSecao, DestaquesSecao } from "../components/Secoes";
+import { FichaTecnica, Transparencia } from "../components/Blocos";
+import PredioCorte from "../components/PredioCorte";
 
 export const metadata: Metadata = {
-  title: "O empreendimento",
+  title: "Projeto",
   description:
-    "Paraíso das Águas: duas torres, 112 apartamentos de 2 e 3 dormitórios com suíte e o primeiro e maior home club de Santo Amaro da Imperatriz.",
+    "Duas torres, 112 apartamentos, subsolo, térreo, 7 pavimentos tipo e ático. Conheça a ficha técnica do Paraíso das Águas, em Santo Amaro da Imperatriz.",
 };
 
 export default function Pagina() {
   return (
     <>
       <PageHero
-        rotulo="O empreendimento"
+        variante="lado"
+        rotulo="Projeto"
         linhaUm="Um refúgio onde a água"
         destaque="desacelera o tempo."
-        texto="Duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
+        texto="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
         img="fachada-08"
-        alt="Vista das duas torres do Paraíso das Águas"
+        alt="Vista aérea das duas torres do Paraíso das Águas"
+        fatos={[
+          { n: "2", l: "torres" },
+          { n: "112", l: "apartamentos" },
+          { n: "2 e 3", l: "dormitórios, com suíte" },
+        ]}
       />
-      <EmpreendimentoSecao />
+      <FichaTecnica />
+      <PredioCorte />
       <DestaquesSecao />
+      <Transparencia />
       <AleSecao />
       <CtaContato />
     </>

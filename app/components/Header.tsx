@@ -29,11 +29,11 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
         transition={{ duration: 0.6, ease: [0.44, 0, 0.56, 1], delay: oculto ? 0 : 0.1 }}
         className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-noite text-white"
       >
-        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:px-10">
+        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 md:px-10 xl:grid xl:grid-cols-[1fr_auto_1fr]">
           <Link href="/" aria-label="Paraíso das Águas, página inicial" onClick={() => setAberto(false)}>
             <Image src="/logo/ale-dourado.svg" alt="ALE Empreendimentos" width={119} height={52} priority className="h-auto w-24 md:w-28" />
           </Link>
-          <nav className="hidden gap-7 text-[13px] xl:flex" aria-label="Principal">
+          <nav className="hidden items-center gap-10 text-[11px] font-medium uppercase tracking-[0.22em] xl:flex" aria-label="Principal">
             {paginas.map((p) => {
               const ativo = pathname === p.href;
               return (
@@ -41,17 +41,17 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
                   key={p.href}
                   href={p.href}
                   aria-current={ativo ? "page" : undefined}
-                  className={`group relative whitespace-nowrap transition ${ativo ? "text-dourado" : "opacity-85 hover:opacity-100"}`}
+                  className={`group relative whitespace-nowrap py-2 transition ${ativo ? "text-dourado" : "text-white/75 hover:text-white"}`}
                 >
                   {p.label}
                   <span
-                    className={`absolute -bottom-1 left-0 h-px bg-dourado transition-all duration-500 ${ativo ? "w-full" : "w-0 group-hover:w-full"}`}
+                    className={`absolute -bottom-0.5 left-0 h-px bg-dourado transition-all duration-500 ${ativo ? "w-full" : "w-0 group-hover:w-full"}`}
                   />
                 </Link>
               );
             })}
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 xl:justify-self-end">
             <a
               href={whatsapp}
               target="_blank"

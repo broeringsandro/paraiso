@@ -406,8 +406,8 @@ export function LocalizacaoSecao({ cabecalho = true, verMais = false }: { cabeca
           </Reveal>
         </div>
 
-        <ul className="mt-20 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {destaquesLocal.map(({ t, d, icone: I }, i) => (
+        <ul className={`mt-20 grid gap-10 sm:grid-cols-2 ${cabecalho ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+          {destaquesLocal.filter((x) => cabecalho || x.t !== "Perto da nova prefeitura").map(({ t, d, icone: I }, i) => (
             <Reveal as="li" key={t} delay={i * 0.12}>
               <I size={26} strokeWidth={1.5} className="text-mar" />
               <h3 className="mt-4 text-lg text-azul">{t}</h3>
@@ -510,7 +510,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
           <div>
             <Reveal>
               <Rotulo>Fale com a gente</Rotulo>
-              <p className="texto max-w-sm text-grafite/85">WhatsApp {TELEFONE}. Ou fale com o seu corretor de confiança.</p>
+              <p className="texto max-w-sm text-grafite/85">Prefere conversar agora? Chame a ALE no WhatsApp.</p>
               {dados}
             </Reveal>
           </div>

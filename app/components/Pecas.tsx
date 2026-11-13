@@ -28,7 +28,9 @@ export function VerMais({ href, label, claro = false }: { href: string; label: s
   );
 }
 
-// Cabeçalho das subpáginas: título grande, texto e uma foto com parallax.
+export type Fato = { n: string; l: string };
+
+// Cabeçalho das subpáginas. Duas variações: foto larga abaixo do título ou foto alta ao lado.
 export function PageHero({
   rotulo,
   linhaUm,
@@ -36,6 +38,8 @@ export function PageHero({
   texto,
   img,
   alt,
+  fatos,
+  variante = "abaixo",
 }: {
   rotulo: string;
   linhaUm: string;
@@ -43,32 +47,105 @@ export function PageHero({
   texto: string;
   img: string;
   alt: string;
+  fatos?: Fato[];
+  variante?: "abaixo" | "lado";
 }) {
+  const migalhas = (
+    <Reveal>
+      <nav aria-label="Você está em" className="rotulo mb-8 flex items-center gap-3 text-mar">
+        <Link href="/" className="transition hover:text-azul">
+          Início
+        </Link>
+        <span aria-hidden>/</span>
+        <span className="text-azul">{rotulo}</span>
+      </nav>
+    </Reveal>
+  );
+
+  const titulo = (
+    <h1 className="titulo text-azul">
+      <RevealWords text={linhaUm} /> <strong><RevealWords text={destaque} delay={0.2} /></strong>
+    </h1>
+  );
+
+  const faixa = fatos && fatos.length > 0 && (
+    <dl className={`mt-12 grid gap-x-6 gap-y-6 ${fatos.length > 3 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-3"}`}>
+      {fatos.map((f, i) => (
+        <Reveal key={f.l} delay={0.25 + i * 0.1} className="border-l border-azul/20 pl-5">
+          <dd className="text-2xl font-light tracking-tight text-azul md:text-4xl">{f.n}</dd>
+          <dt className="mt-1 text-xs text-grafite/70 md:text-sm">{f.l}</dt>
+        </Reveal>
+      ))}
+    </dl>
+  );
+
+  if (variante === "lado") {
+    return (
+      <section className="bg-nevoa pb-16 pt-32 md:pb-24 md:pt-40">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          <div>
+            {migalhas}
+            {titulo}
+            <Reveal delay={0.2}>
+              <p className="texto mt-7 max-w-md text-grafite/85">{texto}</p>
+            </Reveal>
+            {faixa}
+          </div>
+          <Reveal y={40} blur={4}>
+            <ParallaxImage nome={img} alt={alt} className="h-[46svh] rounded-[2rem] lg:h-[72svh]" sizes="(min-width: 1024px) 45vw, 100vw" intensidade={9} />
+          </Reveal>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-nevoa pb-16 pt-32 md:pb-24 md:pt-44">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
-        <Reveal>
-          <nav aria-label="Você está em" className="rotulo mb-8 flex items-center gap-3 text-mar">
-            <Link href="/" className="transition hover:text-azul">
-              Início
-            </Link>
-            <span aria-hidden>/</span>
-            <span className="text-azul">{rotulo}</span>
-          </nav>
-        </Reveal>
+        {migalhas}
         <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
-          <h1 className="titulo text-azul">
-            <RevealWords text={linhaUm} /> <strong><RevealWords text={destaque} delay={0.2} /></strong>
-          </h1>
+          {titulo}
           <Reveal delay={0.2}>
             <p className="texto max-w-md text-grafite/85">{texto}</p>
           </Reveal>
         </div>
+        {faixa}
         <Reveal y={40} blur={4} className="mt-12 md:mt-16">
           <ParallaxImage nome={img} alt={alt} className="h-[44svh] rounded-3xl md:h-[56svh]" sizes="100vw" intensidade={8} />
         </Reveal>
       </div>
     </section>
+  );
+}
+
+// Título de seção reutilizável nas subpáginas.
+export function TituloSecao({
+  rotulo,
+  linhaUm,
+  destaque,
+  texto,
+  claro = false,
+}: {
+  rotulo: string;
+  linhaUm: string;
+  destaque: string;
+  texto?: string;
+  claro?: boolean;
+}) {
+  return (
+    <div>
+      <Reveal>
+        <Rotulo claro={claro}>{rotulo}</Rotulo>
+      </Reveal>
+      <h2 className={`titulo max-w-3xl ${claro ? "text-white" : "text-azul"}`}>
+        <RevealWords text={linhaUm} /> <strong><RevealWords text={destaque} delay={0.2} /></strong>
+      </h2>
+      {texto && (
+        <Reveal delay={0.15}>
+          <p className={`texto mt-6 max-w-xl ${claro ? "text-ceu" : "text-grafite/85"}`}>{texto}</p>
+        </Reveal>
+      )}
+    </div>
   );
 }
 

@@ -41,7 +41,7 @@ export default function ObraPainel() {
     <div className="grid overflow-hidden rounded-3xl bg-white shadow-[0_30px_80px_-50px_rgb(20_36_58/0.4)] lg:grid-cols-[0.9fr_1.1fr]">
       <div className="relative min-h-[320px] lg:min-h-full">
         {/* TODO: trocar pelas fotos reais da obra quando houver. */}
-        <ParallaxImage nome="fachada-06" alt="Imagem ilustrativa do empreendimento" className="absolute inset-0" sizes="(min-width: 1024px) 45vw, 100vw" intensidade={8} />
+        <ParallaxImage nome="fachada-13" alt="Imagem ilustrativa do empreendimento" className="absolute inset-0" sizes="(min-width: 1024px) 45vw, 100vw" intensidade={8} />
         <p className="absolute bottom-4 left-5 rounded-full bg-white/85 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-azul backdrop-blur">
           Imagem ilustrativa
         </p>
