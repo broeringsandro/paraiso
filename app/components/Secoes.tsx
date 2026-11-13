@@ -246,16 +246,26 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
   return (
     <section id="home-club" className="bg-noite text-white">
       {cabecalho ? (
-        <div className="mx-auto max-w-7xl px-5 pb-10 pt-28 md:px-10 md:pt-44">
+        <div className="mx-auto max-w-7xl px-5 pb-12 pt-28 md:px-10 md:pb-16 md:pt-44">
           <Reveal>
-            <Rotulo claro>Home club</Rotulo>
+            <div className="mb-10 flex items-center gap-6">
+              <p className="rotulo text-dourado">Home club</p>
+              <span className="h-px flex-1 bg-gradient-to-r from-dourado/60 to-transparent" aria-hidden />
+            </div>
           </Reveal>
-          <h2 className="titulo max-w-3xl">
-            <RevealWords text="Um clube completo" /> <strong><RevealWords text="dentro do seu condomínio." delay={0.2} /></strong>
-          </h2>
-          <Reveal delay={0.2}>
-            <p className="texto mt-6 max-w-xl text-ceu">Trabalhe, treine, celebre e relaxe sem sair de casa.</p>
-          </Reveal>
+          <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-end lg:gap-20">
+            <h2 className="titulo md:!text-[4.4rem]">
+              <RevealWords text="Um clube completo" />{" "}
+              <strong className="text-dourado">
+                <RevealWords text="dentro do seu condomínio." delay={0.2} />
+              </strong>
+            </h2>
+            <Reveal delay={0.25}>
+              <p className="max-w-sm text-lg font-light leading-relaxed text-white/80 lg:pb-3">
+                <span className="text-dourado">Trabalhe, treine, celebre e relaxe</span> sem sair de casa.
+              </p>
+            </Reveal>
+          </div>
         </div>
       ) : (
         <div className="h-16 md:h-24" />
@@ -266,7 +276,7 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
       <div className="mx-auto max-w-7xl px-5 pb-28 pt-6 md:px-10 md:pb-40">
         <ul className="grid grid-cols-2 gap-6 border-t border-white/10 pt-10 md:grid-cols-4">
           {outrasAreas.map(({ nome, icone: I }, i) => (
-            <Reveal as="li" key={nome} delay={i * 0.1} className="flex items-center gap-3 text-ceu">
+            <Reveal as="li" key={nome} delay={i * 0.1} className="flex items-center gap-3 text-white/75">
               <I size={20} strokeWidth={1.5} className="shrink-0 text-dourado" />
               <span className="text-sm">{nome}</span>
             </Reveal>
@@ -483,7 +493,7 @@ export function AleSecao() {
         </div>
         {/* TODO: substituir pelo texto real da história da ALE quando o cliente enviar. */}
         <Reveal delay={0.2} className="self-end">
-          <p className="texto text-ceu lg:max-w-lg">
+          <p className="texto text-white/75 lg:max-w-lg">
             A ALE Empreendimentos nasceu com um propósito simples: construir lugares onde as pessoas queiram viver por
             muitos anos. Cada projeto é pensado com atenção aos detalhes, transparência em todas as etapas e respeito ao
             sonho de quem confia na nossa assinatura.
@@ -509,7 +519,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
       </li>
       <li className="flex items-start gap-3">
         <MapPin size={20} strokeWidth={1.5} className="mt-0.5 shrink-0 text-dourado" />
-        <p className={pagina ? "max-w-xs text-grafite/80" : "max-w-xs text-ceu"}>{ENDERECO}</p>
+        <p className={pagina ? "max-w-xs text-grafite/80" : "max-w-xs text-white/75"}>{ENDERECO}</p>
       </li>
     </ul>
   );
@@ -546,7 +556,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
             <RevealWords text="Agende" /> <strong><RevealWords text="sua visita." delay={0.15} /></strong>
           </h2>
           <Reveal delay={0.2}>
-            <p className="texto mt-6 max-w-md text-ceu">WhatsApp {TELEFONE}. Ou fale com o seu corretor de confiança.</p>
+            <p className="texto mt-6 max-w-md text-white/75">WhatsApp {TELEFONE}. Ou fale com o seu corretor de confiança.</p>
             {dados}
           </Reveal>
         </div>

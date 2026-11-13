@@ -311,7 +311,7 @@ export function DestaquePrefeitura() {
             <h2 className="titulo text-white md:!text-[2.8rem]">
               Perto de tudo o que o <strong>dia a dia pede</strong>.
             </h2>
-            <p className="texto mt-6 max-w-md text-ceu">
+            <p className="texto mt-6 max-w-md text-white/75">
               O São Francisco de Assis é o bairro que cresce ao redor da nova prefeitura de Santo Amaro da Imperatriz, a
               cerca de 500 m do Paraíso das Águas.
             </p>
@@ -405,7 +405,7 @@ export function Corretores() {
               <h2 className="titulo mt-5 text-white md:!text-[2.4rem]">
                 Você é <strong>corretor</strong>?
               </h2>
-              <p className="texto mt-4 max-w-lg text-ceu">
+              <p className="texto mt-4 max-w-lg text-white/75">
                 Procure a ALE pelo WhatsApp e seja cadastrado para atender seus clientes no Paraíso das Águas.
               </p>
             </div>
@@ -414,7 +414,7 @@ export function Corretores() {
                 <WhatsappIcon size={19} /> Falar com a ALE
                 <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
               </a>
-              <p className="mt-4 text-sm text-ceu md:text-right">{TELEFONE}</p>
+              <p className="mt-4 text-sm text-white/75 md:text-right">{TELEFONE}</p>
             </div>
           </div>
         </Reveal>

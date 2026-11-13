@@ -142,7 +142,7 @@ export function TituloSecao({
       </h2>
       {texto && (
         <Reveal delay={0.15}>
-          <p className={`texto mt-6 max-w-xl ${claro ? "text-ceu" : "text-grafite/85"}`}>{texto}</p>
+          <p className={`texto mt-6 max-w-xl ${claro ? "text-white/75" : "text-grafite/85"}`}>{texto}</p>
         </Reveal>
       )}
     </div>
@@ -170,7 +170,7 @@ function CartaoContato() {
               <h2 className="titulo text-white md:!text-[2.8rem]">
                 Agende <strong>sua visita</strong>.
               </h2>
-              <p className="texto mt-5 max-w-md text-ceu">Ou fale com o seu corretor de confiança.</p>
+              <p className="texto mt-5 max-w-md text-white/75">Ou fale com o seu corretor de confiança.</p>
             </div>
             <div className="flex flex-col items-start gap-5 md:items-end">
               <a
@@ -183,7 +183,7 @@ function CartaoContato() {
                 <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
               </a>
               <p className="text-2xl font-light tracking-tight text-white/90 md:text-3xl">{TELEFONE}</p>
-              <Link href="/contato" className="text-sm text-ceu underline-offset-8 transition hover:text-white hover:underline">
+              <Link href="/contato" className="text-sm text-white/75 underline-offset-8 transition hover:text-white hover:underline">
                 Ou envie uma mensagem pelo formulário
               </Link>
             </div>
