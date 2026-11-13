@@ -38,7 +38,7 @@ import Smooth from "./components/Smooth";
 import WhatsappIcon from "./components/WhatsappIcon";
 import { Reveal, RevealWords } from "./components/Reveal";
 import Manifesto from "./components/Manifesto";
-import { ClipImage, Counter, ParallaxImage, SolarArc } from "./components/Visuals";
+import { Counter, ParallaxImage, SolarArc } from "./components/Visuals";
 import { CardsEmpilhados, DiferenciaisImersivo, GaleriaHorizontal, SemSairDeCasa } from "./components/Galerias";
 import Letreiro from "./components/Letreiro";
 import Plantas from "./components/Plantas";
@@ -154,32 +154,36 @@ export default function Home() {
             text="O Paraíso das Águas é o primeiro e maior home club de Santo Amaro da Imperatriz: duas torres residenciais com lazer completo para viver, trabalhar, cuidar da saúde e se divertir sem sair de casa."
           />
 
-          <div className="relative mx-auto grid max-w-6xl py-24 md:py-40 gap-14 px-5 md:px-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20">
-            <ClipImage nome="fachada-05" alt="Entrada do Paraíso das Águas" className="aspect-[4/5]" sizes="(min-width: 1024px) 55vw, 100vw" />
-            <div>
-              <Reveal>
-                <span className="traco-dourado" />
-                <p className="texto max-w-md text-grafite/85">
-                  Apartamentos de 2 e 3 dormitórios com suíte e um clube completo dentro de casa: piscina, academia,
-                  coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado
-                  da ALE Empreendimentos em cada detalhe.
-                </p>
+          <div className="bg-azul text-white">
+            <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-24 md:px-10 md:py-40 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20">
+              <Reveal y={40} blur={4}>
+                <ParallaxImage nome="fachada-05" alt="Entrada do Paraíso das Águas" className="aspect-[4/5] rounded-3xl" sizes="(min-width: 1024px) 55vw, 100vw" intensidade={8} />
               </Reveal>
-              <dl className="mt-14 grid grid-cols-3 gap-6 border-t border-azul/15 pt-10">
-                {[
-                  { I: Building2, n: 2, l: "torres" },
-                  { I: Layers, n: 7, l: "pavimentos tipo" },
-                  { I: KeyRound, n: 112, l: "apartamentos" },
-                ].map(({ I, n, l }, i) => (
-                  <Reveal key={l} delay={i * 0.12}>
-                    <I size={22} strokeWidth={1.5} className="mb-3 text-mar" />
-                    <dd className="text-4xl font-light text-azul md:text-5xl">
-                      <Counter to={n} />
-                    </dd>
-                    <dt className="mt-1 text-sm text-grafite/70">{l}</dt>
-                  </Reveal>
-                ))}
-              </dl>
+              <div>
+                <Reveal>
+                  <span className="traco-dourado" />
+                  <p className="texto max-w-md text-white/85">
+                    Apartamentos de 2 e 3 dormitórios com suíte e um clube completo dentro de casa: piscina, academia,
+                    coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado
+                    da ALE Empreendimentos em cada detalhe.
+                  </p>
+                </Reveal>
+                <dl className="mt-14 grid grid-cols-3 gap-6 border-t border-white/15 pt-10">
+                  {[
+                    { I: Building2, n: 2, l: "torres" },
+                    { I: Layers, n: 7, l: "pavimentos tipo" },
+                    { I: KeyRound, n: 112, l: "apartamentos" },
+                  ].map(({ I, n, l }, i) => (
+                    <Reveal key={l} delay={i * 0.12}>
+                      <I size={22} strokeWidth={1.5} className="mb-3 text-dourado" />
+                      <dd className="text-4xl font-light md:text-5xl">
+                        <Counter to={n} />
+                      </dd>
+                      <dt className="mt-1 text-sm text-ceu">{l}</dt>
+                    </Reveal>
+                  ))}
+                </dl>
+              </div>
             </div>
           </div>
         </section>
