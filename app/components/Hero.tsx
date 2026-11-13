@@ -51,17 +51,10 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
             />
           </div>
         </motion.div>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/80 via-noite/35 to-transparent" aria-hidden />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-noite/90 via-noite/45 to-transparent" aria-hidden />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-noite/55 via-transparent to-noite/30" aria-hidden />
 
         <div className="flex min-h-[inherit] flex-col p-5 md:p-10">
-          {/* selos dos cantos */}
-          <div className="hero-in flex items-start justify-end gap-3" style={{ animationDelay: "2.2s" }}>
-            <span className="hidden rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.16em] backdrop-blur-md sm:inline-flex">
-              Santo Amaro da Imperatriz / SC
-            </span>
-          </div>
-
           {/* texto principal: etiqueta, logo e título compartilham o mesmo alinhamento à esquerda */}
           <div className="flex flex-1 items-center py-10 md:py-12">
             <div className="max-w-2xl pl-3 md:pl-12 lg:pl-20">
