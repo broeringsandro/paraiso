@@ -266,7 +266,7 @@ export function GaleriaApto() {
 
 export function ComoChegar() {
   return (
-    <section className="bg-nevoa pb-8 md:pb-12">
+    <section className="bg-nevoa pb-8 pt-16 md:pb-12 md:pt-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <Reveal>
           <div className="grid items-center gap-8 rounded-3xl bg-white p-8 md:grid-cols-[1.3fr_1fr] md:p-12">
