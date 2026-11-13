@@ -39,7 +39,7 @@ import WhatsappIcon from "./components/WhatsappIcon";
 import { Reveal, RevealWords } from "./components/Reveal";
 import Manifesto from "./components/Manifesto";
 import { ClipImage, Counter, ParallaxImage, SolarArc } from "./components/Visuals";
-import { Carrossel, CardsEmpilhados, GaleriaHorizontal } from "./components/Galerias";
+import { Carrossel, CardsEmpilhados, DiferenciaisImersivo, GaleriaHorizontal } from "./components/Galerias";
 import Letreiro from "./components/Letreiro";
 
 const WA_LINK = `https://wa.me/${WHATSAPP}`;
@@ -105,6 +105,25 @@ const diferenciais: { t: string; icone: LucideIcon }[] = [
   { t: "Massa corrida nas paredes", icone: PaintRoller },
   { t: "Todas as garagens são cobertas", icone: SquareParking },
 ];
+
+// Foto de fundo de cada diferencial (mesma ordem da lista acima).
+const fotosDif = [
+  { img: "sacada", alt: "Sacada com churrasqueira" },
+  { img: "hall", alt: "Hall de entrada" },
+  { img: "quarto-01", alt: "Dormitório com persianas" },
+  { img: "sala", alt: "Sala com porcelanato" },
+  { img: "quarto-02", alt: "Dormitório" },
+  { img: "sala-cozinha", alt: "Cozinha integrada" },
+  { img: "fachada-07", alt: "Fachada" },
+  { img: "sala-cozinha", alt: "Ambientes com massa corrida" },
+  { img: "fachada-05", alt: "Entrada do condomínio" },
+];
+const diferenciaisImersivos = diferenciais.map(({ t, icone: I }, i) => ({
+  t,
+  icone: <I size={20} strokeWidth={1.5} />,
+  iconeGrande: <I size={34} strokeWidth={1.3} />,
+  ...fotosDif[i],
+}));
 
 // TODO: confirmar com o cliente a associação Tipo 02 / Tipo 03 às metragens e se os de 2 dormitórios têm suíte.
 const tipos = [
@@ -266,26 +285,16 @@ export default function Home() {
 
 
         {/* Diferenciais */}
-        <section className="bg-ceu/30 py-24 md:py-36">
-          <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <section className="bg-noite text-white">
+          <div className="mx-auto max-w-7xl px-5 pb-16 pt-28 md:px-10 md:pt-44">
             <Reveal>
-              <Rotulo>Diferenciais</Rotulo>
+              <Rotulo claro>Diferenciais</Rotulo>
             </Reveal>
-            <h2 className="titulo max-w-3xl text-azul">
+            <h2 className="titulo max-w-3xl">
               <RevealWords text="Pensado em" /> <strong><RevealWords text="cada detalhe." delay={0.2} /></strong>
             </h2>
-            <ul className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {diferenciais.map(({ t, icone: I }, i) => (
-                <Reveal as="li" key={t} delay={(i % 3) * 0.1} className="flex flex-col gap-5 rounded-2xl bg-white/70 p-7 transition duration-500 hover:-translate-y-1 hover:bg-white">
-                  <span className="flex items-center gap-4">
-                    <span className="h-0.5 w-8 bg-dourado" />
-                    <I size={22} strokeWidth={1.5} className="text-mar" />
-                  </span>
-                  <span className="texto text-azul">{t}</span>
-                </Reveal>
-              ))}
-            </ul>
           </div>
+          <DiferenciaisImersivo itens={diferenciaisImersivos} />
         </section>
 
         {/* 06 · Plantas */}
