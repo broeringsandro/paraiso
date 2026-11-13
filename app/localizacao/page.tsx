@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Clock, Droplets, Route } from "lucide-react";
 import { PageHero, CtaContato } from "../components/Pecas";
 import { LocalizacaoSecao } from "../components/Secoes";
 import { ComoChegar, DestaquePrefeitura } from "../components/Blocos";
@@ -20,9 +21,9 @@ export default function Pagina() {
         img="fachada-10"
         alt="Vista das duas torres do Paraíso das Águas"
         fatos={[
-          { n: "2 min", l: "da nova Prefeitura" },
-          { n: "BR-282", l: "acesso à Grande Florianópolis" },
-          { n: "Caldas", l: "da Imperatriz, águas termais" },
+          { n: "2 min", l: "da nova Prefeitura", icone: Clock },
+          { n: "BR-282", l: "acesso à Grande Florianópolis", icone: Route },
+          { n: "Caldas", l: "da Imperatriz, águas termais", icone: Droplets },
         ]}
       />
       <LocalizacaoSecao cabecalho={false} />

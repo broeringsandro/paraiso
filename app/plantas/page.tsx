@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { KeyRound, Layers, LayoutGrid } from "lucide-react";
 import { PageHero } from "../components/Pecas";
 import { PlantasSecao } from "../components/Secoes";
 import MapaFinais from "../components/MapaFinais";
@@ -21,9 +22,9 @@ export default function Pagina() {
         img="sala"
         alt="Sala de um apartamento do Paraíso das Águas"
         fatos={[
-          { n: "3", l: "tipologias" },
-          { n: "8", l: "por andar" },
-          { n: "112", l: "apartamentos" },
+          { n: "3", l: "tipologias", icone: LayoutGrid },
+          { n: "8", l: "por andar", icone: Layers },
+          { n: "112", l: "apartamentos", icone: KeyRound },
         ]}
       />
       <MapaFinais />

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BedDouble, Building2, KeyRound } from "lucide-react";
 import { PageHero, CtaContato } from "../components/Pecas";
 import { AleSecao, DestaquesSecao } from "../components/Secoes";
 import { FichaTecnica, Transparencia } from "../components/Blocos";
@@ -22,9 +23,9 @@ export default function Pagina() {
         img="fachada-08"
         alt="Vista aérea das duas torres do Paraíso das Águas"
         fatos={[
-          { n: "2", l: "torres" },
-          { n: "112", l: "apartamentos" },
-          { n: "2 e 3", l: "dormitórios, com suíte" },
+          { n: "2", l: "torres", icone: Building2 },
+          { n: "112", l: "apartamentos", icone: KeyRound },
+          { n: "2 e 3", l: "dormitórios, com suíte", icone: BedDouble },
         ]}
       />
       <FichaTecnica />

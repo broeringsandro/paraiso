@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BedDouble, Layers, Ruler, SquareParking } from "lucide-react";
 import { PageHero, CtaContato } from "../components/Pecas";
 import { ApartamentosSecao } from "../components/Secoes";
 import { GaleriaApto, TipologiasResumo } from "../components/Blocos";
@@ -21,10 +22,10 @@ export default function Pagina() {
         img="sala"
         alt="Sala de estar de um apartamento com vista para a serra"
         fatos={[
-          { n: "2 e 3", l: "dormitórios, com suíte" },
-          { n: "68 a 91 m²", l: "de área privativa" },
-          { n: "8", l: "apartamentos por andar" },
-          { n: "100%", l: "das garagens cobertas" },
+          { n: "2 e 3", l: "dormitórios, com suíte", icone: BedDouble },
+          { n: "68 a 91 m²", l: "de área privativa", icone: Ruler },
+          { n: "8", l: "apartamentos por andar", icone: Layers },
+          { n: "100%", l: "das garagens cobertas", icone: SquareParking },
         ]}
       />
       <TipologiasResumo />

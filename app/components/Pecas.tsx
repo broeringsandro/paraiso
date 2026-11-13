@@ -115,7 +115,7 @@ export function VerMais({ href, label, claro = false }: { href: string; label: s
   );
 }
 
-export type Fato = { n: string; l: string };
+export type Fato = { n: string; l: string; icone?: LucideIcon };
 
 // Cabeçalho das subpáginas. Duas variações: foto larga abaixo do título ou foto alta ao lado.
 export function PageHero({
@@ -156,13 +156,27 @@ export function PageHero({
   );
 
   const faixa = fatos && fatos.length > 0 && (
-    <dl className={`mt-12 grid gap-x-6 gap-y-6 ${fatos.length > 3 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-3"}`}>
-      {fatos.map((f, i) => (
-        <Reveal key={f.l} delay={0.25 + i * 0.1} className="border-l border-azul/20 pl-5">
-          <dd className="text-2xl font-light tracking-tight text-azul md:text-4xl">{f.n}</dd>
-          <dt className="mt-1 text-xs text-grafite/70 md:text-sm">{f.l}</dt>
-        </Reveal>
-      ))}
+    <dl
+      className={`mt-10 grid gap-x-6 gap-y-7 border-t border-azul/10 pt-8 md:mt-12 ${
+        fatos.length > 3 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : "grid-cols-1 sm:grid-cols-3"
+      }`}
+    >
+      {fatos.map((f, i) => {
+        const I = f.icone;
+        return (
+          <Reveal key={f.l} delay={0.25 + i * 0.1} className="flex items-start gap-3.5 md:gap-4">
+            {I && (
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-azul/15 bg-white/70 text-mar md:h-12 md:w-12">
+                <I size={20} strokeWidth={1.4} />
+              </span>
+            )}
+            <div>
+              <dd className="text-xl font-light leading-tight tracking-tight text-azul md:text-3xl">{f.n}</dd>
+              <dt className="mt-0.5 text-xs leading-snug text-grafite/70 md:text-sm">{f.l}</dt>
+            </div>
+          </Reveal>
+        );
+      })}
     </dl>
   );
 

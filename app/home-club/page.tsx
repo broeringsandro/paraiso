@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BookOpen, Blocks, Clapperboard, Dices, Dumbbell, Gamepad2, Laptop, PartyPopper, Sofa, Sunset, Waves } from "lucide-react";
+import { BookOpen, Blocks, Building2, Clapperboard, Dices, Dumbbell, Gamepad2, Laptop, PartyPopper, Sofa, Sunset, Waves } from "lucide-react";
 import { PageHero, CtaContato } from "../components/Pecas";
 import { CategoriaLazer, PlantasDoLazer } from "../components/Blocos";
 
@@ -20,9 +20,9 @@ export default function Pagina() {
         img="piscina"
         alt="Piscina com deck do Paraíso das Águas"
         fatos={[
-          { n: "4", l: "salões de festas" },
-          { n: "3", l: "espaços no ático" },
-          { n: "2", l: "lounges, coberto e descoberto" },
+          { n: "4", l: "salões de festas", icone: PartyPopper },
+          { n: "3", l: "espaços no ático", icone: Building2 },
+          { n: "2", l: "lounges, coberto e descoberto", icone: Sofa },
         ]}
       />
 
