@@ -4,9 +4,11 @@ import { useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import WhatsappIcon from "./WhatsappIcon";
 import { WA_LINK } from "../lib/site";
+import { useT } from "./I18n";
 
 // Aparece só depois de rolar um pouco: no topo, o header e a hero já têm botão de WhatsApp.
 export default function WhatsappFlutuante() {
+  const t = useT();
   const { scrollY } = useScroll();
   const [mostrar, setMostrar] = useState(false);
   useMotionValueEvent(scrollY, "change", (y) => setMostrar(y > 600));
@@ -18,7 +20,7 @@ export default function WhatsappFlutuante() {
           href={WA_LINK}
           target="_blank"
           rel="noopener"
-          aria-label="Falar no WhatsApp"
+          aria-label={t("Falar no WhatsApp")}
           initial={{ opacity: 0, scale: 0.6, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6, y: 20 }}

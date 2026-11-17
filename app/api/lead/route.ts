@@ -11,6 +11,7 @@ type Lead = {
   email?: string;
   interesse?: string;
   mensagem?: string;
+  idioma?: string;
 };
 
 function validar(b: unknown): { ok: true; lead: Lead } | { ok: false; erro: string } {
@@ -21,13 +22,14 @@ function validar(b: unknown): { ok: true; lead: Lead } | { ok: false; erro: stri
   const email = typeof d.email === "string" ? d.email.trim() : "";
   const interesse = typeof d.interesse === "string" ? d.interesse.trim().slice(0, 120) : "";
   const mensagem = typeof d.mensagem === "string" ? d.mensagem.trim().slice(0, 1000) : "";
+  const idioma = d.idioma === "en" || d.idioma === "es" ? d.idioma : "pt";
 
   if (nome.length < 2 || nome.length > 120) return { ok: false, erro: "Informe seu nome." };
-  if (whatsapp.length < 10 || whatsapp.length > 13) return { ok: false, erro: "Informe um WhatsApp válido com DDD." };
+  if (whatsapp.length < 10 || whatsapp.length > 15) return { ok: false, erro: "Informe um WhatsApp válido com DDD." };
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, erro: "E-mail inválido." };
   if (d.consentimento !== true) return { ok: false, erro: "É preciso aceitar o contato para enviar." };
 
-  return { ok: true, lead: { nome, whatsapp, email: email || undefined, interesse: interesse || undefined, mensagem: mensagem || undefined } };
+  return { ok: true, lead: { nome, whatsapp, email: email || undefined, interesse: interesse || undefined, mensagem: mensagem || undefined, idioma } };
 }
 
 export async function POST(req: Request) {

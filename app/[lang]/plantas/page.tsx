@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
-import { paginaMeta } from "../lib/seo";
-import Migalhas from "../components/Migalhas";
+import { paginaMeta } from "../../lib/seo";
+import type { Locale } from "../../lib/i18n";
+import Migalhas from "../../components/Migalhas";
 import { KeyRound, Layers, LayoutGrid } from "lucide-react";
-import { PageHero } from "../components/Pecas";
-import { PlantasSecao } from "../components/Secoes";
+import { PageHero } from "../../components/Pecas";
+import { PlantasSecao } from "../../components/Secoes";
 
-export const metadata: Metadata = paginaMeta({
-  rota: "/plantas",
-  titulo: "Plantas de 2 e 3 dormitórios | Paraíso das Águas",
-  tituloSocial: "Paraíso das Águas | Plantas de 2 e 3 dormitórios",
-  descricao: "Plantas dos apartamentos Tipo 01, 02 e 03, do pavimento tipo, do térreo, do subsolo e do ático do Paraíso das Águas, com a distribuição dos finais nas duas torres.",
-});
+export async function generateMetadata({ params }: PageProps<"/[lang]/plantas">): Promise<Metadata> {
+  const { lang } = await params;
+  return paginaMeta({
+    lang: lang as Locale,
+    rota: "/plantas",
+    titulo: "Plantas de 2 e 3 dormitórios | Paraíso das Águas",
+    tituloSocial: "Paraíso das Águas | Plantas de 2 e 3 dormitórios",
+    descricao: "Plantas dos apartamentos Tipo 01, 02 e 03, do pavimento tipo, do térreo, do subsolo e do ático do Paraíso das Águas, com a distribuição dos finais nas duas torres.",
+  });
+}
 
 export default function Pagina() {
   return (

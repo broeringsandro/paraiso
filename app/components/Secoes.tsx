@@ -38,8 +38,11 @@ import TemposLocal from "./TemposLocal";
 import { Reveal, RevealWords } from "./Reveal";
 import { Counter, ParallaxImage } from "./Visuals";
 import { CardsEmpilhados, DiferenciaisImersivo, GaleriaHorizontal, SemSairDeCasa } from "./Galerias";
-import { CtaContato, Rotulo, VerMais } from "./Pecas";
+import { CtaContato, VerMais } from "./Pecas";
+import { Rotulo } from "./Titulos";
 import { ENDERECO, TELEFONE, WA_LINK } from "../lib/site";
+import { getLang, getT } from "../i18n/server";
+import { caminho } from "../lib/i18n";
 
 const ic = (I: LucideIcon, size = 22) => <I size={size} strokeWidth={1.5} />;
 
@@ -125,7 +128,9 @@ const destaquesLocal: { t: string; d: string; icone: LucideIcon }[] = [
 
 /* ----------------------------- seções ------------------------------ */
 
-export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) {
+export async function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) {
+  const t = await getT();
+  const lang = await getLang();
   return (
     <section id="empreendimento" className="fundo-nevoa">
       <Manifesto
@@ -145,8 +150,9 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
               </h2>
               <Reveal delay={0.15}>
                 <p className="texto mt-7 max-w-md text-lg font-light text-grafite/80">
-                  Piscina, academia, coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas.
-                  Tudo com o cuidado da ALE Empreendimentos em cada detalhe.
+                  {t(
+                    "Piscina, academia, coworking, cinema, espaço gamer, brinquedoteca, playground e 4 salões de festas. Tudo com o cuidado da ALE Empreendimentos em cada detalhe.",
+                  )}
                 </p>
                 <div className="mt-9 flex flex-col items-start gap-3">
                   <a
@@ -155,13 +161,13 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
                     rel="noopener"
                     className="group inline-flex items-center gap-3 rounded-full bg-whats px-8 py-4 text-sm font-medium text-white transition hover:bg-whats-escuro"
                   >
-                    <WhatsappIcon size={18} /> Agende sua visita
+                    <WhatsappIcon size={18} /> {t("Agende sua visita")}
                   </a>
                   <Link
-                    href={verMais ? "/empreendimento" : "/plantas"}
+                    href={caminho(lang, verMais ? "/empreendimento" : "/plantas")}
                     className="inline-flex items-center rounded-full border border-azul/20 bg-cartao/60 px-8 py-4 text-sm text-azul transition hover:border-azul hover:bg-cartao"
                   >
-                    {verMais ? "Conheça o projeto" : "Ver as plantas"}
+                    {verMais ? t("Conheça o projeto") : t("Ver as plantas")}
                   </Link>
                 </div>
               </Reveal>
@@ -197,7 +203,7 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
                   <dd className="text-4xl font-light leading-none tracking-tight text-azul md:text-5xl">
                     {typeof n === "number" ? <Counter to={n} /> : n}
                   </dd>
-                  <dt className="max-w-[9ch] text-right text-xs leading-snug text-grafite/70 md:text-sm">{l}</dt>
+                  <dt className="max-w-[9ch] text-right text-xs leading-snug text-grafite/70 md:text-sm">{t(l)}</dt>
                 </div>
               </Reveal>
             ))}
@@ -208,7 +214,8 @@ export function EmpreendimentoSecao({ verMais = false }: { verMais?: boolean }) 
   );
 }
 
-export function DestaquesSecao() {
+export async function DestaquesSecao() {
+  const t = await getT();
   return (
     <section className="fundo-branco">
       <div className="grid lg:grid-cols-2">
@@ -219,13 +226,14 @@ export function DestaquesSecao() {
               <span className="traco-dourado" />
               <Rotulo>Coworking + academia</Rotulo>
               <h2 className="titulo text-azul">
-                Trabalhe e cuide <strong>da sua saúde</strong>.
+                {t("Trabalhe e cuide")} <strong>{t("da sua saúde")}</strong>.
               </h2>
             </Reveal>
             <Reveal delay={0.15}>
               <p className="texto mt-6 text-grafite/85">
-                Coworking e academia no mesmo clube: produtividade e bem-estar sem sair de casa. Feche o notebook, desça
-                um andar e comece o treino.
+                {t(
+                  "Coworking e academia no mesmo clube: produtividade e bem-estar sem sair de casa. Feche o notebook, desça um andar e comece o treino.",
+                )}
               </p>
               <div className="mt-8 flex gap-5 text-mar">
                 {ic(BookOpen, 24)}
@@ -242,7 +250,7 @@ export function DestaquesSecao() {
               <span className="traco-dourado" />
               <Rotulo>Para as crianças</Rotulo>
               <h2 className="titulo text-azul">
-                O primeiro condomínio da região com <strong>salão de festas temático infantil</strong>.
+                {t("O primeiro condomínio da região com")} <strong>{t("salão de festas temático infantil")}</strong>.
               </h2>
               <div className="mt-8 flex gap-5 text-mar">
                 {ic(PartyPopper, 24)}
@@ -258,7 +266,8 @@ export function DestaquesSecao() {
   );
 }
 
-export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
+export async function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
+  const t = await getT();
   return (
     <section id="home-club" className="bg-noite text-white">
       {cabecalho ? (
@@ -275,8 +284,8 @@ export function HomeClubSecao({ cabecalho = true, verMais = false }: { cabecalho
             </h2>
             <Reveal delay={0.25}>
               <p className="text-lg font-light leading-relaxed text-white/80 lg:pb-3">
-                <span className="block text-dourado sm:whitespace-nowrap">Trabalhe, treine, celebre e relaxe</span>
-                <span className="block">sem sair de casa.</span>
+                <span className="block text-dourado sm:whitespace-nowrap">{t("Trabalhe, treine, celebre e relaxe")}</span>
+                <span className="block">{t("sem sair de casa.")}</span>
               </p>
             </Reveal>
           </div>
@@ -350,7 +359,8 @@ export function DiferenciaisSecao() {
   );
 }
 
-export function PlantasSecao({ cabecalho = true, verMais = false, fundo = "nevoa" }: { cabecalho?: boolean; verMais?: boolean; fundo?: "nevoa" | "branco" }) {
+export async function PlantasSecao({ cabecalho = true, verMais = false, fundo = "nevoa" }: { cabecalho?: boolean; verMais?: boolean; fundo?: "nevoa" | "branco" }) {
+  const t = await getT();
   return (
     <section id="plantas" className={`${fundo === "branco" ? "fundo-branco" : "fundo-nevoa"} ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
@@ -364,8 +374,7 @@ export function PlantasSecao({ cabecalho = true, verMais = false, fundo = "nevoa
             </h2>
             <Reveal delay={0.15}>
               <p className="texto mt-6 max-w-xl text-grafite/85">
-                Oito apartamentos por andar em cada torre, com dois elevadores por torre. Escolha uma planta para ver os
-                detalhes e ampliar.
+                {t("Oito apartamentos por andar em cada torre, com dois elevadores por torre. Escolha uma planta para ver os detalhes e ampliar.")}
               </p>
             </Reveal>
           </>
@@ -389,7 +398,8 @@ export function PlantasSecao({ cabecalho = true, verMais = false, fundo = "nevoa
   );
 }
 
-export function LocalizacaoSecao({ cabecalho = true, verMais = false, fundo = "nevoa" }: { cabecalho?: boolean; verMais?: boolean; fundo?: "nevoa" | "branco" }) {
+export async function LocalizacaoSecao({ cabecalho = true, verMais = false, fundo = "nevoa" }: { cabecalho?: boolean; verMais?: boolean; fundo?: "nevoa" | "branco" }) {
+  const t = await getT();
   return (
     <section id="localizacao" className={`${fundo === "branco" ? "fundo-branco" : "fundo-nevoa"} ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
@@ -403,8 +413,9 @@ export function LocalizacaoSecao({ cabecalho = true, verMais = false, fundo = "n
             </h2>
             <Reveal delay={0.15}>
               <p className="texto mt-6 max-w-xl text-grafite/85">
-                Em Santo Amaro da Imperatriz, cidade conhecida pelas águas termais e pela natureza da Grande
-                Florianópolis, perto da nova prefeitura e de tudo o que o dia a dia pede.
+                {t(
+                  "Em Santo Amaro da Imperatriz, cidade conhecida pelas águas termais e pela natureza da Grande Florianópolis, perto da nova prefeitura e de tudo o que o dia a dia pede.",
+                )}
               </p>
             </Reveal>
           </>
@@ -417,24 +428,24 @@ export function LocalizacaoSecao({ cabecalho = true, verMais = false, fundo = "n
             </Reveal>
             <TemposLocal />
             <Reveal delay={0.2}>
-              <p className="mt-5 text-xs text-grafite/55">Tempos aproximados de carro.</p>
+              <p className="mt-5 text-xs text-grafite/55">{t("Tempos aproximados de carro.")}</p>
             </Reveal>
           </div>
           <Reveal y={50} blur={4}>
             <Mapa />
             <p className="mt-4 flex items-start gap-2 text-sm text-grafite/70">
               <MapPin size={16} strokeWidth={1.5} className="mt-0.5 shrink-0 text-mar" />
-              {ENDERECO}. Posição aproximada.
+              {ENDERECO}. {t("Posição aproximada.")}
             </p>
           </Reveal>
         </div>
 
         <ul className={`mt-20 grid gap-10 sm:grid-cols-2 ${cabecalho ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
-          {destaquesLocal.filter((x) => cabecalho || x.t !== "Perto da nova prefeitura").map(({ t, d, icone: I }, i) => (
-            <Reveal as="li" key={t} delay={i * 0.12}>
+          {destaquesLocal.filter((x) => cabecalho || x.t !== "Perto da nova prefeitura").map(({ t: tit, d, icone: I }, i) => (
+            <Reveal as="li" key={tit} delay={i * 0.12}>
               <I size={26} strokeWidth={1.5} className="text-mar" />
-              <h3 className="mt-4 text-lg text-azul">{t}</h3>
-              <p className="texto mt-2 text-sm text-grafite/80">{d}</p>
+              <h3 className="mt-4 text-lg text-azul">{t(tit)}</h3>
+              <p className="texto mt-2 text-sm text-grafite/80">{t(d)}</p>
             </Reveal>
           ))}
         </ul>
@@ -449,7 +460,8 @@ export function LocalizacaoSecao({ cabecalho = true, verMais = false, fundo = "n
   );
 }
 
-export function ObraSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
+export async function ObraSecao({ cabecalho = true, verMais = false }: { cabecalho?: boolean; verMais?: boolean }) {
+  const t = await getT();
   return (
     <section id="andamento-da-obra" className={`fundo-branco ${cabecalho ? "py-16 md:py-44" : "py-16 md:py-24"}`}>
       <div className="mx-auto max-w-7xl px-5 md:px-10">
@@ -463,7 +475,7 @@ export function ObraSecao({ cabecalho = true, verMais = false }: { cabecalho?: b
             </h2>
             <Reveal delay={0.15}>
               <p className="texto mt-6 max-w-xl text-grafite/85">
-                Transparência em todas as etapas: veja em que fase está a construção do Paraíso das Águas.
+                {t("Transparência em todas as etapas: veja em que fase está a construção do Paraíso das Águas.")}
               </p>
             </Reveal>
           </div>
@@ -481,7 +493,8 @@ export function ObraSecao({ cabecalho = true, verMais = false }: { cabecalho?: b
   );
 }
 
-export function AleSecao() {
+export async function AleSecao() {
+  const t = await getT();
   return (
     <section className="relative overflow-hidden bg-noite py-16 text-white md:py-40">
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-2">
@@ -496,9 +509,9 @@ export function AleSecao() {
         {/* TODO: substituir pelo texto real da história da ALE quando o cliente enviar. */}
         <Reveal delay={0.2} className="self-end">
           <p className="texto text-white/75 lg:max-w-lg">
-            A ALE Empreendimentos nasceu com um propósito simples: construir lugares onde as pessoas queiram viver por
-            muitos anos. Cada projeto é pensado com atenção aos detalhes, transparência em todas as etapas e respeito ao
-            sonho de quem confia na nossa assinatura.
+            {t(
+              "A ALE Empreendimentos nasceu com um propósito simples: construir lugares onde as pessoas queiram viver por muitos anos. Cada projeto é pensado com atenção aos detalhes, transparência em todas as etapas e respeito ao sonho de quem confia na nossa assinatura.",
+            )}
           </p>
         </Reveal>
       </div>
@@ -507,7 +520,8 @@ export function AleSecao() {
 }
 
 // Contato: na home com foto ao fundo; na página própria em fundo claro, com os dados ao lado.
-export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
+export async function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
+  const t = await getT();
   const dados = (
     <ul className="mt-10 grid gap-6 text-sm">
       <li className="flex items-start gap-3">
@@ -515,7 +529,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
         <div>
           <p className={pagina ? "text-azul" : "text-white"}>{TELEFONE}</p>
           <a href={WA_LINK} target="_blank" rel="noopener" className="font-medium text-whats underline-offset-4 hover:underline">
-            Chamar no WhatsApp
+            {t("Chamar no WhatsApp")}
           </a>
         </div>
       </li>
@@ -533,7 +547,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
           <div>
             <Reveal>
               <Rotulo>Fale com a gente</Rotulo>
-              <p className="texto max-w-sm text-grafite/85">Prefere conversar agora? Chame a ALE no WhatsApp.</p>
+              <p className="texto max-w-sm text-grafite/85">{t("Prefere conversar agora? Chame a ALE no WhatsApp.")}</p>
               {dados}
             </Reveal>
           </div>
@@ -558,7 +572,7 @@ export function ContatoSecao({ pagina = false }: { pagina?: boolean }) {
             <RevealWords text="Agende" /> <strong><RevealWords text="sua visita." delay={0.15} /></strong>
           </h2>
           <Reveal delay={0.2}>
-            <p className="texto mt-6 max-w-md text-white/75">WhatsApp {TELEFONE}. Ou fale com o seu corretor de confiança.</p>
+            <p className="texto mt-6 max-w-md text-white/75">WhatsApp {TELEFONE}. {t("Ou fale com o seu corretor de confiança.")}</p>
             {dados}
           </Reveal>
         </div>

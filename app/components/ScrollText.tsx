@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { useT } from "./I18n";
 
 export function Word({ word, range, progress }: { word: string; range: [number, number]; progress: MotionValue<number> }) {
   const opacity = useTransform(progress, range, [0.14, 1]);
@@ -16,9 +17,10 @@ export function Word({ word, range, progress }: { word: string; range: [number, 
 export default function ScrollText({ text, className = "" }: { text: string; className?: string }) {
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
-  const words = text.split(" ");
+  const t = useT();
+  const words = t(text).split(" ");
   return (
-    <p ref={ref} className={className} aria-label={text}>
+    <p ref={ref} className={className} aria-label={t(text)}>
       {words.map((w, i) => {
         const start = i / words.length;
         const end = start + 1 / words.length;

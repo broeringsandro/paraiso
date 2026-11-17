@@ -2,12 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import type { Map as LeafletMap } from "leaflet";
+import { useT } from "./I18n";
 
 // TODO: ponto exato do terreno ainda não confirmado (coordenada aproximada da rua).
 const EMPREENDIMENTO: [number, number] = [-27.67937, -48.76879];
 const PREFEITURA: [number, number] = [-27.6822943, -48.7645033];
 
 export default function Mapa() {
+  const t = useT();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,10 +46,10 @@ export default function Mapa() {
 
       L.marker(EMPREENDIMENTO, { icon: icone(casa) })
         .addTo(map)
-        .bindTooltip("Paraíso das Águas", { direction: "top", offset: [0, -16] });
+        .bindTooltip(t("Paraíso das Águas"), { direction: "top", offset: [0, -16] });
       L.marker(PREFEITURA, { icon: icone(predio, "pino-sec") })
         .addTo(map)
-        .bindTooltip("Nova sede da Prefeitura", { direction: "top", offset: [0, -16] });
+        .bindTooltip(t("Nova sede da Prefeitura"), { direction: "top", offset: [0, -16] });
       // Os botões de zoom do Leaflet saem com href="#"; viram botões de verdade (sem link vazio).
       ref.current?.querySelectorAll<HTMLAnchorElement>('.leaflet-control-zoom a[href="#"]').forEach((a) => {
         a.removeAttribute("href");
@@ -59,7 +61,7 @@ export default function Mapa() {
       cancelado = true;
       map?.remove();
     };
-  }, []);
+  }, [t]);
 
   return (
     <div className="mapa h-[380px] w-full overflow-hidden rounded-3xl md:h-[520px]">

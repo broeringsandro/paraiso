@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Check } from "lucide-react";
 import WhatsappIcon from "./WhatsappIcon";
 import { WHATSAPP } from "../lib/contato";
+import { useLang, useT } from "./I18n";
 
 const interesses = [
   "Quero conhecer o Paraíso das Águas",
@@ -21,12 +22,14 @@ const campo =
 const rotulo = "rotulo text-mar";
 
 export default function Contato() {
+  const t = useT();
+  const lang = useLang();
   const [estado, setEstado] = useState<Estado>("idle");
   const [erro, setErro] = useState("");
   const [nome, setNome] = useState("");
 
   const msgWhats = (n: string) =>
-    `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Olá! Meu nome é ${n || "[nome]"} e quero saber mais sobre o Paraíso das Águas.`)}`;
+    `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t("Olá! Meu nome é {nome} e quero saber mais sobre o Paraíso das Águas.").replace("{nome}", n || "[nome]"))}`;
 
   async function enviar(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -45,17 +48,18 @@ export default function Contato() {
           mensagem: f.get("mensagem"),
           consentimento: f.get("consentimento") === "on",
           site: f.get("site"),
+          idioma: lang,
         }),
       });
       const j = (await r.json().catch(() => ({}))) as { ok?: boolean; erro?: string };
       if (r.ok && j.ok) {
         setEstado("ok");
       } else {
-        setErro(j.erro || "Não foi possível enviar agora.");
+        setErro(t(j.erro || "Não foi possível enviar agora."));
         setEstado("erro");
       }
     } catch {
-      setErro("Não foi possível enviar agora.");
+      setErro(t("Não foi possível enviar agora."));
       setEstado("erro");
     }
   }
@@ -76,16 +80,16 @@ export default function Contato() {
               <Check size={26} strokeWidth={1.8} />
             </span>
             <h3 className="titulo md:!text-[2.6rem]">
-              Recebemos <strong>seu contato</strong>.
+              {t("Recebemos")} <strong>{t("seu contato")}</strong>.
             </h3>
-            <p className="texto max-w-sm text-grafite/80">Em breve alguém da ALE fala com você pelo WhatsApp.</p>
+            <p className="texto max-w-sm text-grafite/80">{t("Em breve alguém da ALE fala com você pelo WhatsApp.")}</p>
             <a
               href={msgWhats(nome)}
               target="_blank"
               rel="noopener"
               className="group mt-2 inline-flex items-center gap-3 rounded-full bg-whats px-7 py-3.5 text-sm uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro"
             >
-              <WhatsappIcon size={18} /> Adiantar pelo WhatsApp
+              <WhatsappIcon size={18} /> {t("Adiantar pelo WhatsApp")}
               <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
             </a>
           </motion.div>
@@ -100,17 +104,17 @@ export default function Contato() {
             className="grid gap-6"
           >
             {/* Campo-armadilha contra robôs */}
-            <input type="text" name="site" tabIndex={-1} autoComplete="off" aria-hidden aria-label="Não preencha este campo" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
+            <input type="text" name="site" tabIndex={-1} autoComplete="off" aria-hidden aria-label={t("Não preencha este campo")} className="absolute -left-[9999px] h-0 w-0 opacity-0" />
 
             <label className="grid gap-1">
-              <span className={rotulo}>Nome</span>
+              <span className={rotulo}>{t("Nome")}</span>
               <input
                 required
                 name="nome"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 className={campo}
-                placeholder="Seu nome"
+                placeholder={t("Seu nome")}
                 autoComplete="name"
                 minLength={2}
               />
@@ -125,40 +129,42 @@ export default function Contato() {
                   type="tel"
                   inputMode="tel"
                   className={campo}
-                  placeholder="(48) 90000-0000"
+                  placeholder={t("(48) 90000-0000")}
                   autoComplete="tel"
                   minLength={10}
-                  title="Informe o WhatsApp com DDD"
+                  title={t("Informe o WhatsApp com DDD")}
                 />
               </label>
               <label className="grid gap-1">
-                <span className={rotulo}>E-mail (opcional)</span>
-                <input name="email" type="email" className={campo} placeholder="voce@email.com" autoComplete="email" />
+                <span className={rotulo}>{t("E-mail (opcional)")}</span>
+                <input name="email" type="email" className={campo} placeholder={t("voce@email.com")} autoComplete="email" />
               </label>
             </div>
 
             <label className="grid gap-1">
-              <span className={rotulo}>Interesse</span>
+              <span className={rotulo}>{t("Interesse")}</span>
               <select name="interesse" className={`${campo} cursor-pointer`} defaultValue={interesses[0]}>
                 {interesses.map((i) => (
-                  <option key={i}>{i}</option>
+                  <option key={i} value={i}>
+                    {t(i)}
+                  </option>
                 ))}
               </select>
             </label>
 
             <label className="grid gap-1">
-              <span className={rotulo}>Mensagem (opcional)</span>
-              <textarea name="mensagem" rows={3} maxLength={1000} className={`${campo} resize-none`} placeholder="Como podemos ajudar?" />
+              <span className={rotulo}>{t("Mensagem (opcional)")}</span>
+              <textarea name="mensagem" rows={3} maxLength={1000} className={`${campo} resize-none`} placeholder={t("Como podemos ajudar?")} />
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 text-sm text-grafite/75">
               <input required type="checkbox" name="consentimento" className="mt-1 h-4 w-4 shrink-0 accent-[#1c3a57]" />
-              <span>Concordo em ser contatado pela ALE Empreendimentos pelos dados informados.</span>
+              <span>{t("Concordo em ser contatado pela ALE Empreendimentos pelos dados informados.")}</span>
             </label>
 
             {estado === "erro" && (
               <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-800">
-                {erro} Você também pode falar direto pelo{" "}
+                {erro} {t("Você também pode falar direto pelo")}{" "}
                 <a href={msgWhats(nome)} target="_blank" rel="noopener" className="underline underline-offset-4">
                   WhatsApp
                 </a>
@@ -171,7 +177,7 @@ export default function Contato() {
               disabled={estado === "enviando"}
               className="group inline-flex items-center justify-center gap-3 rounded-full bg-azul px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-white transition hover:bg-noite disabled:opacity-60"
             >
-              {estado === "enviando" ? "Enviando..." : "Quero ser atendido"}
+              {estado === "enviando" ? t("Enviando...") : t("Quero ser atendido")}
               <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
             </button>
           </motion.form>

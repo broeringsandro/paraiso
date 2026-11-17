@@ -11,6 +11,7 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
+import { useT } from "./I18n";
 
 // Imagem com parallax interno (a foto se move dentro do quadro).
 export function ParallaxImage({
@@ -26,13 +27,14 @@ export function ParallaxImage({
   sizes?: string;
   intensidade?: number;
 }) {
+  const t = useT();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [`-${intensidade}%`, `${intensidade}%`]);
   return (
     <div ref={ref} className={`${className.includes("absolute") ? "" : "relative"} overflow-hidden ${className}`}>
       <motion.div className="absolute inset-[-14%]" style={{ y }}>
-        <Image src={`/img/${nome}.jpg`} alt={alt} fill sizes={sizes} className="object-cover" />
+        <Image src={`/img/${nome}.jpg`} alt={t(alt)} fill sizes={sizes} className="object-cover" />
       </motion.div>
     </div>
   );

@@ -4,7 +4,8 @@ import { useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { Word } from "./ScrollText";
-import { Rotulo } from "./Pecas";
+import { Rotulo } from "./Titulos";
+import { useT } from "./I18n";
 
 type Foto = {
   img: string;
@@ -26,6 +27,7 @@ const fotos: Foto[] = [
 ];
 
 function FotoFlutuante({ f, p, movel }: { f: Foto; p: MotionValue<number>; movel: boolean }) {
+  const t = useT();
   const k = movel ? 0.2 : 1; // movimento bem menor no celular, para a foto não invadir o texto
   const opacity = useTransform(p, [f.entra, f.entra + 0.14], [0, 1], { clamp: true });
   const scale = useTransform(p, [f.entra, f.entra + 0.22], [0.7, 1], { clamp: true });
@@ -33,7 +35,7 @@ function FotoFlutuante({ f, p, movel }: { f: Foto; p: MotionValue<number>; movel
   const raio = useTransform(p, [f.entra, f.entra + 0.22], [60, 20], { clamp: true });
   return (
     <motion.div className={`absolute overflow-hidden ${f.className}`} style={{ opacity, scale, y, borderRadius: raio }}>
-      <Image src={`/img/${f.img}.jpg`} alt={f.alt} fill sizes="(min-width: 768px) 20vw, 40vw" className="object-cover" />
+      <Image src={`/img/${f.img}.jpg`} alt={t(f.alt)} fill sizes="(min-width: 768px) 20vw, 40vw" className="object-cover" />
     </motion.div>
   );
 }
@@ -52,7 +54,8 @@ export default function Manifesto({ text, rotulo }: { text: string; rotulo: stri
     () => false,
   );
 
-  const palavras = text.split(" ");
+  const t = useT();
+  const palavras = t(text).split(" ");
   const n = palavras.length;
 
   return (
@@ -64,7 +67,7 @@ export default function Manifesto({ text, rotulo }: { text: string; rotulo: stri
 
         <div className="relative z-10 mx-auto flex h-full max-w-3xl flex-col items-center justify-center px-6 py-44 text-center md:px-0 md:py-0">
           <Rotulo>{rotulo}</Rotulo>
-          <p className="titulo !text-[1.6rem] sm:!text-[2rem] md:!text-[3rem] text-azul" aria-label={text}>
+          <p className="titulo !text-[1.6rem] sm:!text-[2rem] md:!text-[3rem] text-azul" aria-label={t(text)}>
             {palavras.map((w, i) => {
               const ini = 0.1 + (i / n) * 0.72;
               return <Word key={i} word={w} range={[ini, ini + 0.72 / n]} progress={p} />;

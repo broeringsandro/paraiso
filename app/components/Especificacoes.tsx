@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, Plus } from "lucide-react";
-import { TituloSecao } from "./Pecas";
+import { TituloSecao } from "./Titulos";
+import { useT } from "./I18n";
 
 const grupos = [
   {
@@ -39,6 +40,7 @@ const grupos = [
 const EASE = [0.44, 0, 0.56, 1] as const;
 
 export default function Especificacoes() {
+  const t = useT();
   const [aberto, setAberto] = useState<number | null>(0);
 
   return (
@@ -56,7 +58,7 @@ export default function Especificacoes() {
                   aria-expanded={on}
                   className="flex w-full cursor-pointer items-center justify-between gap-6 py-7 text-left"
                 >
-                  <span className={`text-2xl font-light tracking-tight transition-colors md:text-3xl ${on ? "text-azul" : "text-azul/60"}`}>{g.titulo}</span>
+                  <span className={`text-2xl font-light tracking-tight transition-colors md:text-3xl ${on ? "text-azul" : "text-azul/60"}`}>{t(g.titulo)}</span>
                   <motion.span
                     animate={{ rotate: on ? 45 : 0 }}
                     transition={{ duration: 0.35, ease: EASE }}
@@ -78,7 +80,7 @@ export default function Especificacoes() {
                         {g.itens.map((it) => (
                           <li key={it} className="flex items-start gap-3 text-grafite/85">
                             <Check size={18} strokeWidth={1.8} className="mt-0.5 shrink-0 text-mar" />
-                            <span className="texto">{it}</span>
+                            <span className="texto">{t(it)}</span>
                           </li>
                         ))}
                       </ul>

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Counter, ParallaxImage } from "./Visuals";
 import { OBRA } from "../lib/obra";
+import { useT } from "./I18n";
 
 const EASE = [0.44, 0, 0.56, 1] as const;
 const R = 52;
@@ -37,13 +38,14 @@ function Anel({ valor }: { valor: number }) {
 }
 
 export default function ObraPainel() {
+  const t = useT();
   return (
     <div className="grid overflow-hidden rounded-3xl bg-cartao shadow-[0_30px_80px_-50px_rgb(20_36_58/0.4)] lg:grid-cols-[0.9fr_1.1fr]">
       <div className="relative min-h-[320px] lg:min-h-full">
         {/* TODO: trocar pelas fotos reais da obra quando houver. */}
         <ParallaxImage nome="fachada-13" alt="Imagem ilustrativa do empreendimento" className="absolute inset-0" sizes="(min-width: 1024px) 45vw, 100vw" intensidade={8} />
         <p className="absolute bottom-4 left-5 rounded-full bg-white/85 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-azul backdrop-blur">
-          Imagem ilustrativa
+          {t("Imagem ilustrativa")}
         </p>
       </div>
 
@@ -51,7 +53,7 @@ export default function ObraPainel() {
         <div className="flex items-center gap-6">
           <Anel valor={OBRA.geral} />
           <div>
-            <p className="rotulo text-mar">Andamento geral</p>
+            <p className="rotulo text-mar">{t("Andamento geral")}</p>
             <p className="mt-2 text-2xl font-light text-azul md:text-3xl">Paraíso das Águas</p>
             <p className="mt-1 text-sm text-grafite/70">Santo Amaro da Imperatriz/SC</p>
           </div>
@@ -62,10 +64,10 @@ export default function ObraPainel() {
             ["Fase atual", OBRA.fase],
             ["Entrega", OBRA.entrega],
             ["Última medição", OBRA.medicao],
-          ].map(([t, v]) => (
-            <div key={t}>
-              <dt className="rotulo text-mar">{t}</dt>
-              <dd className="mt-2 text-azul">{v}</dd>
+          ].map(([rot, v]) => (
+            <div key={rot}>
+              <dt className="rotulo text-mar">{t(rot)}</dt>
+              <dd className="mt-2 text-azul">{t(v)}</dd>
             </div>
           ))}
         </dl>
@@ -74,7 +76,7 @@ export default function ObraPainel() {
           {OBRA.etapas.map((e, i) => (
             <li key={e.nome}>
               <div className="flex items-baseline justify-between gap-4 text-sm">
-                <span className="text-azul">{e.nome}</span>
+                <span className="text-azul">{t(e.nome)}</span>
                 <span className="tabular-nums text-grafite/70">{e.valor}%</span>
               </div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-azul/10">

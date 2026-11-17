@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
+import { useT } from "./I18n";
 
 const EASE = [0.44, 0, 0.56, 1] as const;
 
@@ -47,11 +48,13 @@ export function RevealWords({
   className?: string;
   delay?: number;
 }) {
-  const words = text.split(" ");
+  const t = useT();
+  const tt = t(text);
+  const words = tt.split(" ");
   return (
     <motion.span
       className={className}
-      aria-label={text}
+      aria-label={tt}
       initial="oculto"
       whileInView="visivel"
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}

@@ -8,11 +8,15 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import { Menu, X } from "lucide-react";
 import WhatsappIcon from "./WhatsappIcon";
 import { paginas } from "../lib/site";
+import Idiomas from "./Idiomas";
+import { useCaminho, useT } from "./I18n";
 
 // Barra azul sólida. Esconde ao descer e volta ao subir.
 export default function Header({ whatsapp }: { whatsapp: string }) {
   const { scrollY } = useScroll();
   const pathname = usePathname();
+  const t = useT();
+  const href = useCaminho();
   const [oculto, setOculto] = useState(false);
   const [aberto, setAberto] = useState(false);
 
@@ -30,20 +34,21 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
         className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-noite text-white"
       >
         <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 md:px-10 xl:grid xl:grid-cols-[1fr_auto_1fr]">
-          <Link href="/" aria-label="Paraíso das Águas, página inicial" onClick={() => setAberto(false)}>
+          <Link href={href("/")} aria-label={t("Paraíso das Águas, página inicial")} onClick={() => setAberto(false)}>
             <Image src="/logo/ale-branco.svg" alt="ALE Empreendimentos" width={830} height={364} priority className="h-auto w-24 md:w-28" />
           </Link>
-          <nav className="hidden items-center gap-10 text-[11px] font-medium uppercase tracking-[0.22em] xl:flex" aria-label="Principal">
+          <nav className="hidden items-center gap-10 text-[11px] font-medium uppercase tracking-[0.22em] xl:flex" aria-label={t("Principal")}>
             {paginas.map((p) => {
-              const ativo = pathname === p.href;
+              const destino = href(p.href);
+              const ativo = pathname === destino;
               return (
                 <Link
                   key={p.href}
-                  href={p.href}
+                  href={destino}
                   aria-current={ativo ? "page" : undefined}
                   className={`group relative whitespace-nowrap py-2 transition ${ativo ? "text-dourado" : "text-white/75 hover:text-white"}`}
                 >
-                  {p.label}
+                  {t(p.label)}
                   <span
                     className={`absolute -bottom-0.5 left-0 h-px bg-dourado transition-all duration-500 ${ativo ? "w-full" : "w-0 group-hover:w-full"}`}
                   />
@@ -51,7 +56,8 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
               );
             })}
           </nav>
-          <div className="flex items-center gap-3 xl:justify-self-end">
+          <div className="flex items-center gap-2 sm:gap-3 xl:justify-self-end">
+            <Idiomas className="xl:ml-6 xl:mr-4" />
             <a
               href={whatsapp}
               target="_blank"
@@ -64,7 +70,7 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
             <button
               type="button"
               onClick={() => setAberto((v) => !v)}
-              aria-label={aberto ? "Fechar menu" : "Abrir menu"}
+              aria-label={aberto ? t("Fechar menu") : t("Abrir menu")}
               aria-expanded={aberto}
               className="p-2 xl:hidden"
             >
@@ -91,11 +97,11 @@ export default function Header({ whatsapp }: { whatsapp: string }) {
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.25 + i * 0.06, duration: 0.6 } }}
               >
                 <Link
-                  href={p.href}
+                  href={href(p.href)}
                   onClick={() => setAberto(false)}
-                  className={`text-3xl font-light tracking-tight ${pathname === p.href ? "text-dourado" : ""}`}
+                  className={`text-3xl font-light tracking-tight ${pathname === href(p.href) ? "text-dourado" : ""}`}
                 >
-                  {p.label}
+                  {t(p.label)}
                 </Link>
               </motion.div>
             ))}

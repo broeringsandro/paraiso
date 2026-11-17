@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { BookOpen, Building2, Sun, SquareParking, type LucideIcon } from "lucide-react";
 import { Reveal } from "./Reveal";
-import { TituloSecao } from "./Pecas";
+import { TituloSecao } from "./Titulos";
+import { useT } from "./I18n";
 
 type Nivel = { id: string; nome: string; titulo: string; texto: string; icone: LucideIcon };
 
@@ -42,6 +43,7 @@ const niveis: Nivel[] = [
 ];
 
 function ItemNivel({ n, i, aoVer }: { n: Nivel; i: number; aoVer: (i: number) => void }) {
+  const t = useT();
   const ref = useRef<HTMLDivElement>(null);
   const noMeio = useInView(ref, { margin: "-42% 0px -42% 0px" });
   useEffect(() => {
@@ -54,9 +56,9 @@ function ItemNivel({ n, i, aoVer }: { n: Nivel; i: number; aoVer: (i: number) =>
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-cartao text-mar shadow-sm">
           <I size={26} strokeWidth={1.3} />
         </span>
-        <p className="rotulo mb-4 mt-6 text-mar">{n.nome}</p>
-        <h3 className="max-w-md text-3xl font-light leading-tight tracking-tight text-azul md:text-4xl">{n.titulo}</h3>
-        <p className="texto mt-5 max-w-md text-grafite/80">{n.texto}</p>
+        <p className="rotulo mb-4 mt-6 text-mar">{t(n.nome)}</p>
+        <h3 className="max-w-md text-3xl font-light leading-tight tracking-tight text-azul md:text-4xl">{t(n.titulo)}</h3>
+        <p className="texto mt-5 max-w-md text-grafite/80">{t(n.texto)}</p>
       </Reveal>
     </div>
   );
@@ -64,6 +66,7 @@ function ItemNivel({ n, i, aoVer }: { n: Nivel; i: number; aoVer: (i: number) =>
 
 // Corte esquemático do prédio: ao rolar, o nível descrito se acende no desenho.
 export default function PredioCorte() {
+  const t = useT();
   const [ativo, setAtivo] = useState(0);
 
   const bloco = (i: number) => `transition-colors duration-700 ${ativo === i ? "bg-dourado" : "bg-azul/15"}`;
@@ -82,7 +85,7 @@ export default function PredioCorte() {
                 {/* ático */}
                 <div className="relative mx-auto w-[56%]">
                   <div className={`h-16 rounded-t-2xl ${bloco(0)}`} />
-                  <span className={rotulo(0)}>Ático</span>
+                  <span className={rotulo(0)}>{t("Ático")}</span>
                 </div>
                 {/* pavimentos tipo */}
                 <div className="relative mt-1">
@@ -96,19 +99,19 @@ export default function PredioCorte() {
                       />
                     ))}
                   </div>
-                  <span className={rotulo(1)}>7 pavimentos tipo</span>
+                  <span className={rotulo(1)}>{t("7 pavimentos tipo")}</span>
                 </div>
                 {/* térreo */}
                 <div className="relative mt-1">
                   <div className={`h-20 rounded-sm ${bloco(2)}`} />
-                  <span className={rotulo(2)}>Térreo</span>
+                  <span className={rotulo(2)}>{t("Térreo")}</span>
                 </div>
                 {/* nível do solo */}
                 <div className="relative my-2 h-px w-[125%] -translate-x-[10%] border-t border-dashed border-azul/30" aria-hidden />
                 {/* subsolo */}
                 <div className="relative mx-auto w-[94%]">
                   <div className={`h-16 rounded-b-2xl ${bloco(3)}`} />
-                  <span className={rotulo(3)}>Subsolo</span>
+                  <span className={rotulo(3)}>{t("Subsolo")}</span>
                 </div>
               </div>
             </div>

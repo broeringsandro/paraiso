@@ -8,6 +8,7 @@ import { ArrowRight, ArrowUpRight, HardHat, KeyRound, LayoutGrid, MapPin, Waves 
 import Logo from "./Logo";
 import WhatsappIcon from "./WhatsappIcon";
 import { PRECO_A_PARTIR } from "../lib/empreendimento";
+import { useCaminho, useT } from "./I18n";
 
 // Cortina de abertura 100% CSS: nunca bloqueia a página, mesmo sem JS.
 function Intro() {
@@ -29,6 +30,8 @@ const atalhos = [
 ];
 
 export default function Hero({ whatsapp }: { whatsapp: string }) {
+  const t = useT();
+  const href = useCaminho();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
@@ -43,7 +46,7 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
           <div className="hero-bg absolute inset-0">
             <Image
               src="/img/fachada-13.jpg"
-              alt="Fachada do Paraíso das Águas"
+              alt={t("Fachada do Paraíso das Águas")}
               fill
               priority
               sizes="100vw"
@@ -64,17 +67,17 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-dourado/70" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-dourado" />
                   </span>
-                  Pré-lançamento
+                  {t("Pré-lançamento")}
                 </span>
               </div>
               <div className="hero-in mt-8" style={{ animationDelay: "2.35s" }}>
                 <Logo className="mb-2 w-40 brightness-0 invert md:w-52" />
               </div>
               <h1 className="hero-in titulo mt-6 md:mt-8" style={{ animationDelay: "2.5s" }}>
-                O primeiro e maior <strong>home club</strong> de Santo Amaro da Imperatriz.
+                {t("O primeiro e maior")} <strong>home club</strong> {t("de Santo Amaro da Imperatriz.")}
               </h1>
               <p className="hero-in mt-5 max-w-md text-base text-white/85 md:text-lg" style={{ animationDelay: "2.7s" }}>
-                Um refúgio onde a água desacelera o tempo.
+                {t("Um refúgio onde a água desacelera o tempo.")}
               </p>
               <div className="hero-in mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center" style={{ animationDelay: "2.9s" }}>
                 <a
@@ -83,14 +86,14 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
                   rel="noopener"
                   className="group inline-flex items-center justify-center gap-3 rounded-full bg-whats px-7 py-4 text-sm font-medium uppercase tracking-[0.14em] text-white transition hover:bg-whats-escuro"
                 >
-                  <WhatsappIcon size={18} /> Agende sua visita
+                  <WhatsappIcon size={18} /> {t("Agende sua visita")}
                   <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
                 </a>
                 <Link
-                  href="/home-club"
+                  href={href("/home-club")}
                   className="inline-flex items-center justify-center rounded-full border border-white/40 px-7 py-4 text-sm uppercase tracking-[0.14em] backdrop-blur-sm transition hover:border-dourado hover:text-dourado"
                 >
-                  Ver o lazer
+                  {t("Ver o lazer")}
                 </Link>
               </div>
             </div>
@@ -102,10 +105,10 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
               className="hero-in no-scrollbar flex max-w-full gap-2 overflow-x-auto"
               style={{ animationDelay: "3.1s" }}
             >
-              {atalhos.map(({ t, href, icone: I }, i) => (
-                <li key={t} className="shrink-0">
+              {atalhos.map(({ t: rot, href: destino, icone: I }, i) => (
+                <li key={rot} className="shrink-0">
                   <Link
-                    href={href}
+                    href={href(destino)}
                     className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm transition ${
                       i === 0
                         ? "bg-white text-azul hover:bg-dourado"
@@ -113,14 +116,14 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
                     }`}
                   >
                     <I size={16} strokeWidth={1.5} />
-                    {t}
+                    {t(rot)}
                   </Link>
                 </li>
               ))}
             </ul>
 
             <Link
-              href="/apartamentos"
+              href={href("/apartamentos")}
               className="hero-in group hidden w-[370px] shrink-0 items-center gap-4 rounded-2xl bg-white/95 p-3 text-azul shadow-[0_24px_60px_-24px_rgb(20_36_58/0.6)] backdrop-blur transition hover:-translate-y-1 lg:flex"
               style={{ animationDelay: "3.2s" }}
             >
@@ -128,9 +131,9 @@ export default function Hero({ whatsapp }: { whatsapp: string }) {
                 <Image src="/img/sala.jpg" alt="" fill sizes="72px" className="object-cover" />
               </span>
               <span className="flex-1">
-                <span className="block text-sm font-medium">Apartamentos de 2 e 3 dormitórios</span>
-                <span className="mt-0.5 block text-xs text-grafite/60">68 a 91 m² · com suíte · 112 unidades</span>
-                <span className="mt-1.5 block text-base font-medium">A partir de {PRECO_A_PARTIR}</span>
+                <span className="block text-sm font-medium">{t("Apartamentos de 2 e 3 dormitórios")}</span>
+                <span className="mt-0.5 block text-xs text-grafite/60">{t("68 a 91 m² · com suíte · 112 unidades")}</span>
+                <span className="mt-1.5 block text-base font-medium">{t("A partir de")} {t(PRECO_A_PARTIR)}</span>
               </span>
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-dourado/80 text-noite transition group-hover:bg-dourado">
                 <ArrowUpRight size={18} strokeWidth={1.6} />

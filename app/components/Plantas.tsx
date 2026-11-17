@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
+import { useT } from "./I18n";
 import {
   BedDouble,
   BookOpen,
@@ -128,6 +129,7 @@ const plantas: Planta[] = [
 const EASE = [0.44, 0, 0.56, 1] as const;
 
 export default function Plantas() {
+  const t = useT();
   const [ativa, setAtiva] = useState(0);
   const [zoom, setZoom] = useState<Imagem | null>(null);
   const p = plantas[ativa];
@@ -147,7 +149,7 @@ export default function Plantas() {
 
   return (
     <div>
-      <div role="tablist" aria-label="Plantas" className="flex flex-wrap gap-2">
+      <div role="tablist" aria-label={t("Plantas")} className="flex flex-wrap gap-2">
         {plantas.map((pl, i) => {
           const Icone = pl.icone;
           return (
@@ -165,7 +167,7 @@ export default function Plantas() {
                 <motion.span layoutId="aba-planta" className="absolute inset-0 rounded-full bg-azul" transition={{ duration: 0.45, ease: EASE }} />
               )}
               <Icone size={17} strokeWidth={1.5} className="relative shrink-0" />
-              <span className="relative">{pl.aba}</span>
+              <span className="relative">{t(pl.aba)}</span>
             </button>
           );
         })}
@@ -181,7 +183,7 @@ export default function Plantas() {
             transition={{ duration: 0.4, ease: EASE }}
             className="flex flex-col justify-center lg:py-6"
           >
-            <p className="text-3xl font-light tracking-tight text-azul md:text-4xl">{p.titulo}</p>
+            <p className="text-3xl font-light tracking-tight text-azul md:text-4xl">{t(p.titulo)}</p>
             <ul className="mt-7 grid gap-3">
               {p.itens.map((it) => {
                 const Icone = it.icone;
@@ -190,14 +192,14 @@ export default function Plantas() {
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cartao text-mar">
                       <Icone size={20} strokeWidth={1.5} />
                     </span>
-                    <span>{it.texto}</span>
+                    <span>{t(it.texto)}</span>
                   </li>
                 );
               })}
             </ul>
 
             <p className="mt-9 hidden items-center gap-2 text-xs text-grafite/55 lg:flex">
-              <Maximize2 size={14} strokeWidth={1.5} /> Clique na planta para ampliar
+              <Maximize2 size={14} strokeWidth={1.5} /> {t("Clique na planta para ampliar")}
             </p>
           </motion.div>
         </AnimatePresence>
@@ -216,19 +218,19 @@ export default function Plantas() {
                 <button
                   type="button"
                   onClick={() => setZoom(im)}
-                  aria-label={`Ampliar: ${im.alt}`}
+                  aria-label={`${t("Ampliar")}: ${t(im.alt)}`}
                   className="group relative block w-full cursor-zoom-in"
                 >
                   <Image
                     src={im.src}
-                    alt={im.alt}
+                    alt={t(im.alt)}
                     width={im.w}
                     height={im.h}
                     sizes="(min-width: 1024px) 60vw, 92vw"
                     className="mx-auto h-auto max-h-[62svh] w-auto max-w-full object-contain transition duration-700 group-hover:scale-[1.02]"
                   />
                 </button>
-                {im.legenda && <figcaption className="mt-2 text-center text-xs uppercase tracking-[0.18em] text-grafite/55">{im.legenda}</figcaption>}
+                {im.legenda && <figcaption className="mt-2 text-center text-xs uppercase tracking-[0.18em] text-grafite/55">{t(im.legenda)}</figcaption>}
               </figure>
             ))}
           </motion.div>
@@ -242,7 +244,7 @@ export default function Plantas() {
             data-lenis-prevent
             role="dialog"
             aria-modal="true"
-            aria-label={zoom.alt}
+            aria-label={t(zoom.alt)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -252,7 +254,7 @@ export default function Plantas() {
           >
             <button
               type="button"
-              aria-label="Fechar"
+              aria-label={t("Fechar")}
               onClick={() => setZoom(null)}
               className="absolute right-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
             >
@@ -268,7 +270,7 @@ export default function Plantas() {
             >
               <Image
                 src={zoom.src}
-                alt={zoom.alt}
+                alt={t(zoom.alt)}
                 width={zoom.w}
                 height={zoom.h}
                 sizes="92vw"

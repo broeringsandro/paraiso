@@ -14,10 +14,12 @@ import {
 } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { Counter, ParallaxImage } from "./Visuals";
-import { Rotulo, TituloSecao } from "./Pecas";
+import { Rotulo, TituloSecao } from "./Titulos";
 import WhatsappIcon from "./WhatsappIcon";
 import { OBRA } from "../lib/obra";
 import { ENDERECO, MAPS_LINK, TELEFONE, WAZE_LINK, WA_LINK } from "../lib/site";
+import { getLang, getT } from "../i18n/server";
+import { caminho } from "../lib/i18n";
 
 /* ------------------------------ PROJETO ------------------------------ */
 
@@ -32,7 +34,8 @@ const ficha: { n: string | number; u?: string; l: string }[] = [
   { n: "100%", l: "das garagens cobertas" },
 ];
 
-export function FichaTecnica() {
+export async function FichaTecnica() {
+  const t = await getT();
   return (
     <section className="fundo-branco py-16 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
@@ -44,7 +47,7 @@ export function FichaTecnica() {
                 {typeof f.n === "number" ? <Counter to={f.n} /> : f.n}
                 {f.u && <span className="ml-1 text-lg text-mar md:text-2xl">{f.u}</span>}
               </dd>
-              <dt className="mt-3 max-w-[16ch] text-sm leading-snug text-grafite/70">{f.l}</dt>
+              <dt className="mt-3 max-w-[16ch] text-sm leading-snug text-grafite/70">{t(f.l)}</dt>
             </Reveal>
           ))}
         </dl>
@@ -53,14 +56,14 @@ export function FichaTecnica() {
           {[
             { t: "Torre A", d: "Apartamentos de 101 a 708, com finais de 01 a 08." },
             { t: "Torre B", d: "Apartamentos de 111 a 718, com finais de 11 a 18." },
-          ].map((t, i) => (
-            <Reveal key={t.t} delay={i * 0.12} className="flex items-center gap-6 rounded-2xl bg-cartao p-7">
+          ].map((torre, i) => (
+            <Reveal key={torre.t} delay={i * 0.12} className="flex items-center gap-6 rounded-2xl bg-cartao p-7">
               <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-secao text-mar">
                 <Building2 size={26} strokeWidth={1.4} />
               </span>
               <div>
-                <p className="text-xl text-azul">{t.t}</p>
-                <p className="mt-1 text-sm text-grafite/75">{t.d}</p>
+                <p className="text-xl text-azul">{t(torre.t)}</p>
+                <p className="mt-1 text-sm text-grafite/75">{t(torre.d)}</p>
               </div>
             </Reveal>
           ))}
@@ -80,17 +83,18 @@ const docs: { icone: LucideIcon; t: string; d: string }[] = [
   { icone: ShieldCheck, t: "Realização", d: "ALE Empreendimentos (ALE Distribuição, Comércio e Serviços Ltda.)." },
 ];
 
-export function Transparencia() {
+export async function Transparencia() {
+  const t = await getT();
   return (
     <section className="fundo-nevoa py-16 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Transparência" linhaUm="Tudo documentado," destaque="em cada etapa." texto="Respeito ao sonho de quem confia na nossa assinatura começa pela documentação em dia." />
         <ul className="mt-14 grid gap-5 md:grid-cols-3">
-          {docs.map(({ icone: I, t, d }, i) => (
-            <Reveal as="li" key={t} delay={i * 0.12} className="rounded-3xl bg-cartao/70 p-8 transition duration-500 hover:-translate-y-1 hover:bg-cartao">
+          {docs.map(({ icone: I, t: tit, d }, i) => (
+            <Reveal as="li" key={tit} delay={i * 0.12} className="rounded-3xl bg-cartao/70 p-8 transition duration-500 hover:-translate-y-1 hover:bg-cartao">
               <I size={28} strokeWidth={1.3} className="text-mar" />
-              <h3 className="mt-6 text-xl text-azul">{t}</h3>
-              <p className="texto mt-2 text-sm text-grafite/80">{d}</p>
+              <h3 className="mt-6 text-xl text-azul">{t(tit)}</h3>
+              <p className="texto mt-2 text-sm text-grafite/80">{t(d)}</p>
             </Reveal>
           ))}
         </ul>
@@ -137,7 +141,8 @@ function MosaicoFotos({ imagens }: { imagens: Categoria["imagens"] }) {
   );
 }
 
-export function CategoriaLazer({ c, invertido = false, fundo = "nevoa" }: { c: Categoria; invertido?: boolean; fundo?: "nevoa" | "branco" }) {
+export async function CategoriaLazer({ c, invertido = false, fundo = "nevoa" }: { c: Categoria; invertido?: boolean; fundo?: "nevoa" | "branco" }) {
+  const t = await getT();
   return (
     <section className={`${fundo === "branco" ? "fundo-branco" : "fundo-nevoa"} py-14 md:py-32`}>
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-2 lg:gap-24">
@@ -154,7 +159,7 @@ export function CategoriaLazer({ c, invertido = false, fundo = "nevoa" }: { c: C
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cartao text-mar shadow-sm">
                   <I size={20} strokeWidth={1.4} />
                 </span>
-                <span className="text-sm md:text-base">{nome}</span>
+                <span className="text-sm md:text-base">{t(nome)}</span>
               </Reveal>
             ))}
           </ul>
@@ -164,7 +169,9 @@ export function CategoriaLazer({ c, invertido = false, fundo = "nevoa" }: { c: C
   );
 }
 
-export function PlantasDoLazer() {
+export async function PlantasDoLazer() {
+  const t = await getT();
+  const lang = await getLang();
   const cards = [
     { img: "/plantas/terreo.png", w: 1024, h: 1396, t: "Térreo", d: "Piscina com deck, academia, salões de festas, brinquedoteca, playground, lounges e áreas verdes." },
     { img: "/plantas/atico.png", w: 1491, h: 784, t: "Ático", d: "Biblioteca e coworking, cinema e espaço gamer, no topo de cada torre." },
@@ -177,19 +184,19 @@ export function PlantasDoLazer() {
           {cards.map((c, i) => (
             <Reveal key={c.t} delay={i * 0.15} className="flex flex-col rounded-3xl bg-cartao/60 p-6 md:p-9">
               <div className="flex flex-1 items-center justify-center py-4">
-                <Image src={c.img} alt={`Planta do ${c.t}`} width={c.w} height={c.h} sizes="(min-width: 1024px) 45vw, 90vw" className="h-auto max-h-[52svh] w-auto max-w-full object-contain" />
+                <Image src={c.img} alt={`${t("Planta do")} ${t(c.t)}`} width={c.w} height={c.h} sizes="(min-width: 1024px) 45vw, 90vw" className="h-auto max-h-[52svh] w-auto max-w-full object-contain" />
               </div>
               <div className="mt-6 border-t border-azul/10 pt-5">
-                <p className="text-xl text-azul">{c.t}</p>
-                <p className="texto mt-1 text-sm text-grafite/75">{c.d}</p>
+                <p className="text-xl text-azul">{t(c.t)}</p>
+                <p className="texto mt-1 text-sm text-grafite/75">{t(c.d)}</p>
               </div>
             </Reveal>
           ))}
         </div>
         <div className="mt-10">
           <Reveal>
-            <Link href="/plantas" className="group inline-flex items-center gap-3 text-sm uppercase tracking-[0.15em] text-azul">
-              Veja todas as plantas
+            <Link href={caminho(lang, "/plantas")} className="group inline-flex items-center gap-3 text-sm uppercase tracking-[0.15em] text-azul">
+              {t("Veja todas as plantas")}
               <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
             </Link>
           </Reveal>
@@ -207,25 +214,27 @@ const tipologias = [
   { n: "Tipo 03", area: "68,18", d: "2 dormitórios, sendo 1 suíte", finais: "Finais 01 e 08 (Torre A) e 11 e 18 (Torre B)" },
 ];
 
-export function TipologiasResumo() {
+export async function TipologiasResumo() {
+  const t = await getT();
+  const lang = await getLang();
   return (
     <section className="fundo-branco py-14 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <TituloSecao rotulo="Tipologias" linhaUm="Três jeitos de" destaque="morar bem." texto="Todos com sacada com churrasqueira, todos com suíte." />
         <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {tipologias.map((t, i) => (
-            <Reveal key={t.n} delay={i * 0.12}>
-              <Link href="/plantas" className="group flex h-full flex-col rounded-3xl bg-cartao p-8 transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_-35px_rgb(20_36_58/0.45)]">
-                <p className="rotulo text-mar">{t.n}</p>
+          {tipologias.map((tp, i) => (
+            <Reveal key={tp.n} delay={i * 0.12}>
+              <Link href={caminho(lang, "/plantas")} className="group flex h-full flex-col rounded-3xl bg-cartao p-8 transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_-35px_rgb(20_36_58/0.45)]">
+                <p className="rotulo text-mar">{t(tp.n)}</p>
                 <p className="mt-6 text-6xl font-light tracking-tight text-azul">
-                  {t.area}
+                  {tp.area}
                   <span className="ml-1 text-xl text-mar">m²</span>
                 </p>
-                <p className="mt-1 text-sm text-grafite/65">área privativa</p>
-                <p className="mt-6 text-lg text-azul">{t.d}</p>
-                <p className="texto mt-3 text-sm text-grafite/70">{t.finais}</p>
+                <p className="mt-1 text-sm text-grafite/65">{t("área privativa")}</p>
+                <p className="mt-6 text-lg text-azul">{t(tp.d)}</p>
+                <p className="texto mt-3 text-sm text-grafite/70">{t(tp.finais)}</p>
                 <span className="mt-auto flex items-center gap-2 pt-8 text-sm uppercase tracking-[0.15em] text-azul/70 transition group-hover:text-azul">
-                  Ver planta <ArrowRight size={15} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
+                  {t("Ver planta")} <ArrowRight size={15} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
                 </span>
               </Link>
             </Reveal>
@@ -236,7 +245,8 @@ export function TipologiasResumo() {
   );
 }
 
-export function GaleriaApto() {
+export async function GaleriaApto() {
+  const t = await getT();
   const fotos: { img: string; alt: string; cls: string }[] = [
     { img: "quarto-02", alt: "Dormitório", cls: "col-span-2 row-span-2 aspect-[4/3] md:aspect-auto" },
     { img: "sacada-vazia", alt: "Sacada com churrasqueira", cls: "aspect-[4/5]" },
@@ -251,7 +261,7 @@ export function GaleriaApto() {
           {fotos.map((f, i) => (
             <Reveal key={f.img + i} delay={(i % 4) * 0.08} y={30} blur={4} className={f.cls}>
               <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-3xl">
-                <Image src={`/img/${f.img}.jpg`} alt={f.alt} fill sizes="(min-width: 768px) 30vw, 50vw" className="object-cover transition duration-700 hover:scale-[1.04]" />
+                <Image src={`/img/${f.img}.jpg`} alt={t(f.alt)} fill sizes="(min-width: 768px) 30vw, 50vw" className="object-cover transition duration-700 hover:scale-[1.04]" />
               </div>
             </Reveal>
           ))}
@@ -263,7 +273,8 @@ export function GaleriaApto() {
 
 /* ----------------------------- LOCALIZAÇÃO --------------------------- */
 
-export function ComoChegar() {
+export async function ComoChegar() {
+  const t = await getT();
   return (
     <section className="fundo-nevoa pb-8 pt-16 md:pb-12 md:pt-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
@@ -272,15 +283,15 @@ export function ComoChegar() {
             <div>
               <Rotulo>Como chegar</Rotulo>
               <p className="text-2xl font-light leading-snug text-azul md:text-3xl">{ENDERECO}</p>
-              <p className="mt-3 text-sm text-grafite/60">Posição aproximada. O ponto exato do terreno será confirmado.</p>
+              <p className="mt-3 text-sm text-grafite/60">{t("Posição aproximada. O ponto exato do terreno será confirmado.")}</p>
             </div>
             <div className="flex flex-col gap-3">
               <a href={MAPS_LINK} target="_blank" rel="noopener" className="group flex items-center justify-between gap-4 rounded-full bg-azul px-7 py-4 text-sm uppercase tracking-[0.15em] text-white transition hover:bg-noite">
-                <span className="flex items-center gap-3"><Navigation size={18} strokeWidth={1.6} /> Abrir no Google Maps</span>
+                <span className="flex items-center gap-3"><Navigation size={18} strokeWidth={1.6} /> {t("Abrir no Google Maps")}</span>
                 <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
               </a>
               <a href={WAZE_LINK} target="_blank" rel="noopener" className="group flex items-center justify-between gap-4 rounded-full border border-azul/25 px-7 py-4 text-sm uppercase tracking-[0.15em] text-azul transition hover:border-azul">
-                <span className="flex items-center gap-3"><Navigation size={18} strokeWidth={1.6} /> Traçar rota no Waze</span>
+                <span className="flex items-center gap-3"><Navigation size={18} strokeWidth={1.6} /> {t("Traçar rota no Waze")}</span>
                 <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
               </a>
             </div>
@@ -291,7 +302,8 @@ export function ComoChegar() {
   );
 }
 
-export function DestaquePrefeitura() {
+export async function DestaquePrefeitura() {
+  const t = await getT();
   return (
     <section className="bg-azul py-16 text-white md:py-36">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
@@ -307,11 +319,12 @@ export function DestaquePrefeitura() {
           <Reveal delay={0.1}>
             <Rotulo claro>Nova sede da Prefeitura</Rotulo>
             <h2 className="titulo text-white md:!text-[2.8rem]">
-              Perto de tudo o que o <strong>dia a dia pede</strong>.
+              {t("Perto de tudo o que o")} <strong>{t("dia a dia pede")}</strong>.
             </h2>
             <p className="texto mt-6 max-w-md text-white/75">
-              O São Francisco de Assis é o bairro que cresce ao redor da nova prefeitura de Santo Amaro da Imperatriz, a
-              cerca de 500 m do Paraíso das Águas.
+              {t(
+                "O São Francisco de Assis é o bairro que cresce ao redor da nova prefeitura de Santo Amaro da Imperatriz, a cerca de 500 m do Paraíso das Águas.",
+              )}
             </p>
           </Reveal>
         </div>
@@ -322,7 +335,8 @@ export function DestaquePrefeitura() {
 
 /* -------------------------------- OBRA ------------------------------- */
 
-export function Cronograma() {
+export async function Cronograma() {
+  const t = await getT();
   const itens = OBRA.etapas.map((e) => ({
     ...e,
     estado: e.valor >= 100 ? "Concluída" : e.valor > 0 ? "Em andamento" : "Próxima etapa",
@@ -347,13 +361,13 @@ export function Cronograma() {
                 </span>
                 <div className="flex-1 border-b border-azul/10 pb-7">
                   <div className="flex flex-col items-start gap-2 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-3">
-                    <p className={`text-xl ${ativo || feita ? "text-azul" : "text-azul/55"}`}>{e.nome}</p>
+                    <p className={`text-xl ${ativo || feita ? "text-azul" : "text-azul/55"}`}>{t(e.nome)}</p>
                     <span
                       className={`rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.16em] ${
                         ativo ? "bg-dourado text-noite" : feita ? "bg-azul text-white" : "bg-azul/5 text-grafite/55"
                       }`}
                     >
-                      {e.estado}
+                      {t(e.estado)}
                     </span>
                   </div>
                 </div>
@@ -366,21 +380,22 @@ export function Cronograma() {
   );
 }
 
-export function FotosObra() {
+export async function FotosObra() {
+  const t = await getT();
   return (
     <section className="fundo-branco py-16 md:py-32">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-10 lg:grid-cols-[1fr_1fr] lg:gap-20">
         <Reveal>
           <div className="flex aspect-[5/3] flex-col items-center justify-center gap-4 rounded-3xl border border-dashed border-azul/25 bg-cartao text-center">
             <Camera size={34} strokeWidth={1.2} className="text-mar" />
-            <p className="max-w-xs text-azul">As primeiras fotos da obra serão publicadas aqui.</p>
+            <p className="max-w-xs text-azul">{t("As primeiras fotos da obra serão publicadas aqui.")}</p>
           </div>
         </Reveal>
         <div>
           <TituloSecao rotulo="Fotos da obra" linhaUm="Receba cada" destaque="atualização." texto="Quer ser avisado quando houver novidades da obra? Fale com a ALE e peça para entrar na lista." />
           <Reveal delay={0.2}>
-            <a href={`${WA_LINK}?text=${encodeURIComponent("Olá! Quero receber as atualizações da obra do Paraíso das Águas.")}`} target="_blank" rel="noopener" className="group mt-9 inline-flex items-center gap-3 rounded-full bg-whats px-8 py-4 text-sm uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro">
-              <WhatsappIcon size={19} /> Receber atualizações
+            <a href={`${WA_LINK}?text=${encodeURIComponent(t("Olá! Quero receber as atualizações da obra do Paraíso das Águas."))}`} target="_blank" rel="noopener" className="group mt-9 inline-flex items-center gap-3 rounded-full bg-whats px-8 py-4 text-sm uppercase tracking-[0.15em] text-white transition hover:bg-whats-escuro">
+              <WhatsappIcon size={19} /> {t("Receber atualizações")}
               <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
             </a>
           </Reveal>
@@ -392,7 +407,8 @@ export function FotosObra() {
 
 /* ------------------------------- CONTATO ----------------------------- */
 
-export function Corretores() {
+export async function Corretores() {
+  const t = await getT();
   return (
     <section className="fundo-nevoa pb-14 pt-14 md:pb-28 md:pt-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
@@ -401,15 +417,15 @@ export function Corretores() {
             <div>
               <Layers size={28} strokeWidth={1.3} className="text-dourado" />
               <h2 className="titulo mt-5 text-white md:!text-[2.4rem]">
-                Você é <strong>corretor</strong>?
+                {t("Você é")} <strong>{t("corretor")}</strong>?
               </h2>
               <p className="texto mt-4 max-w-lg text-white/75">
-                Procure a ALE pelo WhatsApp e seja cadastrado para atender seus clientes no Paraíso das Águas.
+                {t("Procure a ALE pelo WhatsApp e seja cadastrado para atender seus clientes no Paraíso das Águas.")}
               </p>
             </div>
             <div className="md:justify-self-end">
-              <a href={`${WA_LINK}?text=${encodeURIComponent("Olá! Sou corretor e quero me cadastrar para o Paraíso das Águas.")}`} target="_blank" rel="noopener" className="group inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-whats px-6 py-4 text-[13px] font-medium uppercase tracking-[0.1em] md:gap-3 md:px-8 md:text-sm md:tracking-[0.15em] text-white transition hover:bg-whats-escuro">
-                <WhatsappIcon size={19} /> Falar com a ALE
+              <a href={`${WA_LINK}?text=${encodeURIComponent(t("Olá! Sou corretor e quero me cadastrar para o Paraíso das Águas."))}`} target="_blank" rel="noopener" className="group inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-whats px-6 py-4 text-[13px] font-medium uppercase tracking-[0.1em] md:gap-3 md:px-8 md:text-sm md:tracking-[0.15em] text-white transition hover:bg-whats-escuro">
+                <WhatsappIcon size={19} /> {t("Falar com a ALE")}
                 <ArrowRight size={16} strokeWidth={1.8} className="transition group-hover:translate-x-1" />
               </a>
               <p className="mt-4 text-sm text-white/75 md:text-right">{TELEFONE}</p>

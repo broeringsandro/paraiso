@@ -11,6 +11,7 @@ import {
   useTransform,
   useVelocity,
 } from "motion/react";
+import { useT } from "./I18n";
 import { Droplets, Dumbbell, Flame, MapPin, PartyPopper, SquareParking, Sunrise, Waves } from "lucide-react";
 
 // Faixa que corre sozinha e acelera / inverte de sentido conforme a velocidade do scroll.
@@ -59,6 +60,7 @@ const itens: { t: string; icone: ReactNode }[] = [
 ];
 
 export default function Letreiro() {
+  const t = useT();
   return (
     <div role="presentation" className="relative">
       <div className="bg-dourado py-5 text-noite">
@@ -67,7 +69,7 @@ export default function Letreiro() {
             <span key={it.t} className="flex items-center whitespace-nowrap">
               <span className="flex items-center gap-3 px-6">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-noite/30">{it.icone}</span>
-                <span className="text-sm font-medium uppercase tracking-[0.2em]">{it.t}</span>
+                <span className="text-sm font-medium uppercase tracking-[0.2em]">{t(it.t)}</span>
               </span>
               <Droplets size={16} strokeWidth={1.6} className="mx-4 opacity-50" />
             </span>
