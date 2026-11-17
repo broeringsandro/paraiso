@@ -173,8 +173,8 @@ export async function PlantasDoLazer() {
   const t = await getT();
   const lang = await getLang();
   const cards = [
-    { img: "/plantas/terreo.png", w: 1024, h: 1396, t: "Térreo", d: "Piscina com deck, academia, salões de festas, brinquedoteca, playground, lounges e áreas verdes." },
-    { img: "/plantas/atico.png", w: 1491, h: 784, t: "Ático", d: "Biblioteca e coworking, cinema e espaço gamer, no topo de cada torre." },
+    { img: "/plantas/terreo.jpg", w: 1024, h: 1472, t: "Térreo", d: "Piscina com deck, academia, salões de festas, brinquedoteca, playground, lounges e áreas verdes." },
+    { img: "/plantas/atico.jpg", w: 1800, h: 1079, t: "Ático", d: "Biblioteca e coworking, cinema e espaço gamer, no topo de cada torre." },
   ];
   return (
     <section className="fundo-nevoa py-16 md:py-36">
@@ -184,7 +184,7 @@ export async function PlantasDoLazer() {
           {cards.map((c, i) => (
             <Reveal key={c.t} delay={i * 0.15} className="flex flex-col rounded-3xl bg-cartao/60 p-6 md:p-9">
               <div className="flex flex-1 items-center justify-center py-4">
-                <Image src={c.img} alt={`${t("Planta do")} ${t(c.t)}`} width={c.w} height={c.h} sizes="(min-width: 1024px) 45vw, 90vw" className="h-auto max-h-[52svh] w-auto max-w-full object-contain" />
+                <Image src={c.img} alt={`${t("Planta do")} ${t(c.t)}`} width={c.w} height={c.h} sizes="(min-width: 1024px) 45vw, 90vw" className="h-auto max-h-[52svh] w-auto max-w-full rounded-2xl object-contain" />
               </div>
               <div className="mt-6 border-t border-azul/10 pt-5">
                 <p className="text-xl text-azul">{t(c.t)}</p>

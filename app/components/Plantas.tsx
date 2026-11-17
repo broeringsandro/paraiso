@@ -49,7 +49,7 @@ const plantas: Planta[] = [
       { icone: Building2, texto: "Finais 02, 03, 06 e 07 na Torre A" },
       { icone: Building2, texto: "Finais 12, 13, 16 e 17 na Torre B" },
     ],
-    imagens: [{ src: "/plantas/tipo-01.png", w: 1277, h: 1017, alt: "Planta do apartamento Tipo 01, 3 dormitórios" }],
+    imagens: [{ src: "/plantas/tipo-01.jpg", w: 1750, h: 1366, alt: "Planta do apartamento Tipo 01, 3 dormitórios" }],
   },
   {
     id: "tipo-02",
@@ -63,7 +63,7 @@ const plantas: Planta[] = [
       { icone: Building2, texto: "Finais 04 e 05 na Torre A" },
       { icone: Building2, texto: "Finais 14 e 15 na Torre B" },
     ],
-    imagens: [{ src: "/plantas/tipo-02.png", w: 1231, h: 1021, alt: "Planta do apartamento Tipo 02, 2 dormitórios" }],
+    imagens: [{ src: "/plantas/tipo-02.jpg", w: 1800, h: 1360, alt: "Planta do apartamento Tipo 02, 2 dormitórios" }],
   },
   {
     id: "tipo-03",
@@ -77,7 +77,7 @@ const plantas: Planta[] = [
       { icone: Building2, texto: "Finais 01 e 08 na Torre A" },
       { icone: Building2, texto: "Finais 11 e 18 na Torre B" },
     ],
-    imagens: [{ src: "/plantas/tipo-03.png", w: 1286, h: 1001, alt: "Planta do apartamento Tipo 03, 2 dormitórios" }],
+    imagens: [{ src: "/plantas/tipo-03.jpg", w: 1779, h: 1366, alt: "Planta do apartamento Tipo 03, 2 dormitórios" }],
   },
   {
     id: "pavimento",
@@ -89,8 +89,8 @@ const plantas: Planta[] = [
       { icone: Building2, texto: "Torre B, de 111 a 718" },
     ],
     imagens: [
-      { src: "/plantas/pavimento-a.png", w: 1489, h: 673, alt: "Planta do pavimento tipo, decoração A", legenda: "Decoração A" },
-      { src: "/plantas/pavimento-b.png", w: 1496, h: 672, alt: "Planta do pavimento tipo, decoração B", legenda: "Decoração B" },
+      { src: "/plantas/pavimento-a.jpg", w: 1800, h: 1037, alt: "Planta do pavimento tipo, decoração A", legenda: "Decoração A" },
+      { src: "/plantas/pavimento-b.jpg", w: 1800, h: 906, alt: "Planta do pavimento tipo, decoração B", legenda: "Decoração B" },
     ],
   },
   {
@@ -102,7 +102,7 @@ const plantas: Planta[] = [
       { icone: Waves, texto: "Home club" },
       { icone: SquareParking, texto: "Garagens cobertas" },
     ],
-    imagens: [{ src: "/plantas/terreo.png", w: 1024, h: 1396, alt: "Planta do pavimento térreo com o home club" }],
+    imagens: [{ src: "/plantas/terreo.jpg", w: 1024, h: 1472, alt: "Planta do pavimento térreo com o home club" }],
   },
   {
     id: "subsolo",
@@ -110,7 +110,7 @@ const plantas: Planta[] = [
     icone: SquareParking,
     titulo: "Subsolo",
     itens: [{ icone: SquareParking, texto: "Garagens cobertas" }],
-    imagens: [{ src: "/plantas/subsolo.png", w: 1230, h: 1227, alt: "Planta do subsolo com as garagens" }],
+    imagens: [{ src: "/plantas/subsolo.jpg", w: 1800, h: 1800, alt: "Planta do subsolo com as garagens" }],
   },
   {
     id: "atico",
@@ -122,7 +122,7 @@ const plantas: Planta[] = [
       { icone: Clapperboard, texto: "Cinema" },
       { icone: Gamepad2, texto: "Espaço gamer" },
     ],
-    imagens: [{ src: "/plantas/atico.png", w: 1491, h: 784, alt: "Planta do ático com coworking, cinema e espaço gamer" }],
+    imagens: [{ src: "/plantas/atico.jpg", w: 1800, h: 1079, alt: "Planta do ático com coworking, cinema e espaço gamer" }],
   },
 ];
 
@@ -211,7 +211,7 @@ export default function Plantas() {
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 1.02, filter: "blur(6px)" }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="flex flex-col gap-4 rounded-3xl bg-cartao p-5 md:p-10"
+            className="flex flex-col gap-4"
           >
             {p.imagens.map((im) => (
               <figure key={im.src}>
@@ -219,7 +219,7 @@ export default function Plantas() {
                   type="button"
                   onClick={() => setZoom(im)}
                   aria-label={`${t("Ampliar")}: ${t(im.alt)}`}
-                  className="group relative block w-full cursor-zoom-in"
+                  className="group relative block w-full cursor-zoom-in overflow-hidden rounded-3xl"
                 >
                   <Image
                     src={im.src}
@@ -227,7 +227,7 @@ export default function Plantas() {
                     width={im.w}
                     height={im.h}
                     sizes="(min-width: 1024px) 60vw, 92vw"
-                    className="mx-auto h-auto max-h-[62svh] w-auto max-w-full object-contain transition duration-700 group-hover:scale-[1.02]"
+                    className="mx-auto h-auto max-h-[70svh] w-auto max-w-full object-contain transition duration-700 group-hover:scale-[1.02]"
                   />
                 </button>
                 {im.legenda && <figcaption className="mt-2 text-center text-xs uppercase tracking-[0.18em] text-grafite/55">{t(im.legenda)}</figcaption>}
